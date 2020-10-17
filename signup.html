@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+    <title>New Signup Form</title>
+</head>
+<body><center>
+    <form method='POST' action='signup'>
+        {% csrf_token%}
+        <table border=1>
+    {{form}}
+    </table>
+    <input type="submit" value="createuser"/> | <a href="{% url 'login'%}">Login</a>
+    </form>
+    <p>{{info}}</p>
+</center></body>
