@@ -1,0 +1,15 @@
+Regular Expressions - 
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjT0bWWqtTrAhUs7HMBHfzkAMoQFjAAegQIBBAB&url=https%3A%2F%2Fwww.rexegg.com%2Fregex-quickstart.html&usg=AOvVaw3Qc4v7lXwC17xDMgSQRtJ2
+
+Replace function in python strings - 
+https://www.w3schools.com/python/ref_string_replace.asp
+
+List Comprehension - 
+https://medium.com/better-programming/list-comprehension-in-python-8895a785550b
+
+Lambda Functions - 
+https://www.guru99.com/python-lambda-function.html
+
+Input through files - 
+https://stackoverflow.com/questions/6583573/how-to-read-numbers-from-file-in-python
+

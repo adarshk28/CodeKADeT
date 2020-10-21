@@ -34,7 +34,7 @@ def login(request):
             return render(request,'login.html',{'form':AuthenticationForm,'info':'Invalid credentials!'}) 
         else:
             auth.login(request,success)
-            return redirect('user_page') # redirect to user profile, add url in templates 
+            return redirect("upload") # redirect to user profile, add url in templates 
     else:
        return render(request,'login.html',{'form':AuthenticationForm})
 # Create your views here.

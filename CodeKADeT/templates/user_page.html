@@ -4,12 +4,12 @@
 </head>
 <body><center>
 
-  <form method='POST' action="#">
+  <form method='POST' enctype="multipart/form-data" action="#">
   {% csrf_token %}
     <input type="text" name="desc" placeholder="decsription">
-    <input type="file" name="docfile" placeholder="name of file">
+    <input type="file" name="docfile" >
     <input type="text" name="language" placeholder="language">
-    <input type="text" name="filename">  
+    <input type="text" name="file_name" placeholder="name of file">  
     <input type="submit" value="Submit"/> 
  </form>
  <b>{{info}}</b>

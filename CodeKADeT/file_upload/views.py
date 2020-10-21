@@ -30,7 +30,7 @@ def new_user(request):  # ignore this
     else:
        return render(request,'login.html',{'form':AuthenticationForm})
 
-#@login_required
+@login_required
 def upload_from_computer(request):
     if request.method=='POST':
         form=DocumentForm(request.POST, request.FILES)
@@ -44,7 +44,7 @@ def upload_from_computer(request):
             return render(request, 'user_page.html', {'info':"does not work !"})
 
     else:
-        return render(request, 'user_page.html', {'info':"please select a file"})
+        return render(request, 'user_page.html', {'info':"Hey "+request.user.username+"! Please select a file"})
     
 
 def upload_from_textbox(request):

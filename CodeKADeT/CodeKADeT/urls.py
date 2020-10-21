@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from login import views as login_views
+from file_upload import views as file_upload_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('signup/', include('login.urls')),
-    #path('', include('login.urls')),
-    #path('competitions', include('competitions.urls')),
-    path('fileupload/', include('file_upload.urls'))
+    path('signup/', login_views.signup),
+    path('login/',  login_views.login),
+    path('fileupload/', file_upload_views.upload_from_computer,name="upload"),
+    path('', include('login.urls')),
+    path('signup/login/',  login_views.login),
 ]
