@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+    <title>User</title>
+</head>
+<body><center>
+
+  <form method='POST' action="#">
+  {% csrf_token %}
+    <input type="text" name="desc" placeholder="decsription">
+    <input type="file" name="docfile" placeholder="name of file">
+    <input type="text" name="language" placeholder="language">
+    <input type="text" name="filename">  
+    <input type="submit" value="Submit"/> 
+ </form>
+ <b>{{info}}</b>
+</center></body>
