@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./workspace.component.scss']
 })
 export class WorkspaceComponent implements OnInit {
-
+  @ViewChild('editor') editor;
+  text: string = '';
   Form= new FormGroup({
     Language: new FormControl(''),
     Code: new FormControl(''),
@@ -18,6 +19,13 @@ export class WorkspaceComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+  
+  ngAfterViewInit() {
+    console.log("Here");
+    // this.editor.setTheme('monokai');
+    this.editor.getEditor().setOptions({
+    });
   }
 
 }
