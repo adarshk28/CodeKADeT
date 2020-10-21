@@ -1,3 +1,4 @@
+<div id='workspace'>
 <h2>Welcome to CodeKADet</h2>
 <br><br>
 
@@ -14,18 +15,20 @@
         Code here:
         <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' mode='javascript'></ace-editor>
     </label><br><br>
-    <label>
-        User Input:
-        <textarea formControlName='Input' id="" cols="30" rows="10"></textarea>
-    </label><br><br>
-    <label>
-        Output:
-        <textarea formControlName='Output' id="" cols="30" rows="10"></textarea>
-    </label><br><br>
-
-    <button type="submit" (click)='onSubmit()'>Submit</button>
-    <button type="save" (click)='onSave()'>Save</button>
-    <button type="Run">Run offline</button>
+    <div id="interface">
+    <label for='input'>User input:</label><br>
+        <textarea formControlName='Input' id="input" cols="30" rows="10"></textarea>
+    </div>
+    <div id="interface">
+    <label for='output'>User output:</label><br>
+        <textarea formControlName='Output' id="output" cols="30" rows="10"></textarea>
+    </div>
+    <br>
+    <button mat-raised-button color='accent' type="submit" (click)='onSubmit()'>Submit</button>
+    <button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
+    <button mat-raised-button color='warn' type="Run">Run offline</button>
 </form>
+<app-file>Upload file</app-file>
 <p>Your Code:</p>
 <p>{{ text }}</p>
+</div>

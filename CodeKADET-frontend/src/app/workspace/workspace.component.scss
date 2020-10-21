@@ -1,6 +1,18 @@
+#workspace {
+  font-family: Verdana, Geneva, Tahoma, sans-serifj;
+}
 ace-editor {
   min-height: 250px;
   width: 75%;
   overflow: auto;
   font-size: 14pt;
+}
+
+button {
+  margin: 10px;
+}
+
+#interface {
+  display: inline-block;
+  margin: 10px;
 }
