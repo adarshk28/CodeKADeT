@@ -21,11 +21,20 @@ export class WorkspaceComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  ngAfterViewInit() {
-    console.log("Here");
-    // this.editor.setTheme('monokai');
-    this.editor.getEditor().setOptions({
-    });
+  // ngAfterViewInit() {
+  //   console.log("Here");
+  //   this.editor.setTheme('monokai');
+  //   this.editor.getEditor().setOptions({
+  //   });
+  // }
+
+  onSubmit(): void {
+    this.Form.get('Code').setValue(this.text);
+    console.log('Submitted!');
   }
 
+  onSave(): void {
+    this.Form.get('Code').setValue(this.text);
+    console.log('Saved!');
+  }
 }
