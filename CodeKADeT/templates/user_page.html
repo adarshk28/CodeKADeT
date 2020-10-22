@@ -3,7 +3,7 @@
     <title>User</title>
 </head>
 <body><center>
-
+  <b> Logout before leaving to login as a new user! </b>
   <form method='POST' enctype="multipart/form-data" action="#">
   {% csrf_token %}
     <input type="text" name="description" placeholder="description">
@@ -17,4 +17,7 @@
  {% for file in files %}
  <a href='file_view/?file={{file.file_name}}'>{{file.file_name}}</a>
  {% endfor %}
+ <form action='logout/'>
+ <input type="submit" value="Logout">
+ </form>
 </center></body>

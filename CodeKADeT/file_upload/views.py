@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Code_file
 from .forms import DocumentForm
 from django.middleware.csrf import CsrfViewMiddleware
-
+from django.contrib.auth import logout
 from .models import UserProfile as User
 from django.db import IntegrityError
 from django.contrib import auth
@@ -17,18 +17,11 @@ from django.contrib import auth
     #documents = Code_file.objects.all()
     #return render(request, 'core/home.html', { 'documents': documents })
 
-def new_user(request):  # ignore this 
-    if request.method=="POST":
-        username=request.POST['username']
-        password=request.POST['password']
-        success=auth.authenticate(request,username=username,password=password)
-        if success is None:
-            return render(request,'login.html',{'form':AuthenticationForm,'info':'Invalid credentials!'}) 
-        else:
-            auth.login(request,success)
-            return render(request,'login.html',{'form':AuthenticationForm},{'info':"upload your files!"}) # redirect to user profile, add url in templates 
-    else:
-       return render(request,'login.html',{'form':AuthenticationForm})
+
+def logout_user(request):
+    logout(request)
+    return redirect("signup")
+
 
 @login_required
 def upload_from_computer(request):
