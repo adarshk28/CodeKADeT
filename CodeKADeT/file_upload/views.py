@@ -35,24 +35,31 @@ def upload_from_computer(request):
     if request.method=='POST':
         form=DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            myfile=request.user.code_file_set.create(description=request.POST['desc'], content=request.FILES['docfile'], language=request.POST['language'], file_name=request.POST['file_name'])
+            myfile=request.user.code_file_set.create(description=request.POST['description'], content=request.FILES['content'], language=request.POST['language'], file_name=request.POST['file_name'])
             myfile.save()
-            return render(request, 'user_page.html', {'info':"works!"})
+            return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id})
         else:
-            myfile=request.user.code_file_set.create(description=request.POST['desc'], content=request.FILES['docfile'], language=request.POST['language'], file_name=request.POST['file_name'])
-            myfile.save()
-            return render(request, 'user_page.html', {'info':"does not work !"})
+            return render(request, 'user_page.html', {'info':"does not work !", 'files':request.user.code_file_set.all(), 'userid':request.user.id})
 
     else:
-        return render(request, 'user_page.html', {'info':"Hey "+request.user.username+"! Please select a file"})
+        return render(request, 'user_page.html', {'info':"Hey "+request.user.username+"! Please select a file", 'files':request.user.code_file_set.all(), 'userid':request.user.id})
     
 
 def upload_from_textbox(request):
     if request.method=='POST':
         form=DocumentForm(request.POST)
-    if form.is_valid():
-        docfile=open(request.filename)
-        myfile=request.user.code_file_set.create(description=request.POST['desc'], content=docfile, language=request.POST['language'], file_name=request.POST['file_name'])
-        myfile.save()
-        return render(request, 'upload_files.html', {})
+        if form.is_valid():
+            docfile=open(request.filename)
+            myfile=request.user.code_file_set.create(description=request.POST['desc'], content=docfile, language=request.POST['language'], file_name=request.POST['file_name'])
+            myfile.save()
+            return render(request, 'upload_files.html', {})
+
+
+def view_function(request):
+    if request.method=='GET':
+        filename=request.GET.get('file','')
+        lines=[]
+        with open(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename) as f:
+            lines=[line.rstrip('\n') for line in f]
+        return render(request, 'fileview.html', {'lines':lines})
 

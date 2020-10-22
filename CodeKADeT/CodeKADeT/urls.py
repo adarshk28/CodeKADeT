@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from login import views as login_views
 from file_upload import views as file_upload_views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', login_views.signup),
@@ -25,4 +24,5 @@ urlpatterns = [
     path('fileupload/', file_upload_views.upload_from_computer,name="upload"),
     path('', include('login.urls')),
     path('signup/login/',  login_views.login),
+    path('fileupload/file_view/', file_upload_views.view_function, name='view_function')
 ]
