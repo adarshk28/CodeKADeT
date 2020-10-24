@@ -12,9 +12,10 @@
     <input type="text" name="file_name" placeholder="name of file">  
     <input type="submit" value="Submit"/> 
  </form>
- <b>{{info}}</b>
+ <b>{{info}}</b><br>
+ <b>welcome {{user.userprofile.nickname}}</b>
  <br>
  {% for file in files %}
- <a href='file_view/?file={{file.file_name}}'>{{file.file_name}}</a>
+ <a href='file_view/?file={{file.file_name}}'>{{file.file_name}}</a><br>
  {% endfor %}
 </center></body>

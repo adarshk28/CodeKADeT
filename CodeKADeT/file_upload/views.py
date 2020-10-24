@@ -37,12 +37,12 @@ def upload_from_computer(request):
         if form.is_valid():
             myfile=request.user.code_file_set.create(description=request.POST['description'], content=request.FILES['content'], language=request.POST['language'], file_name=request.POST['file_name'])
             myfile.save()
-            return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id})
+            return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
         else:
-            return render(request, 'user_page.html', {'info':"does not work !", 'files':request.user.code_file_set.all(), 'userid':request.user.id})
+            return render(request, 'user_page.html', {'info':"does not work !", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
 
     else:
-        return render(request, 'user_page.html', {'info':"Hey "+request.user.username+"! Please select a file", 'files':request.user.code_file_set.all(), 'userid':request.user.id})
+        return render(request, 'user_page.html', {'info':"Hey "+request.user.username+"! Please select a file", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
     
 
 def upload_from_textbox(request):
