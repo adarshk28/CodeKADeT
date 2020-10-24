@@ -7,6 +7,7 @@ from .models import UserProfile as User
 from django.db import IntegrityError
 from django.contrib import auth
 from django.middleware.csrf import CsrfViewMiddleware
+from django.contrib.auth import logout
 
 
 
@@ -25,16 +26,18 @@ def signup(request):
         return render(request,'signup.html',{'form':UserCreationForm})
 
 def login(request):
-    
-    if request.method=="POST":
-        username=request.POST['username']
-        password=request.POST['password']
-        success=auth.authenticate(request,username=username,password=password)
-        if success is None:
-            return render(request,'login.html',{'form':AuthenticationForm,'info':'Invalid credentials!'}) 
-        else:
-            auth.login(request,success)
-            return redirect("upload") # redirect to user profile, add url in templates 
+    if(request.user.is_authenticated):
+        return redirect("upload") 
     else:
-       return render(request,'login.html',{'form':AuthenticationForm})
+        if request.method=="POST":
+            username=request.POST['username']
+            password=request.POST['password']
+            success=auth.authenticate(request,username=username,password=password)
+            if success is None:
+                return render(request,'login.html',{'form':AuthenticationForm,'info':'Invalid credentials!'}) 
+            else:
+                auth.login(request,success)
+                return redirect("upload") # redirect to user profile, add url in templates 
+        else:
+            return render(request,'login.html',{'form':AuthenticationForm})
 # Create your views here.

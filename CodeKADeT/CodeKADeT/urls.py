@@ -19,7 +19,8 @@ from login import views as login_views
 from file_upload import views as file_upload_views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/', login_views.signup),
+    path('signup/', login_views.signup,name="signup"),
+    path('fileupload/logout/',file_upload_views.logout_user,name="logout"),
     path('login/',  login_views.login),
     path('fileupload/', file_upload_views.upload_from_computer,name="upload"),
     path('', include('login.urls')),
