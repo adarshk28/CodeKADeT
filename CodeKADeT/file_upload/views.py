@@ -11,7 +11,10 @@ from django.contrib.auth import logout
 from .models import UserProfile as User
 from django.db import IntegrityError
 from django.contrib import auth
+import subprocess
+import logging
 
+logger=logging.getLogger(__name__)
 
 #def home(request):
     #documents = Code_file.objects.all()
@@ -55,4 +58,10 @@ def view_function(request):
         with open(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename) as f:
             lines=[line.rstrip('\n') for line in f]
         return render(request, 'fileview.html', {'lines':lines})
+
+def execute(request):
+    if(request.method=='POST'):
+       process= subprocess.run(["tree"])
+       logger.log(process.stdout)
+       
 
