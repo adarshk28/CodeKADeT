@@ -1,0 +1,12 @@
+<div id="particles-js">
+</div>
+<mat-card class='box'>
+  <ng-container *ngIf="isLogin==true">
+    <app-login></app-login>
+    <button mat-raised-button color='accent' (click)='switch()' style='margin: 10px;'>Register</button>
+  </ng-container>
+  <ng-container *ngIf="isLogin==false">
+  <app-signup></app-signup>
+  <button mat-raised-button color='accent' (click)='switch()' style='margin: 10px;'>Log In</button>
+  </ng-container>
+</mat-card>

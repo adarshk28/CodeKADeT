@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
+import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
 const routes: Routes = [
+  {
+    path: 'homepage',component: HomepageComponent
+  },
   {
     path: 'workspace',component: WorkspaceComponent
   },
@@ -14,7 +18,7 @@ const routes: Routes = [
   {
     path: 'contact',component: ContactComponent
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/homepage', pathMatch: 'full' },
 ];
 
 @NgModule({

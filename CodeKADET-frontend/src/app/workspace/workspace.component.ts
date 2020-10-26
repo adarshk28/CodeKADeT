@@ -17,14 +17,8 @@ export class WorkspaceComponent implements OnInit {
   });
 
   constructor() { }
-  private req: any
-  data : any
-  url: String='/fileupload/'
+
   ngOnInit(): void {
-    // this.req=this.http.get(this.url).subscribe(data=>{
-    //   console.log(data)
-    //   this.data=data as [any]
-    // })
   }
   
   // ngAfterViewInit() {
@@ -35,7 +29,8 @@ export class WorkspaceComponent implements OnInit {
   // }
 
   onSubmit(): void {
-   
+    this.Form.get('Code').setValue(this.text);
+    console.log('Submitted!');
   }
 
   onSave(): void {
