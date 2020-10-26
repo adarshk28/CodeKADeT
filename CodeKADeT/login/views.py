@@ -8,8 +8,8 @@ from django.db import IntegrityError
 from django.contrib import auth
 from django.middleware.csrf import CsrfViewMiddleware
 from django.contrib.auth import logout
-
-
+from django.http import JsonResponse
+from .serializers import *
 
 def signup(request):
     if request.method=="POST":
@@ -34,10 +34,11 @@ def login(request):
             password=request.POST['password']
             success=auth.authenticate(request,username=username,password=password)
             if success is None:
-                return render(request,'login.html',{'form':AuthenticationForm,'info':'Invalid credentials!'}) 
+                return JsonResponse({"status": False})
             else:
                 auth.login(request,success)
-                return redirect("upload") # redirect to user profile, add url in templates 
+                successSerializer=UserSerializer(success, many=True)
+                return JsonResponse(successSerializer.data)
         else:
-            return render(request,'login.html',{'form':AuthenticationForm})
+            return render(request, 'login.html', {'form':AuthenticationForm})
 # Create your views here.

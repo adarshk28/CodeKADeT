@@ -1,25 +1,35 @@
+<div id='workspace'>
 <h2>Welcome to CodeKADet</h2>
 <br><br>
 
-<form>
+<app-sidenav></app-sidenav>
+<form [formGroup]='Form'>
     <label>
         Choose Language:
-        <input type="text" formControlName="Language" placeholder="Bonus part">
+        <select formControlName='Language'id="lang">
+            <option value="C++">C++</option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+        </select>
     </label><br><br>
     <label>
         Code here:
-        <input type="text" formControlName="Code">
+        <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' mode='javascript'></ace-editor>
     </label><br><br>
-    <label>
-        User Input:
-        <input type="text" formControlName="Input" placeholder="Provide input">
-    </label><br><br>
-    <label>
-        Output:
-        <input type="text" formControlName="Output" placeholder="Output">
-    </label><br><br>
-
-    <button type="submit">Submit</button>
-    <button type="save">Save</button>
-    <button type="Run">Run offline</button>
+    <div id="interface">
+    <label for='input'>User input:</label><br>
+        <textarea formControlName='Input' id="input" cols="30" rows="10"></textarea>
+    </div>
+    <div id="interface">
+    <label for='output'>User output:</label><br>
+        <textarea formControlName='Output' id="output" cols="30" rows="10"></textarea>
+    </div>
+    <br>
+    <button mat-raised-button color='accent' type="submit" (click)='onSubmit()'>Submit</button>
+    <button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
+    <button mat-raised-button color='warn' type="Run">Run offline</button>
 </form>
+<app-file>Upload file</app-file>
+<p>Your Code:</p>
+<p>{{ text }}</p>
+</div>

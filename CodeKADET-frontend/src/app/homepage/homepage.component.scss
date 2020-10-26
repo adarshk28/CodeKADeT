@@ -1,0 +1,14 @@
+#particles-js {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  position: fixed;
+  z-index: -100;
+}
+
+.box {
+  width: 400px;
+  text-align: center;
+  left: 50%;
+  top: 30%;
+}

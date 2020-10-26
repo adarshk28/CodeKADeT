@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'file_upload',
     'login',
     'competitions',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
