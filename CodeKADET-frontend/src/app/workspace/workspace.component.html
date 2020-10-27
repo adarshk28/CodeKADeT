@@ -1,7 +1,4 @@
-
-
-
-<div id="interface2">
+<!-- <div id="interface2">
     <h2>Welcome to CodeKADeT!</h2>
     <br><br>
     <h4>Your Files:</h4><br>
@@ -11,6 +8,7 @@
 </div>
 <div id='workspace'>
 <form [formGroup]='Form'>
+    <div id="interface1">
     <label>
         Choose Language:
         <select formControlName='Language'id="lang">
@@ -20,7 +18,6 @@
         </select>
     </label><br><br>
     
-    <div id="interface1">
     <label>Code here:</label><br>
     <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' mode='javascript'></ace-editor>
     </div><br>
@@ -41,4 +38,47 @@
 <app-file>Upload file</app-file>
 <p>Your Code:</p>
 <p>{{ text }}</p>
+</div> -->
+<div class="grid-container">
+<div class='grid-item' id='sidebar'>
+    <h2>Welcome to CodeKADeT!</h2>
+    <br><br>
+    <h4>Your Files:</h4><br>
+    <app-list></app-list>
+    <br><br><br><br><br><br>
+    
+</div>
+<div class='grid-item'>
+<form [formGroup]='Form'>
+    <label>
+        Choose Language:
+        <select formControlName='Language'id="lang">
+            <option value="C++">C++</option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+        </select>
+    </label><br><br>
+    
+    <label>Code here:</label><br>
+    <div id="interface1">
+    <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' mode='javascript'></ace-editor>
+    </div><br>
+    
+    <div id="interface">
+    <label for='input'>User input:</label><br>
+        <textarea formControlName='Input' id="input" cols="40" rows="10"></textarea>
+    </div>
+    <div id="interface">
+    <label for='output'>User output:</label><br>
+        <textarea formControlName='Output' id="output" cols="40" rows="10"></textarea>
+    </div>
+    <br>
+    <button mat-raised-button color='accent' type="submit" (click)='onSubmit()'>Submit</button>
+    <button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
+    <button mat-raised-button color='warn' type="Run">Run offline</button>
+</form>
+<app-file>Upload file</app-file>
+<p>Your Code:</p>
+<p>{{ text }}</p>
+</div>
 </div>

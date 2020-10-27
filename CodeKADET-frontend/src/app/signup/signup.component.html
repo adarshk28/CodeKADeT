@@ -1,15 +1,15 @@
 <ngContainer [formGroup]='signupForm'>
     <mat-form-field>
-    <mat-label>Username:</mat-label>
-    <input matInput type="text" placeholder="Username" formControlName='username'>
+    <mat-label>Username</mat-label>
+    <input matInput type="text" formControlName='username'>
     </mat-form-field><br>
     <mat-form-field>
-    <mat-label>Password:</mat-label>
-    <input matInput type="password" placeholder="Password" formControlName='password1'>
+    <mat-label>Password</mat-label>
+    <input matInput type="password"formControlName='password1'>
     </mat-form-field><br>
     <mat-form-field>
-    <mat-label>Please confirm your password:</mat-label>
-    <input matInput type="password" placeholder="Password" formControlName='password2'>
+    <mat-label>Please confirm password</mat-label>
+    <input matInput type="password" formControlName='password2'>
     </mat-form-field><br>
     <button mat-raised-button color='primary' (click)="onSubmit()">Register</button>
 </ngContainer>
