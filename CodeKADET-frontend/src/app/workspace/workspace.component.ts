@@ -20,7 +20,7 @@ export class WorkspaceComponent implements OnInit {
   constructor(private file:FileService) { }
 
   ngOnInit(): void {
-    this.file.getRequest()
+    // this.file.getRequest()
   }
   
   // ngAfterViewInit() {
@@ -32,11 +32,13 @@ export class WorkspaceComponent implements OnInit {
 
   onSubmit(): void {
     this.Form.get('Code').setValue(this.text);
+    console.log(this.Form.value)
     console.log('Submitted!');
   }
 
   onSave(): void {
     this.Form.get('Code').setValue(this.text);
+    console.log(this.Form.value)
     console.log('Saved!');
   }
 }
