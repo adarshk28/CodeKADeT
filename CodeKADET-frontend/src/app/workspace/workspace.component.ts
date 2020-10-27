@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { FileService } from '../file.service'
 @Component({
   selector: 'app-workspace',
   templateUrl: './workspace.component.html',
@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class WorkspaceComponent implements OnInit {
   @ViewChild('editor') editor;
   text: string = '';
+  items=[];
   Form= new FormGroup({
     Language: new FormControl(''),
     Code: new FormControl(''),
@@ -16,9 +17,10 @@ export class WorkspaceComponent implements OnInit {
     Output: new FormControl(''),
   });
 
-  constructor() { }
+  constructor(private file:FileService) { }
 
   ngOnInit(): void {
+    this.file.getRequest()
   }
   
   // ngAfterViewInit() {

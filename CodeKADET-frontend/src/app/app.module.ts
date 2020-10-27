@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +22,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +35,11 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     FileComponent,
     HomepageComponent,
     SignupComponent,
-    SidenavComponent
+    SidenavComponent,
+    ListComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -47,6 +52,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatCardModule,
     MatFormFieldModule,
     MatSidenavModule,
+    MatListModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

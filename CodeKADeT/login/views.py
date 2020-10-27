@@ -38,7 +38,8 @@ def login(request):
             else:
                 auth.login(request,success)
                 successSerializer=UserSerializer(success, many=True)
-                return JsonResponse(successSerializer.data)
+                # return JsonResponse(successSerializer.data)
+                return render(request, 'login.html', {'form':AuthenticationForm})
         else:
             return render(request, 'login.html', {'form':AuthenticationForm})
 # Create your views here.

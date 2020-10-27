@@ -1,8 +1,15 @@
-<div id='workspace'>
-<h2>Welcome to CodeKADet</h2>
-<br><br>
 
-<app-sidenav></app-sidenav>
+
+
+<div id="interface2">
+    <h2>Welcome to CodeKADeT!</h2>
+    <br><br>
+    <h4>Your Files:</h4><br>
+    <app-list></app-list>
+    <br><br><br><br><br><br>
+    
+</div>
+<div id='workspace'>
 <form [formGroup]='Form'>
     <label>
         Choose Language:
@@ -12,17 +19,19 @@
             <option value="Python">Python</option>
         </select>
     </label><br><br>
-    <label>
-        Code here:
-        <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' mode='javascript'></ace-editor>
-    </label><br><br>
+    
+    <div id="interface1">
+    <label>Code here:</label><br>
+    <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' mode='javascript'></ace-editor>
+    </div><br>
+    
     <div id="interface">
     <label for='input'>User input:</label><br>
-        <textarea formControlName='Input' id="input" cols="30" rows="10"></textarea>
+        <textarea formControlName='Input' id="input" cols="40" rows="10"></textarea>
     </div>
     <div id="interface">
     <label for='output'>User output:</label><br>
-        <textarea formControlName='Output' id="output" cols="30" rows="10"></textarea>
+        <textarea formControlName='Output' id="output" cols="40" rows="10"></textarea>
     </div>
     <br>
     <button mat-raised-button color='accent' type="submit" (click)='onSubmit()'>Submit</button>

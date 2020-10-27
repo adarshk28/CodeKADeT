@@ -2,9 +2,9 @@
   font-family: Verdana, Geneva, Tahoma, sans-serifj;
 }
 ace-editor {
-  margin: 0 5%;
+  // margin: 0 5%;
   min-height: 350px;
-  width: 90%;
+  width: 100%;
   overflow: auto;
   font-size: 14pt;
 }
@@ -16,4 +16,21 @@ button {
 #interface {
   display: inline-block;
   margin: 10px;
+}
+
+#interface1 {
+  display: inline-block;
+  width: 90%;
+  // margin: 10px;
+}
+#interface2 {
+  // margin-top: 100px;
+  display: inline-block;
+  width: 300px;
+  // margin-bottom: 500px;
+}
+#workspace{
+  display: inline-block;
+  width: 1200px;
+  // margin: 10px;
 }

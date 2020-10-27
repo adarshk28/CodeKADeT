@@ -39,12 +39,12 @@ def upload_from_computer(request):
         else:
             return render(request, 'user_page.html', {'info':"does not work !", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
 
-    if request.method=='GET':
-        data=request.user.code_file_set
-        dataserializer=CodeFileSerializer(data, many=True)
-        return JsonResponse(dataserializer.data, safe=False)   
     # if request.method=='GET':
-    #     return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
+    #     data=request.user.code_file_set
+    #     dataserializer=CodeFileSerializer(data, many=True)
+    #     return JsonResponse(dataserializer.data, safe=False)   
+    if request.method=='GET':
+        return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
 
 def upload_from_textbox(request):
     if request.method=='POST':
