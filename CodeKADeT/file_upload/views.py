@@ -1,3 +1,4 @@
+from logging import StreamHandler
 from sys import flags
 from django.shortcuts import render, redirect
 from django.conf import settings
@@ -5,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from rest_framework import serializers
-
+from shutil import move
 from .models import Code_file
 from .forms import DocumentForm
 from django.middleware.csrf import CsrfViewMiddleware
@@ -71,8 +72,47 @@ def view_function(request):
         return JsonResponse({'lines':lines})
 
 def execute(request):
-    if(request.method=='POST'):
-       process= subprocess.run(["tree"])
-       logger.log(process.stdout)
-       
+    filename=request.POST.get('file','')
+    mode=0
+    args=[]
+    exe=""
+    exename=''
+    input=str(request.POST.get('input'))
+    language=str(request.POST.get('language', '')).lower()
+    if language is "c++" or language is "c":
+        mode=1
+        args=["g++", settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename]
+        exe="./a.out"
+        exename='a.out'
+    elif language is "python": 
+        mode=1
+        args=['python3', filename]
+    elif language is "java":
+        pass
+    if(mode==0):
+         return "invalid language"
+    if(request.POST.get('args')):
+        args=request.POST.get('args')
+    if(mode==1):
+        result=subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        return result.communicate(input=input.encode())[0].decode('utf-8')
+    if(mode==2):
+        comp=subprocess.run(args, capture_output=True)
+        move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
+        if(comp.stderr):
+            return ('compilation failed\n'+comp.stderr.decode('utf-8'))
+        result=subprocess.Popen(exe, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        return result.communicate(input=input.encode())[0].decode('utf-8')
+
+
+
+    #      if(result1.stdout):
+    #     print('compilation failed\n')
+    #     print(result1.stderr.decode("utf-8"))
+    #     return ('compilation filed\n'+result1.stderr.decode('utf-8'))
+    # else:
+    #     command="".split()
+    #     result2=subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    #     output=result2.communicate(input='12 14'.encode())[0].decode('utf-8')
+    #     return output
 
