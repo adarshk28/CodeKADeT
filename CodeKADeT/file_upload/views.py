@@ -47,18 +47,18 @@ def upload_from_computer(request):
     if request.method=='GET':
         return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
 
-def upload_from_textbox(request):
-    if request.method=='POST':
-        form=DocumentForm(request.POST)
-        if form.is_valid():
-            docfile=open(request.filename)
-            myfile=request.user.code_file_set.create(description=request.POST['desc'], content=docfile, language=request.POST['language'], file_name=request.POST['file_name'])
-            myfile.save()
-            return render(request, 'upload_files.html', {})
-    if request.method=='GET':
-        data=request.user.code_file_set.objects.all()
-        dataserializer=CodeFileSerializer(data, many=True)
-        return JsonResponse(dataserializer.data, safe=False)
+# def upload_from_textbox(request):
+#     if request.method=='POST':
+#         form=DocumentForm(request.POST)
+#         if form.is_valid():
+#             docfile=open(request.filename)
+#             myfile=request.user.code_file_set.create(description=request.POST['desc'], content=docfile, language=request.POST['language'], file_name=request.POST['file_name'])
+#             myfile.save()
+#             return render(request, 'upload_files.html', {})
+#     if request.method=='GET':
+#         data=request.user.code_file_set.objects.all()
+#         dataserializer=CodeFileSerializer(data, many=True)
+#         return JsonResponse(dataserializer.data, safe=False)
 
 
 
@@ -69,40 +69,45 @@ def view_function(request):
         lines=[]
         with open(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename) as f:
             lines=[line.rstrip('\n') for line in f]
-        return JsonResponse({'lines':lines})
+        #return JsonResponse({'lines':lines})
+        return render(request,'fileview.html',{'lines':lines})
 
 def execute(request):
-    filename=request.POST.get('file','')
-    mode=0
-    args=[]
-    exe=""
-    exename=''
-    input=str(request.POST.get('input'))
-    language=str(request.POST.get('language', '')).lower()
-    if language is "c++" or language is "c":
-        mode=1
-        args=["g++", settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename]
-        exe="./a.out"
-        exename='a.out'
-    elif language is "python": 
-        mode=1
-        args=['python3', filename]
-    elif language is "java":
-        pass
-    if(mode==0):
-         return "invalid language"
-    if(request.POST.get('args')):
-        args=request.POST.get('args')
-    if(mode==1):
-        result=subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        return result.communicate(input=input.encode())[0].decode('utf-8')
-    if(mode==2):
-        comp=subprocess.run(args, capture_output=True)
-        move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
-        if(comp.stderr):
-            return ('compilation failed\n'+comp.stderr.decode('utf-8'))
-        result=subprocess.Popen(exe, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        return result.communicate(input=input.encode())[0].decode('utf-8')
+    if(request.method=='POST'):
+        filename=request.POST.get('file','')
+        mode=0
+        args=[]
+        exe=""
+        exename=''
+        input=str(request.POST.get('input'))
+        language=str(request.POST.get('language', '')).lower()
+        if language == "c++" or language == "c":
+            mode=1
+            args=["g++", settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename]
+            exe="./a.out"
+            exename='a.out'
+        elif language == "python": 
+            mode=1
+            args=['python3', filename]
+        elif language == "java":
+            pass
+        if(mode==0):
+            return render(request, 'output.html' ,{'out':"invalid language"})
+        if(request.POST.get('args')):
+            args=request.POST.get('args')
+        if(mode==1):
+            result=subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            ans = result.communicate(input=input.encode())[0].decode('utf-8')
+            return render(request, 'output.html' ,{'out': ans})
+        if(mode==2):
+            comp=subprocess.run(args, capture_output=True)
+            move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
+            if(comp.stderr):
+                return ('compilation failed\n'+comp.stderr.decode('utf-8'))
+            result=subprocess.Popen(exe, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            ans = result.communicate(input=input.encode())[0].decode('utf-8')
+
+            return render(request, 'output.html' ,{'out': ans})
 
 
 

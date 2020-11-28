@@ -25,5 +25,6 @@ urlpatterns = [
     path('fileupload/', file_upload_views.upload_from_computer,name="upload"),
     path('', include('login.urls')),
     path('signup/login/',  login_views.login),
-    path('fileupload/file_view/', file_upload_views.view_function, name='view_function')
+    path('fileupload/file_view/', file_upload_views.view_function, name='view_function'),
+    path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
 ]

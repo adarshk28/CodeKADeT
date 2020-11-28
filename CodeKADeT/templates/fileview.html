@@ -7,5 +7,13 @@
   {{ line }}
 </pre>
   {% endfor%}
-  <button action='execute' method='POST'>run</button>
+  <form method='POST' action='execute'>
+        {% csrf_token %}
+        <table border=1>
+   file <input name="file" type="text">
+   language <input name="language" type="text">
+   input <input name="input" type="text">
+    </table>
+    <input type="submit" value="Run"/> 
+    </form>
 </div>
