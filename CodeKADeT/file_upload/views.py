@@ -1,5 +1,6 @@
 from logging import StreamHandler
 from sys import flags
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
@@ -66,11 +67,12 @@ def upload_from_computer(request):
 def view_function(request):
     if request.method=='GET':
         filename=request.GET.get('file','')
+        language=request.user.code_file_set.get(file_name=filename).language
         lines=[]
         with open(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename) as f:
             lines=[line.rstrip('\n') for line in f]
         #return JsonResponse({'lines':lines})
-        return render(request,'fileview.html',{'lines':lines})
+        return render(request,'fileview.html',{'lines':lines,'name': filename, 'language': language})
 
 def execute(request):
     if(request.method=='POST'):
@@ -79,16 +81,16 @@ def execute(request):
         args=[]
         exe=""
         exename=''
-        input=str(request.POST.get('input'))
-        language=str(request.POST.get('language', '')).lower()
+        input=request.POST.get('input')
+        language=request.POST.get('language', '')
         if language == "c++" or language == "c":
-            mode=1
+            mode=2
             args=["g++", settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename]
             exe="./a.out"
             exename='a.out'
         elif language == "python": 
             mode=1
-            args=['python3', filename]
+            args=['python3',settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+ filename]
         elif language == "java":
             pass
         if(mode==0):
@@ -101,13 +103,12 @@ def execute(request):
             return render(request, 'output.html' ,{'out': ans})
         if(mode==2):
             comp=subprocess.run(args, capture_output=True)
-            move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
+            # move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
             if(comp.stderr):
-                return ('compilation failed\n'+comp.stderr.decode('utf-8'))
+                return HttpResponse('compilation failed\n'+comp.stderr.decode('utf-8'))
             result=subprocess.Popen(exe, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8')
-
-            return render(request, 'output.html' ,{'out': ans})
+        return render(request,'fileview.html',{'name': filename, 'language': language, "out": ans})
 
 
 

@@ -1,7 +1,5 @@
-<p>&nbsp;</p>
-<p>README.txt</p>
-<p>&nbsp;</p>
 <div id="list">
+  {{out}}
     {% for line in lines %}
     <pre>
   {{ line }}
@@ -10,8 +8,8 @@
   <form method='POST' action='execute'>
         {% csrf_token %}
         <table border=1>
-   file <input name="file" type="text">
-   language <input name="language" type="text">
+  file <input name="file" type="text" value={{name}} hidden>
+   language <input name="language" value={{language}} type="text" hidden>
    input <input name="input" type="text">
     </table>
     <input type="submit" value="Run"/> 
