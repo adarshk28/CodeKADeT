@@ -9,6 +9,7 @@ import { FileService } from '../file.service'
 export class WorkspaceComponent implements OnInit {
   @ViewChild('editor') editor;
   text: string = '';
+  
   items=[];
   Form= new FormGroup({
     Language: new FormControl(''),
@@ -29,7 +30,7 @@ export class WorkspaceComponent implements OnInit {
   //   this.editor.getEditor().setOptions({
   //   });
   // }
-
+  mode='c++';
   onSubmit(): void {
     this.Form.get('Code').setValue(this.text);
     console.log(this.Form.value)
