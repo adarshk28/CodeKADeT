@@ -85,12 +85,12 @@ def execute(request):
         language=request.POST.get('language', '')
         if language == "c++" or language == "c":
             mode=2
-            args=["g++", settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename]
+            args=["g++", filename]
             exe="./a.out"
             exename='a.out'
         elif language == "python": 
             mode=1
-            args=['python3',settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+ filename]
+            args=['python3', filename]
         elif language == "java":
             pass
         if(mode==0):
@@ -98,17 +98,17 @@ def execute(request):
         if(request.POST.get('args')):
             args=request.POST.get('args')
         if(mode==1):
-            result=subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            ans = result.communicate(input=input.encode())[0].decode('utf-8')
+            result=subprocess.Popen(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/' ,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            ans = result.communicate(input=input.encode())[0].decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')
             return render(request, 'output.html' ,{'out': ans})
         if(mode==2):
-            comp=subprocess.run(args, capture_output=True)
+            comp=subprocess.run(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', capture_output=True)
             # move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
             if(comp.stderr):
-                return HttpResponse('compilation failed\n'+comp.stderr.decode('utf-8'))
-            result=subprocess.Popen(exe, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+                return HttpResponse('compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', ''))
+            result=subprocess.Popen(exe, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8')
-        return render(request,'fileview.html',{'name': filename, 'language': language, "out": ans})
+        return render(request,'fileview.html',{'name': filename, 'language': language, "out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
 
 
 
