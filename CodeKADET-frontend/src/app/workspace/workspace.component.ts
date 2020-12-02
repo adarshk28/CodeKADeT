@@ -3,7 +3,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FileService } from '../file.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
+import * as ace from 'ace-builds/src-noconflict/ace';
+    ace.config.set('basePath', '');
+    ace.config.set('modePath', '');
+    ace.config.set('themePath', '');
 @Component({
   selector: 'app-workspace',
   templateUrl: './workspace.component.html',
@@ -39,7 +42,7 @@ export class WorkspaceComponent implements OnInit {
   //   this.editor.getEditor().setOptions({
   //   });
   // }
-  mode='c++';
+  mode='python';
   onSubmit(): void {
     this.Form.get('Code').setValue(this.text);
     console.log(this.Form.value)

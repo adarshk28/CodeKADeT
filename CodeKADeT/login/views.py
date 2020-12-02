@@ -14,18 +14,22 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from .serializers import *
-
+@api_view(['POST'])
 def signup(request):
     if request.method=="POST":
-        if request.POST.get('password1')==request.POST.get('password2'):
-            try:
-                saveuser=User.objects.create_user(request.POST.get('username'),password=request.POST.get('password1'))
-                saveuser.save()
-                return render(request,'signup.html',{'form':UserCreationForm,'info':'User '+request.POST.get('username')+' registered succssfully!'})
-            except IntegrityError:
-                return render(request,'signup.html',{'form':UserCreationForm,'info':'User '+request.POST.get('username')+' already exists! Try to login!'})
-        else:
-            return render(request,'signup.html',{'form':UserCreationForm,'info':'Passwords don\'t match! Try again!'})
+        data = json.loads(request.body)
+        # if data.get('password1')==data.get('password2'):
+        try:
+            saveuser=User.objects.create_user(data.get('username'),password=data.get('password1'))
+            saveuser.save()
+            # return render(request,'signup.html',{'form':UserCreationForm,'info':'User '+request.POST.get('username')+' registered succssfully!'})
+            return JsonResponse({'Status':"Registration Successful!"})
+        except IntegrityError:
+            # return render(request,'signup.html',{'form':UserCreationForm,'info':'User '+request.POST.get('username')+' already exists! Try to login!'})
+            return JsonResponse({'Status':'User Registered Already!'})
+        # else:
+        #     # return render(request,'signup.html',{'form':UserCreationForm,'info':'Passwords don\'t match! Try again!'})
+        #     return JsonResponse({'Status':'Passwords dont match'})
     else:
         return render(request,'signup.html',{'form':UserCreationForm})
 
@@ -48,7 +52,7 @@ def login(request):
                 return JsonResponse({"status": False, 'username': username})
             else:
                 auth.login(request,success)
-                print(success)
+                # print(success)
                 successSerializer=UserSerializer(success)
                 return Response(successSerializer.data)
                 # person = UserProfile.objects.get(username = username)

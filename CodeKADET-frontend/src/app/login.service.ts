@@ -9,6 +9,7 @@ import { tap, catchError } from 'rxjs/operators';
 export class LoginService {
 
   dataUrl= 'http://127.0.0.1:8000/login/';
+  dataUrl2= 'http://127.0.0.1:8000/signup/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };
@@ -21,7 +22,9 @@ export class LoginService {
     return this.http.post<any>(this.dataUrl, form, this.httpOptions);
   }
   
-
+  signup(form: any): Observable<any> {
+    return this.http.post<any>(this.dataUrl2, form, this.httpOptions);
+  }
   
  
 }

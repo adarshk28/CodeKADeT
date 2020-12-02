@@ -1,25 +1,32 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms'
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  //url: string = '/login/'
+  loginForm = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+  })
+    constructor(private fb: FormBuilder,private login: LoginService, private router: Router) { }
+  ngOnInit(): void {
+    
+  }
+  
+  onSubmit(): void {
+    this.login.checkLogin(this.loginForm.value).subscribe(
+	result => {
+	    if (result['status'] == undefined)  
+    this.router.navigate(['/workspace/' + result['username']]);
+      else 
+    alert("Please enter valid credentials");
+	}
+    );
 
-import { LoginComponent } from './login.component';
-
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  }
+}
