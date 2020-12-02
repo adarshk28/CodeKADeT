@@ -20,10 +20,16 @@ import { ContactComponent } from './contact/contact.component';
 import { FileComponent } from './file/file.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
+// import { SidenavComponent } from './sidenav/sidenav.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ListComponent } from './list/list.component';
+import { TryComponent } from './try/try.component';
+
+import { MatTreeModule} from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon';
+//import {FlatTreeControl} from '@angular/cdk/tree';
+
 
 @NgModule({
   declarations: [
@@ -33,10 +39,10 @@ import { ListComponent } from './list/list.component';
     WorkspaceComponent,
     ContactComponent,
     FileComponent,
-    HomepageComponent,
+    HomepageComponent,    
     SignupComponent,
-    SidenavComponent,
-    ListComponent
+    ListComponent,
+    TryComponent
   ],
   imports: [
     HttpClientModule,
@@ -53,8 +59,15 @@ import { ListComponent } from './list/list.component';
     MatFormFieldModule,
     MatSidenavModule,
     MatListModule,
-
+    BrowserModule,
+    MatTreeModule,
+    MatIconModule,
+    MatButtonModule,
   ],
+  exports: [
+    TryComponent,
+  ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@ import { ContactComponent } from './contact/contact.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
+import { TryComponent } from './try/try.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
   },
   {
     path: 'contact',component: ContactComponent
+  },
+  {
+    path: 'try',component: TryComponent
   },
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
 ];
