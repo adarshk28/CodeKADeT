@@ -66,8 +66,9 @@
     </div>
     <br>
     <div id="interface1" style="float: left;">
-        <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' [(mode)]='mode'></ace-editor>
-        </div><br>
+        <!-- <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' [(mode)]='mode'></ace-editor> -->
+        <ace-editor  theme='monokai' mode='javascript' formControlName='Code' ></ace-editor>
+    </div><br>
         
         <div style="width: 30%; float: left;">
             <div id="interface">

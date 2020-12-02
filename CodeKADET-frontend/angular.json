@@ -40,15 +40,33 @@
                 "glob": "worker-json.js",
                 "input": "./node_modules/ace-builds/src-min/",
                 "output": "/"
+              },
+              {
+                "glob": "mode-c_cpp.js",
+                "input": "./node_modules/ace-builds/src-min/",
+                "output": "/"
+              },
+              {
+                "glob": "mode-python.js",
+                "input": "./node_modules/ace-builds/src-min/",
+                "output": "/"
+              },
+              {
+                "glob": "mode-java.js",
+                "input": "./node_modules/ace-builds/src-min/",
+                "output": "/"
               }
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": [
               "./node_modules/ace-builds/src-min/ace.js",
               "./node_modules/ace-builds/src-min/mode-javascript.js",
+              "./node_modules/ace-builds/src-min/mode-c_cpp.js",
+              "./node_modules/ace-builds/src-min/mode-python.js",
+              "./node_modules/ace-builds/src-min/mode-java.js",
               "./node_modules/particles.js/particles.js"
             ]
           },
@@ -112,7 +130,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
