@@ -10,7 +10,7 @@ const routes: Routes = [
     path: 'homepage',component: HomepageComponent
   },
   {
-    path: 'workspace',component: WorkspaceComponent
+    path: 'workspace/:username',component: WorkspaceComponent
   },
   {
     path: 'login',component: LoginComponent

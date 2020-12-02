@@ -19,6 +19,7 @@ from login import views as login_views
 from file_upload import views as file_upload_views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', login_views.test, name="test"),
     path('signup/', login_views.signup,name="signup"),
     path('fileupload/logout/',file_upload_views.logout_user,name="logout"),
     path('login/',  login_views.login),

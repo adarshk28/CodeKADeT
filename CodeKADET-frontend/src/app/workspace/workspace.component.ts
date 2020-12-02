@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { FileService } from '../file.service'
+import { FileService } from '../file.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-workspace',
   templateUrl: './workspace.component.html',
@@ -18,11 +21,17 @@ export class WorkspaceComponent implements OnInit {
     Output: new FormControl(''),
   });
 
-  constructor(private file:FileService) { }
+    constructor(private file:FileService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
-    // this.file.getRequest()
+	this.getUser();
   }
+
+    getUser(): void {
+	const id = this.route.snapshot.paramMap.get('username');
+	console.log(id);
+	
+    }
   
   // ngAfterViewInit() {
   //   console.log("Here");
