@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from .models import UserProfile as User
@@ -9,6 +10,9 @@ from django.contrib import auth
 from django.middleware.csrf import CsrfViewMiddleware
 from django.contrib.auth import logout
 from django.http import JsonResponse
+from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
 from .serializers import *
 
 def signup(request):
@@ -25,21 +29,30 @@ def signup(request):
     else:
         return render(request,'signup.html',{'form':UserCreationForm})
 
+@api_view(['POST'])
+def test(request):
+    print(request.POST)
+    return JsonResponse({'status': 'Logged in'})
+
+@api_view(['POST'])
 def login(request):
     if(request.user.is_authenticated):
         return redirect("upload") 
     else:
         if request.method=="POST":
-            username=request.POST['username']
-            password=request.POST['password']
+            data = json.loads(request.body)
+            username=data.get('username');
+            password=data.get('password');
             success=auth.authenticate(request,username=username,password=password)
             if success is None:
-                return JsonResponse({"status": False})
+                return JsonResponse({"status": False, 'username': username})
             else:
                 auth.login(request,success)
-                successSerializer=UserSerializer(success, many=True)
-                # return JsonResponse(successSerializer.data)
-                return render(request, 'login.html', {'form':AuthenticationForm})
+                print(success)
+                successSerializer=UserSerializer(success)
+                return Response(successSerializer.data)
+                # person = UserProfile.objects.get(username = username)
+                # return JsonResponse(person)
         else:
             return render(request, 'login.html', {'form':AuthenticationForm})
 # Create your views here.
