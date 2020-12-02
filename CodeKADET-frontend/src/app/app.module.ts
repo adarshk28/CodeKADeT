@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatTreeModule} from '@angular/material/tree';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -21,10 +21,10 @@ import { FileComponent } from './file/file.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-
 import { HttpClientModule } from '@angular/common/http';
 import { ListComponent } from './list/list.component';
-
+import { ClipboardModule } from '@angular/cdk/clipboard'
+import { MatCarouselModule } from '@ngmodule/material-carousel'
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +53,9 @@ import { ListComponent } from './list/list.component';
     MatFormFieldModule,
     MatSidenavModule,
     MatListModule,
+    MatTreeModule,
+    ClipboardModule,
+    MatCarouselModule.forRoot(),
 
   ],
   providers: [],

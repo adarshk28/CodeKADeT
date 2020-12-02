@@ -4,7 +4,6 @@ import { ContactComponent } from './contact/contact.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
-
 const routes: Routes = [
   {
     path: 'homepage',component: HomepageComponent

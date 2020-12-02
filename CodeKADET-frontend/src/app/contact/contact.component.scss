@@ -1,113 +1,115 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    color:#8c1aff;
-    background-color: black;
-  }
-  
-  html {
-    box-sizing: border-box;
-  }
-  
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  
-  .column1{
-    display:inline-block;
-    width: 30%;
-    margin-left:10%;
-    height:100%;
-    margin-bottom: 16px;
-    padding: 0 8px;
-  }
+.example-card {
+  max-width: 800px;
+}
 
-  .column2{
-    display:inline-block;
-    width: 30%;
-    height:100%;
-    margin-left:20%;
-    margin-bottom: 16px;
-    padding: 0 8px;
-  }
+.example-header-image {
+  background-image: url('../../assets/iitb.png');
+  background-size: cover;
+  box-shadow: 10px 10px 5px grey;
 
-    .row1{
-        display:inline-block;
-        width: 100%;
-        height:30%;
-       
-        margin-bottom: 16px;
-        padding: 0 8px;
-    }  
-    .row2{
-        display:inline-block;
-        width: 100%;
-        height:30%;
-        margin-bottom: 16px;
-        
-        padding: 0 8px;
-    }  
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 8px;
-    font-size: 30px;
-  }
-  
-  .about-section {
-    padding: 50px;
-    text-align: center;
-    background-color:  #ccffff;
-    color: #8c1aff;
-  }
-  
-  .container {
-    padding: 0 16px;
-  }
-  
-  .container::after, .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  .title {
-    color:#8c1aff;
-  }
-  
-  .button {
-    //float:center;
-    text-align:center;
-    justify-content: center;
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color:#ccffff;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    //width: 100%;
-  }
-  
-  .button:hover {
-    background-color: #555;
-  }
-  
-  @media screen and (max-width: 650px) {
-    .column1 {
-      width: 100%;
-      display: block;
-    }
-    .column2 {
-        width: 100%;
-        display: block;
-      }
-    .row1{
-        height: 100%;
-        display:block;
-    }
-    .row2{
-        height: 100%;
-        display:block;
-    }
-  }
+}
+.left{
+  // float: left;
+  display: inline;
+  margin-right: 6%;
+  width: fit-content;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.right{
+  display: inline;
+  margin-left: 6%;
+  // float: inline-end;
+  width: fit-content;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  top: 2%;
+  max-width: 100%;
+  margin: auto;
+}
+mat-card-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+}
+
+.github{
+  background-image: url('../../assets/github.png');
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-size: 100%;
+  transition: all .01s ease-in-out;
+  margin: 20px;
+  border-width: 0px;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.github:hover{
+ transform: scale(1.5);
+}
+.facebook{
+  background-image: url('../../assets/facebook.png');
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-size: 100%;
+  transition: all .01s ease-in-out;
+  margin: 20px;
+  border-width: 0px;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.facebook:hover{
+  transform: scale(1.5);
+}
+.linkedin{
+  background-image: url('../../assets/linkedin.png');
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-size: 200%;
+  background-position: center;
+  transition: all .01s ease-in-out;
+  margin: 20px;
+  border-width: 0px;
+  box-shadow: 10px 10px 5px grey;
+
+}
+.linkedin:hover{
+  transform: scale(1.5);
+}
+
+.phone{
+  background-image: url('../../assets/whatsapp.png');
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-size: 100%;
+  background-position: center;
+  transition: all .01s ease-in-out;
+  margin: 20px;
+  border-width: 0px;
+  box-shadow: 10px 10px 5px grey;
+}
+.phone:hover{
+  transform: scale(1.5);
+
+}
+
+p{
+  align-self: center;
+}
+.profile{
+  border-radius: 100%; width:400px; height: 400px;
+  left:150px;
+  position: relative;
+}
