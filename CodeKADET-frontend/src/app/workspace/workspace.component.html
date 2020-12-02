@@ -46,6 +46,8 @@
     <h4>Your Files:</h4><br>
     <app-list></app-list>
     <br><br><br><br><br><br>
+    <app-file>Upload file</app-file>
+
     
 </div>
 <div class='grid-item'>
@@ -59,26 +61,30 @@
         </select>
     </label><br><br>
     
-    <label>Code here:</label><br>
-    <div id="interface1">
-    <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' mode='javascript'></ace-editor>
-    </div><br>
+    <div>
     
-    <div id="interface">
-    <label for='input'>User input:</label><br>
-        <textarea formControlName='Input' id="input" cols="40" rows="10"></textarea>
-    </div>
-    <div id="interface">
-    <label for='output'>User output:</label><br>
-        <textarea formControlName='Output' id="output" cols="40" rows="10"></textarea>
     </div>
     <br>
-    <button mat-raised-button color='accent' type="submit" (click)='onSubmit()'>Submit</button>
-    <button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
-    <button mat-raised-button color='warn' type="Run">Run offline</button>
+    <div id="interface1" style="float: left;">
+        <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' [(mode)]='mode'></ace-editor>
+        </div><br>
+        
+        <div style="width: 30%; float: left;">
+            <div id="interface">
+                <label for='input'>User input:</label><br>
+                <textarea formControlName='Input' id="input" cols="40" rows="12"></textarea>
+            </div>
+            <div id="interface">
+                <label for='output'>User output:</label><br>
+                <textarea formControlName='Output' id="output" cols="40" rows="12"></textarea>
+        </div>
+   </div>
 </form>
-<app-file>Upload file</app-file>
-<p>Your Code:</p>
-<p>{{ text }}</p>
+<button mat-raised-button color='accent' type="submit" (click)='onSubmit()'>Submit</button>
+<button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
+<button mat-raised-button color='warn' type="Run">Run offline</button>
+<br>
+<br>
+<br>
 </div>
 </div>
