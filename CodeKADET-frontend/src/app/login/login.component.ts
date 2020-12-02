@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms'
 import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,16 +13,18 @@ export class LoginComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required],
   })
-  constructor(private fb: FormBuilder,private login: LoginService) { }
+    constructor(private fb: FormBuilder,private login: LoginService, private router: Router) { }
   ngOnInit(): void {
     
   }
   
   onSubmit(): void {
-    console.log(this.loginForm.value);
-    //this.login.addpost(JSON.stringify(this.loginForm.value)).subscribe(details => {console.log(details)});
-    // return this.logser.checkdets(this.loginForm.values);
+    this.login.checkLogin(this.loginForm.value).subscribe(
+	result => {
+	    if (result['status'] == undefined)  
+		this.router.navigate(['/workspace/' + result['username']]);
+	}
+    );
 
   }
-
 }
