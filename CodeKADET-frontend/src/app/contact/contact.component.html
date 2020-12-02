@@ -1,17 +1,16 @@
-<div class="container">
-<mat-carousel timings="200ms ease-in"
-[autoplay]="true"
-interval="6000"
-color="white">
-  <mat-carousel-slide>
-<div class="left">
+<div id="particles-js">
+</div>
+<carousel dots= true height=650 cellsToShow=1 width=850 style="margin: auto; margin-top: 100px" arrowsOutside=True>
+
+<!-- <div class="container"> -->
+<div class="left carousel-cell" >
 <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>Kanad Pardeshi</mat-card-title>
       <mat-card-subtitle>CSE sophomore, IIT Bombay</mat-card-subtitle>
     </mat-card-header>
-    <img  class='profile' src="../../assets/kanad.jpg" alt="Photo of Kanad">
+    <img  class='profile' src="../../assets/kanad.jpg" alt="Photo of Kanad" style="height: 300px; width: 300px; display: block; margin-left: auto; margin-right: auto;">
     <mat-card-content>
       <p style='text-align: center'>Roll Number: 190050056</p>
     <p style='text-align: center'>Email: 190050056@iitb.ac.in</p>
@@ -27,16 +26,14 @@ color="white">
     </mat-card-actions>
   </mat-card>
 </div>
-</mat-carousel-slide>
-<mat-carousel-slide>
-<div class="right">
+<div class="right carousel-cell">
   <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>Danish Angural</mat-card-title>
       <mat-card-subtitle>CSE Sophomore, IIT Bombay</mat-card-subtitle>
     </mat-card-header>
-    <img class='profile' src="../../assets/danish.png" alt="Photo of Danish">
+    <img class='profile' src="../../assets/danish.png" alt="Photo of Danish" style="height: 300px; width: 300px; display: block; margin-left: auto; margin-right: auto;">
     <mat-card-content>
         <p style='text-align: center'>Roll Number: 190050028</p>
         <p style='text-align: center'>Email: 190050028@iitb.ac.in</p>
@@ -52,6 +49,50 @@ color="white">
     </mat-card-actions>
   </mat-card>
 </div>
-</mat-carousel-slide>
-</mat-carousel>
-</div>
+<div class="left carousel-cell" >
+  <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Kanad Pardeshi</mat-card-title>
+        <mat-card-subtitle>CSE sophomore, IIT Bombay</mat-card-subtitle>
+      </mat-card-header>
+      <img  class='profile' src="../../assets/kanad.jpg" alt="Photo of Kanad" style="height: 300px; width: 300px; display: block; margin-left: auto; margin-right: auto;">
+      <mat-card-content>
+        <p style='text-align: center'>Roll Number: 190050056</p>
+      <p style='text-align: center'>Email: 190050056@iitb.ac.in</p>
+        <p>
+          Hi, Kanad here! Danish and I have developed this website from scratch for the SSL lab. Coming to myself, nothing excites me more than learning new things about the world. Although I find it exhilarating to gaze at the clouds of theory, I also enjoy the practical aspects of Computer Science. I believe that the SSL Lab is helping me become a more complete programmer, and my biggest learning from this course would be <em>'the client is always right'</em>!
+        </p>
+      </mat-card-content>
+      <mat-card-actions style="margin-left: 25%;">
+          <button class="github" onclick="window.location.href='https://github.com/KanPard005';"></button>
+          <button class="facebook" onclick="window.location.href='https://www.facebook.com/kanad.pardeshi/';"></button>
+          <button class="linkedin" onclick="window.location.href='https://www.linkedin.com/in/kanad-pardeshi-09bb351b9/';"></button>
+          <button class="phone" [cdkCopyToClipboard]="value1" onclick="alert('phone number copied to clipboard')"></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="left carousel-cell">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Danish Angural</mat-card-title>
+        <mat-card-subtitle>CSE Sophomore, IIT Bombay</mat-card-subtitle>
+      </mat-card-header>
+      <img class='profile' src="../../assets/danish.png" alt="Photo of Danish" style="height: 300px; width: 300px; display: block; margin-left: auto; margin-right: auto;">
+      <mat-card-content>
+          <p style='text-align: center'>Roll Number: 190050028</p>
+          <p style='text-align: center'>Email: 190050028@iitb.ac.in</p>
+          <p>
+         Hi, I am Danish. I and Kanad Have Developed this website in Angular as a part of outlab6. I have keen interest in Web Development, Machine Learning (who doesn't?) and most of all, Basketball &#x1f604;.The biggest thing i have learnt from this course would be how to search on the net efficiently. Whenever I feel fed up with other courses, I turn to SSL. To qoute guddu bhaiya: <em>'shuru majboori me kiye the, par ab maza aane laga hai!'</em>
+        </p>
+      </mat-card-content>
+      <mat-card-actions style="margin-left: 25%;">
+        <button class="github" onclick="window.location.href='https://danish-angural.github.io';"></button>
+        <button class="facebook" onclick="window.location.href='https://www.facebook.com/profile.php?id=100008739935715';"></button>
+        <button class="linkedin" onclick="window.location.href='https://www.linkedin.com/in/danish-angural-425ab1195/';"></button>
+        <button class="phone" [cdkCopyToClipboard]="value2" onclick="alert('phone number copied to clipboard')"></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</carousel>

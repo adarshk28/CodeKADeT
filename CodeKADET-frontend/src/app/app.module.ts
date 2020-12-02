@@ -24,7 +24,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListComponent } from './list/list.component';
 import { ClipboardModule } from '@angular/cdk/clipboard'
-import { MatCarouselModule } from '@ngmodule/material-carousel'
+import { IvyCarouselModule } from 'angular-responsive-carousel'
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,8 +55,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel'
     MatListModule,
     MatTreeModule,
     ClipboardModule,
-    MatCarouselModule.forRoot(),
-
+    IvyCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

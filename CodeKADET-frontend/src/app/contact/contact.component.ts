@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button'
-import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
+import { ParticlesConfig } from './particles-config';
+declare let particlesJS: any;
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -15,7 +17,12 @@ export class ContactComponent implements OnInit {
     this.value2='7380086948'
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
+    this.invokeParticles();
+  }
+
+  public  invokeParticles(): void {
+    particlesJS('particles-js', ParticlesConfig, function() {});
   }
 
 }

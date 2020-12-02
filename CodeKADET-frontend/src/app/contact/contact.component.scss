@@ -1,5 +1,7 @@
 .example-card {
   max-width: 800px;
+  border-radius: 50px;
+
 }
 
 .example-header-image {
@@ -9,37 +11,28 @@
 
 }
 .left{
-  // float: left;
-  display: inline;
-  margin-right: 6%;
   width: fit-content;
   box-shadow: 10px 10px 5px grey;
+  border-radius: 50px;
+
 
 }
 .right{
-  display: inline;
-  margin-left: 6%;
-  // float: inline-end;
   width: fit-content;
   box-shadow: 10px 10px 5px grey;
+  border-radius: 50px;
+
 
 }
-.container{
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  top: 2%;
-  max-width: 100%;
-  margin: auto;
-}
-mat-card-image{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 400px;
-}
+// .container{
+//   position: relative;
+//   display: flex;
+//   align-items: center;
+//   width: fit-content;
+//   top: 2%;
+//   max-width: 100%;
+//   margin: auto;
+// }
 
 .github{
   background-image: url('../../assets/github.png');
@@ -109,7 +102,19 @@ p{
   align-self: center;
 }
 .profile{
-  border-radius: 100%; width:400px; height: 400px;
-  left:150px;
-  position: relative;
+  border-radius: 100%; width:300px; height: 300px;
 }
+#particles-js {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  position: fixed;
+  z-index: -100;
+}
+
+// .box {
+//   width: 400px;
+//   text-align: center;
+//   left: 50%;
+//   top: 30%;
+// }
