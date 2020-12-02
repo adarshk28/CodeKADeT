@@ -6,4 +6,4 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=UserProfile
-        fields=['username']
+        fields=['username','refer_id']

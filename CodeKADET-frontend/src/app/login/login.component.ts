@@ -21,8 +21,14 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.login.checkLogin(this.loginForm.value).subscribe(
 	result => {
-	    if (result['status'] == undefined)  
-		this.router.navigate(['/workspace/' + result['username']]);
+	    if (result['status'] == undefined) {
+        // console.log(result['refer_id']);
+        this.router.navigate(['/workspace/' + result['refer_id']]);
+      }
+        
+
+      else if (result['status'] == undefined)
+        alert("Invalid username or password");
 	}
     );
 
