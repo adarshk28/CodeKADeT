@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
     this.login.checkLogin(this.loginForm.value).subscribe(
 	result => {
 	    if (result['status'] == undefined) {
-        this.router.navigate(['/workspace/' + result['username']]);
+        // console.log(result['refer_id']);
+        this.router.navigate(['/workspace/' + result['refer_id']]);
       }
         
 
