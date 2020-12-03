@@ -45,8 +45,8 @@ def login(request):
     else:
         if request.method=="POST":
             data = json.loads(request.body)
-            username=data.get('username');
-            password=data.get('password');
+            username=data.get('username')
+            password=data.get('password')
             success=auth.authenticate(request,username=username,password=password)
             if success is None:
                 return JsonResponse({"status": False, 'username': username})

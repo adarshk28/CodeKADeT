@@ -20,6 +20,7 @@ from django.http import JsonResponse
 import logging
 logger=logging.getLogger(__name__)
 from .serializers import *
+from rest_framework.decorators import api_view
 #def home(request):
     #documents = Code_file.objects.all()
     #return render(request, 'core/home.html', { 'documents': documents })
@@ -30,8 +31,10 @@ def logout_user(request):
     return redirect("signup")
 
 
-@login_required
+@api_view(['POST'])
 def upload_from_computer(request):
+    if not request.user.is_authenticaed:
+        return JsonResponse({'Status': 'not logged in'})
     if request.method=='POST':
         form=DocumentForm(request.POST, request.FILES)
         if form.is_valid():
@@ -48,19 +51,46 @@ def upload_from_computer(request):
     if request.method=='GET':
         return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
 
-# def upload_from_textbox(request):
-#     if request.method=='POST':
-#         form=DocumentForm(request.POST)
-#         if form.is_valid():
-#             docfile=open(request.filename)
-#             myfile=request.user.code_file_set.create(description=request.POST['desc'], content=docfile, language=request.POST['language'], file_name=request.POST['file_name'])
-#             myfile.save()
-#             return render(request, 'upload_files.html', {})
-#     if request.method=='GET':
-#         data=request.user.code_file_set.objects.all()
-#         dataserializer=CodeFileSerializer(data, many=True)
-#         return JsonResponse(dataserializer.data, safe=False)
+def edit_from_textbox(request):
+    if not request.user.is_authenticaed:
+        return JsonResponse({'Status': 'not logged in'})
+    if request.method=='POST':
+        name=request.POST.get('filename')
+        content=request.POST.get('content')
+        myfile=request.user.code_file_set.get(file_name=name).content
+        open(myfile, 'w').close()
+        myfile.write(content)
+        return JsonResponse({"status":"done"})
 
+def deletefile(request):
+    if not request.user.is_authenticaed:
+        return JsonResponse({'Status': 'not logged in'})
+    if request.method=='POST':
+        name=request.POST.get('filename')
+        request.user.code_file_set.get(file_name=name).delete()
+        return JsonResponse({"status":"done"})
+
+def rename(request):
+    if not request.user.is_authenticaed:
+        return JsonResponse({'Status': 'not logged in'})
+    if request.method=='POST':
+        name=request.POST.get('filename')
+        if os.path.isfile(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+name):
+            return JsonResponse({'status': 'file with same name exists'})
+        myfile=request.user.code_file_set.get(file_name=name)
+        myfile.filename=name
+        os.rename(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+name)
+        return JsonResponse({"status":"done"})
+
+def newfile(request):
+    if not request.user.is_authenticaed:
+        return JsonResponse({'Status': 'not logged in'})
+    if request.method=='POST':
+        name=request.POST.get('filename')
+        if os.path.isfile(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+name):
+            return JsonResponse({'status': 'file with same name exists'})
+        myfile=request.user.code_file_set.create(description=request.POST['description'], content=request.FILES['content'], language=request.POST['language'], file_name=request.POST['file_name'])
+        return JsonResponse({'status': 'done'})
 
 
 
@@ -92,7 +122,9 @@ def execute(request):
             mode=1
             args=['python3', filename]
         elif language == "java":
-            pass
+            mode=2
+            args=['javac', filename]
+            exe=['java', os.path.splitext(filename)]
         if(mode==0):
             return render(request, 'output.html' ,{'out':"invalid language"})
         if(request.POST.get('args')):
@@ -100,25 +132,12 @@ def execute(request):
         if(mode==1):
             result=subprocess.Popen(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/' ,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')
-            return render(request, 'output.html' ,{'out': ans})
+            return JsonResponse({'out': ans})
         if(mode==2):
             comp=subprocess.run(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', capture_output=True)
             # move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
             if(comp.stderr):
-                return HttpResponse('compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', ''))
+                return JsonResponse({'status':'1', 'ans':'compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
             result=subprocess.Popen(exe, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8')
-        return render(request,'fileview.html',{'name': filename, 'language': language, "out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
-
-
-
-    #      if(result1.stdout):
-    #     print('compilation failed\n')
-    #     print(result1.stderr.decode("utf-8"))
-    #     return ('compilation filed\n'+result1.stderr.decode('utf-8'))
-    # else:
-    #     command="".split()
-    #     result2=subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    #     output=result2.communicate(input='12 14'.encode())[0].decode('utf-8')
-    #     return output
-
+        return JsonResponse({"out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
