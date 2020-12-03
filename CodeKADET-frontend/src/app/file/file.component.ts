@@ -22,6 +22,11 @@ export class FileComponent implements OnInit {
     this.fileToUpload = files.item(0);
     console.log('Uploaded successfully');
     console.log(this.fileToUpload);
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      console.log(fileReader.result);
+    }
+    fileReader.readAsBinaryString(this.fileToUpload);
   }
 
   // uploadFileToActivity() {

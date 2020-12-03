@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
           console.log(details);
           if (details['Status']=="Registration Successful!"){
             alert("User Registered! Proceed with Login :)");
-            this.router.navigate(['/homepage/']);
+            // this.router.navigate(['/homepage/']);
           }
           else if (details['Status']=="User Registered Already!"){
             alert("User Already Exists :P Try logging in!");        

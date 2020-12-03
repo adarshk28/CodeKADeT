@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       }
         
 
-      else if (result['status'] == undefined)
+      else
         alert("Invalid username or password");
 	}
     );
