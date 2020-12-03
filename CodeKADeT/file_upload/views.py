@@ -122,7 +122,9 @@ def execute(request):
             mode=1
             args=['python3', filename]
         elif language == "java":
-            pass
+            mode=2
+            args=['javac', filename]
+            exe=['java', os.path.splitext(filename)]
         if(mode==0):
             return render(request, 'output.html' ,{'out':"invalid language"})
         if(request.POST.get('args')):
@@ -130,12 +132,12 @@ def execute(request):
         if(mode==1):
             result=subprocess.Popen(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/' ,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')
-            return render(request, 'output.html' ,{'out': ans})
+            return JsonResponse({'out': ans})
         if(mode==2):
             comp=subprocess.run(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', capture_output=True)
             # move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
             if(comp.stderr):
-                return HttpResponse('compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', ''))
+                return JsonResponse({'status':'1', 'ans':'compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
             result=subprocess.Popen(exe, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8')
-        return render(request,'fileview.html',{'name': filename, 'language': language, "out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
+        return JsonResponse({"out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
