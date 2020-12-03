@@ -20,25 +20,14 @@ import { ContactComponent } from './contact/contact.component';
 import { FileComponent } from './file/file.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
-<<<<<<< HEAD
 // import { SidenavComponent } from './sidenav/sidenav.component';
-
-import { HttpClientModule } from '@angular/common/http';
-import { ListComponent } from './list/list.component';
-import { TryComponent } from './try/try.component';
-
-import { MatTreeModule} from '@angular/material/tree';
-import {MatIconModule} from '@angular/material/icon';
-//import {FlatTreeControl} from '@angular/cdk/tree';
-
-
-=======
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListComponent } from './list/list.component';
 import { ClipboardModule } from '@angular/cdk/clipboard'
 import { IvyCarouselModule } from 'angular-responsive-carousel'
->>>>>>> 3109e93266012f6e70661f27b63ba8466c83e0c9
+import { TryComponent } from './try/try.component';
+import {MatIconModule} from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,10 +36,11 @@ import { IvyCarouselModule } from 'angular-responsive-carousel'
     WorkspaceComponent,
     ContactComponent,
     FileComponent,
-    HomepageComponent,    
+    HomepageComponent,
     SignupComponent,
+    //SidenavComponent,
     ListComponent,
-    TryComponent
+    TryComponent,
   ],
   imports: [
     HttpClientModule,
@@ -67,21 +57,11 @@ import { IvyCarouselModule } from 'angular-responsive-carousel'
     MatFormFieldModule,
     MatSidenavModule,
     MatListModule,
-<<<<<<< HEAD
-    BrowserModule,
-    MatTreeModule,
-    MatIconModule,
-    MatButtonModule,
-  ],
-  exports: [
-    TryComponent,
-=======
     MatTreeModule,
     ClipboardModule,
-    IvyCarouselModule
->>>>>>> 3109e93266012f6e70661f27b63ba8466c83e0c9
+    IvyCarouselModule,
+    MatIconModule,
   ],
-  
   providers: [],
   bootstrap: [AppComponent]
 })
