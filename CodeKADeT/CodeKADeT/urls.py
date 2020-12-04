@@ -30,4 +30,5 @@ urlpatterns = [
     path('signup/login/',  login_views.login),
     path('fileupload/file_view/', file_upload_views.view_function, name='view_function'),
     path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
+    path('emptyfileupload/', file_upload_views.emptyFileUpload, name='empty_file_upload'),
 ]

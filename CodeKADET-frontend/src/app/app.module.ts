@@ -17,7 +17,6 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ContactComponent } from './contact/contact.component';
-import { FileComponent } from './file/file.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
 // import { SidenavComponent } from './sidenav/sidenav.component';
@@ -35,7 +34,6 @@ import { JwtModule } from '@auth0/angular-jwt';
     HeaderComponent,
     WorkspaceComponent,
     ContactComponent,
-    FileComponent,
     HomepageComponent,
     SignupComponent,
     ListComponent,
