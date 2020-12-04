@@ -12,7 +12,7 @@ const routes: Routes = [
     path: 'homepage',component: HomepageComponent
   },
   {
-    path: 'workspace/:username',component: WorkspaceComponent
+    path: 'workspace',component: WorkspaceComponent
   },
   {
     path: 'login',component: LoginComponent

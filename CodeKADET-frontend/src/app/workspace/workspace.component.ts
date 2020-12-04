@@ -34,22 +34,8 @@ export class WorkspaceComponent implements OnInit {
     constructor(private fileser:FileService, private logser: LoginService, private router: Router, private location: Location) { }
 
 
-  ngOnInit(): void {
-	// this.getUser();
-  }
+  ngOnInit(): void {}
 
-  //   getUser(): void {
-	// const id = this.route.snapshot.paramMap.get('username');
-	// console.log(id);
-	
-  //   }
-  
-  // ngAfterViewInit() {
-  //   console.log("Here");
-  //   this.editor.setTheme('monokai');
-  //   this.editor.getEditor().setOptions({
-  //   });
-  // }
   mode='python';
   onSubmit(): void {
     this.Form.get('Code').setValue(this.text);

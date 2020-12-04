@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         console.log(result);
         localStorage.setItem("access_token", result['token'])
 	      if (result['status'] == undefined) {
-         this.router.navigate(['/workspace/' + result['refer_id']]);
+         this.router.navigate(['/workspace/']);
         }
         else 
           alert("Invalid username or password");
