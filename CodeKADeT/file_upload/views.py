@@ -68,16 +68,11 @@ def edit_from_textbox(request):
     data = json.loads(request.body)
     name=data.get('file_name')
     content=data.get('content')
-    print(content)
     myfile=request.user.code_file_set.get(file_name=name).content
-    print(os.path.dirname(os.path.realpath(__file__)))
-
-    print(str(myfile))
-    
-    print(type(str(myfile)))
-    open('personal_file/28/hello.cpp', 'w').close()
-    print("reached here")
-    myfile.write(content)
+    GDRAT_abs_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../CodeKADeT/media/'+str(myfile))
+    fil=open(GDRAT_abs_path, 'w')
+    fil.write(content)
+    fil.close()
     return JsonResponse({"status":"Edit reflected in backend"})
 
 def deletefile(request):
