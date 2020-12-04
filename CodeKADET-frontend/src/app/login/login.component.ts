@@ -13,23 +13,27 @@ export class LoginComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required],
   })
+  token: string = '';
     constructor(private fb: FormBuilder,private login: LoginService, private router: Router) { }
   ngOnInit(): void {
     
   }
   
   onSubmit(): void {
+    // this.login.getToken(this.loginForm.value).subscribe(
+    //   result => localStorage.setItem("access_token", 'Bearer ' + result['token'])
+    // );
+    console.log('Obtained token'); 
     this.login.checkLogin(this.loginForm.value).subscribe(
-	result => {
-	    if (result['status'] == undefined) {
-        // console.log(result['refer_id']);
-        this.router.navigate(['/workspace/' + result['refer_id']]);
-      }
-        
-
-      else
-        alert("Invalid username or password");
-	}
+      result => {
+        console.log(result);
+        localStorage.setItem("access_token", result['token'])
+	      if (result['status'] == undefined) {
+         this.router.navigate(['/workspace/' + result['refer_id']]);
+        }
+        else 
+          alert("Invalid username or password");
+	    }
     );
 
   }

@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from login import views as login_views
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from file_upload import views as file_upload_views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-token-auth/', obtain_jwt_token),
     path('test/', login_views.test, name="test"),
     path('signup/', login_views.signup,name="signup"),
     path('fileupload/logout/',file_upload_views.logout_user,name="logout"),
