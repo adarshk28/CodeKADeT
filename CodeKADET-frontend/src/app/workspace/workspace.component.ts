@@ -24,6 +24,7 @@ export class WorkspaceComponent implements OnInit {
   
   items=[];
   id: string = '';
+  textboxfile: string = '';
   Form= new FormGroup({
     Language: new FormControl(''),
     Code: new FormControl(''),
@@ -52,14 +53,14 @@ export class WorkspaceComponent implements OnInit {
   }
 
   onSave(): void {
-    this.Form.get('Code').setValue(this.text);
-    console.log(this.Form.value)
-      console.log('Saved!');
-      this.FileForm.get('language').setValue(this.Form.get('Language').value);
-      this.FileForm.get('content').setValue(this.text);
-      this.FileForm.get('language').setValue(this.Form.get('Language').value);
-      // this.fileser.editFromTextbox()
-      
+      console.log('started upload');
+      this.FileForm.get('file_name').setValue(this.textboxfile);
+      this.FileForm.get('language').setValue(this.textboxfile.split('.').pop());
+      this.FileForm.get('description').setValue('None');
+	this.FileForm.get('content').setValue(this.text);
+	this.fileser.editFromTextBox(this.FileForm.value).subscribe(
+	    result => console.log(result)
+	);
   }
 
 
@@ -91,14 +92,13 @@ export class WorkspaceComponent implements OnInit {
       )
   }
 
-    textboxfile: string = '';
-    makeEmptyFile() {
+    makeEmptyFile(): void {
       console.log('started upload');
       this.FileForm.get('file_name').setValue(this.textboxfile);
       this.FileForm.get('language').setValue(this.textboxfile.split('.').pop());
       this.FileForm.get('description').setValue('None');
 	this.FileForm.get('content').setValue(null);
-	return this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
+	this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
 	    result => console.log(result)
 	);
     }

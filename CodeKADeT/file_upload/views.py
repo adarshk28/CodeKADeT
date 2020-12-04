@@ -22,6 +22,7 @@ logger=logging.getLogger(__name__)
 from .serializers import *
 from rest_framework.decorators import api_view
 from django.core.files import File
+import os
 import json
 #def home(request):
     #documents = Code_file.objects.all()
@@ -49,21 +50,35 @@ def upload_from_computer(request):
 def emptyFileUpload(request):
     print('User is:', request.user)
     data = json.loads(request.body)
-    fil = open(data.get('file_name'), 'r')
+    fil = open(data.get('file_name'), 'w+')
     f = File(fil)
-    print(f)
-    myfile = request.user.code_file_set.create(description = data.get('description'), content = f, language = data.get('language'), file_name = data.get('file_name'))
-    myfile.save()
-    return JsonResponse({'status': 'Empty file uploaded'})
+    try:
+        myfile=request.user.code_file_set.get(file_name = data.get('file_name')).content
+        fil.close()
+        return JsonResponse({'status': 'Already exists'})
+    except:
+        myfile = request.user.code_file_set.create(description = data.get('description'), content = f, language = data.get('language'), file_name = data.get('file_name'))
+        myfile.save()
+        fil.close()
+        return JsonResponse({'status': 'Empty file uploaded'})
 
+@api_view(['POST'])
 def edit_from_textbox(request):
-    if request.method=='POST':
-        name=request.POST.get('filename')
-        content=request.POST.get('content')
-        myfile=request.user.code_file_set.get(file_name=name).content
-        open(myfile, 'w').close()
-        myfile.write(content)
-        return JsonResponse({"status":"done"})
+    print('User is:', request.user)
+    data = json.loads(request.body)
+    name=data.get('file_name')
+    content=data.get('content')
+    print(content)
+    myfile=request.user.code_file_set.get(file_name=name).content
+    print(os.path.dirname(os.path.realpath(__file__)))
+
+    print(str(myfile))
+    
+    print(type(str(myfile)))
+    open('personal_file/28/hello.cpp', 'w').close()
+    print("reached here")
+    myfile.write(content)
+    return JsonResponse({"status":"Edit reflected in backend"})
 
 def deletefile(request):
     if request.method=='POST':

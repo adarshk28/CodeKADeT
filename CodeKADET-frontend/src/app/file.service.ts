@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 export class FileService {
 
   upload_url = 'http://127.0.0.1:8000/fileupload/';
-    edit_url = 'http://127.0.0.1:8000/emptyfileupload/';
+  empty_url = 'http://127.0.0.1:8000/emptyfileupload/';
+    edit_url = 'http://127.0.0.1:8000/fileupload/edit_file_from_textbox/';
   constructor(private http:HttpClient) { }
 
   postFile(form: any): Observable<any> {
@@ -24,7 +25,12 @@ export class FileService {
 
   uploadFromTextBox(form: any): Observable<any> {
 	  console.log("At file uploading location");
-	  return this.http.post(this.edit_url, form);
+	  return this.http.post(this.empty_url, form);
   }
+
+    editFromTextBox(form: any): Observable<any> {
+	  console.log("At file edit location");
+	  return this.http.post(this.edit_url, form);
+    }
 
 }
