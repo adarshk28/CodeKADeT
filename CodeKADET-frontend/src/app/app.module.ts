@@ -27,7 +27,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard'
 import { IvyCarouselModule } from 'angular-responsive-carousel'
 import { TryComponent } from './try/try.component';
 import {MatIconModule} from '@angular/material/icon';
-
+import { JwtModule } from '@auth0/angular-jwt';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,12 +38,22 @@ import {MatIconModule} from '@angular/material/icon';
     FileComponent,
     HomepageComponent,
     SignupComponent,
-    //SidenavComponent,
     ListComponent,
     TryComponent,
   ],
   imports: [
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          let token: string = localStorage.getItem("access_token");
+          console.log("Sending token " + token);
+          return localStorage.getItem("access_token");
+        },
+        allowedDomains: ["127.0.0.1:8000"],
+        disallowedRoutes: ["http://127.0.0.1:8000/login/","http://127.0.0.1:8000/signup/"],
+      }
+    }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
