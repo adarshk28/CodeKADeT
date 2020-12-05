@@ -36,15 +36,17 @@ def logout_user(request):
 
 @api_view(['POST'])
 def upload_from_computer(request):
-    print('User is: ',request.user)
-    if request.method=='POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
+    form = DocumentForm(request.POST, request.FILES)
+    if form.is_valid():
+        try:
+            myfile = request.user.code_file_set.get(file_name = request.POST['file_name']).content
+            return JsonResponse({'status': 'Already exists'})
+        except:
             myfile = request.user.code_file_set.create(description = request.POST['description'], content = request.FILES['content'], language = request.POST['language'], file_name = request.POST['file_name'])
             myfile.save()
             return JsonResponse({'status': 'successful'})
-        else:
-            return JsonResponse({'status': 'failure'})
+    else:
+        return JsonResponse({'status': 'failure'})
 
 @api_view(['POST'])
 def emptyFileUpload(request):

@@ -20,10 +20,9 @@
     
 </div>
 <div class='grid-item'>
-<form [formGroup]='Form'>
     <label>
         Choose Language:
-        <select formControlName='Language'id="lang">
+        <select [(ngModel)]='mode' id="lang">
             <option value="cpp">C++</option>
             <option value="java">Java</option>
             <option value="py">Python</option>
@@ -31,9 +30,10 @@
     </label><br><br>
     <br>
     <div id="interface1" style="float: left;">
-        <ace-editor #editor [(text)]='text' formControlName='Code' theme='monokai' [(mode)]='mode'></ace-editor>
+        <ace-editor #editor [(text)]='text' theme='monokai' [(mode)]='mode'></ace-editor>
     </div><br>
         
+<form [formGroup]='RunForm'>
         <div style="width: 30%; float: left;">
             <div id="interface">
                 <label for='input'>User input:</label><br>

@@ -19,15 +19,14 @@ import { Location } from '@angular/common';
 })
 export class WorkspaceComponent implements OnInit {
   @ViewChild('editor') editor;
-  text: string = '';
-    fileToUpload: File = null;
-  
+  text: string | ArrayBuffer = '';
+  mode: string = 'py';
+  fileToUpload: File = null;
   items=[];
   id: string = '';
   textboxfile: string = '';
-  Form= new FormGroup({
-    Language: new FormControl(''),
-    Code: new FormControl(''),
+
+  RunForm= new FormGroup({
     Input: new FormControl(''),
     Output: new FormControl(''),
   });
@@ -45,10 +44,7 @@ export class WorkspaceComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  mode='python';
   onSubmit(): void {
-    this.Form.get('Code').setValue(this.text);
-    console.log(this.Form.value)
     console.log('Submitted!');
   }
 
@@ -78,6 +74,14 @@ export class WorkspaceComponent implements OnInit {
     handleFileInput(files: FileList) {
       this.fileToUpload = files.item(0);
       console.log('started upload');
+      this.mode = this.fileToUpload.name.split('.').pop();
+      console.log('Mode is ' + this.mode);
+      let fr = new FileReader();
+      fr.onload = (e) => {
+	  console.log('File has been read');
+	  this.text = fr.result;
+      }
+      fr.readAsText(this.fileToUpload);
       this.FileForm.get('file_name').setValue(this.fileToUpload.name);
       this.FileForm.get('language').setValue(this.fileToUpload.name.split('.').pop());
       this.FileForm.get('content').setValue(this.fileToUpload);
