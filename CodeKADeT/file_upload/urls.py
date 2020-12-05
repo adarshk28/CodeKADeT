@@ -10,6 +10,6 @@ urlpatterns = [
    path('upload_file_from_computer/', views.upload_from_computer, name='upload'),
    path('upload_file_from_textbox/', views.upload_from_textbox, name='upload_file_from_textbox'),
    path('file_view/', views.view_function, name='view_function'),
-   path('file_view/execute', views.execute, name='execute'),
+   # path('file_view/execute', views.execute, name='execute'),
    path('',views.logout_user,name="logout")
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

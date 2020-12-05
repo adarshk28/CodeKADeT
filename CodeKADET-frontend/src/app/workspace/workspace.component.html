@@ -6,7 +6,7 @@
     <h4>Your Files:</h4><br> 
    <try-component></try-component>
     <br><br><br><br><br><br>
-<div class='form-group'>
+<!-- <div class='form-group'>
   Upload file
   <label for="file">Choose File</label>
   <input type="file" id='file' (change)='handleFileInput($event.target.files)'>
@@ -16,7 +16,9 @@
 <label for='newfile'>Create new file</label>
 <input type='text' id='newfile' [(ngModel)] = 'textboxfile'>
 <button type='submit' (click) = 'makeEmptyFile()'>Create!</button>
-<p> {{ textboxfile}} </p>
+<p> {{ textboxfile}} </p> -->
+
+<button (click)='modalview()'> new file</button>
     
 </div>
 <div class='grid-item'>
@@ -47,7 +49,7 @@
 </form>
 <button mat-raised-button color='accent' type="submit" (click)='onSubmit()'>Submit</button>
 <button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
-<button mat-raised-button color='warn' type="Run">Run offline</button>
+<button mat-raised-button color='warn' type="Run" (click)="run()">Run</button>
 <br>
 <br>
 <br>
@@ -55,3 +57,26 @@
 </div>
 </div>
 
+<div *ngIf='showmodal' class=modal>
+    <button (click)='empty()' class='choicebutton'>empty file</button>
+    <button (click)='comp()' class='choicebutton'>upload from computer</button>
+    <div *ngIf='showwhat; else other'>
+       <form [formGroup]='FileForm' (ngSubmit)='makeEmptyFile()'>  
+        file name<input type="text" formControlName='file_name'><br>
+        path<input type="text" formControlName='path'><br>
+        description<input type='text' formControlName='description'><br>
+        language<input type='text' formControlName='language'><br>
+        <input type='submit' value=''>
+       </form>
+    </div>
+    <ng-template #other>
+        <form [formGroup]='FileForm'>  
+            file name<input type="text" formControlName='file_name'><br>
+            path<input type="text" formControlName='path'><br>
+            description<input type='text' formControlName='description'><br>
+            language<input type='text' formControlName='language'><br>
+            <input type='submit' value=''>
+           </form>
+  <input type="file" id='file' (change)='handleFileInput($event.target.files)'>
+        </ng-template>
+</div>

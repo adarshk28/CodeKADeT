@@ -4,7 +4,7 @@
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
-    <a onclick="getfile(node.name)">{{node.name}} </a>
+    <a (click)="getfile(node.name, node.path)">{{node.name}} </a>
   </mat-tree-node>
 
   <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>

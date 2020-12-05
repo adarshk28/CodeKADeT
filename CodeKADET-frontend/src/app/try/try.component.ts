@@ -35,6 +35,9 @@ export class TryComponent implements OnInit{
    
     console.log("time2", this.files);
   }
+  getfile(name: string, path: string){
+    console.log(name, path);
+  }
   ngOnInit(){
     this.treeService.getRequest().subscribe(result=>{
       this.files=result.children;

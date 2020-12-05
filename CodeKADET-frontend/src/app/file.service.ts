@@ -8,6 +8,7 @@ export class FileService {
 
   upload_url = 'http://127.0.0.1:8000/fileupload/';
   empty_url = 'http://127.0.0.1:8000/emptyfileupload/';
+  runtextbox_url = 'http://127.0.0.1:8000/fileupload/exec_from_textbox';
     edit_url = 'http://127.0.0.1:8000/fileupload/edit_file_from_textbox/';
   constructor(private http:HttpClient) { }
 
@@ -32,5 +33,7 @@ export class FileService {
 	  console.log("At file edit location");
 	  return this.http.post(this.edit_url, form);
     }
-
+    runFromTextbox(form: any){
+      return this.http.post(this.runtextbox_url, form);
+    }
 }

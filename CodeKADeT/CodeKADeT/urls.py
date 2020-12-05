@@ -31,6 +31,6 @@ urlpatterns = [
     path('signup/login/',  login_views.login),
     path('fileupload/file_view/', file_upload_views.view_function, name='view_function'),
     path('fileupload/dirstr', file_upload_views.make_map, name='map_data'),    path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
-    path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
     path('emptyfileupload/', file_upload_views.emptyFileUpload, name='empty_file_upload'),
+    path('fileupload/exec_from_textbox', file_upload_views.exec_from_textbox, name='exec_from_textbox'),
 ]
