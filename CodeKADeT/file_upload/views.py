@@ -2,7 +2,7 @@ from logging import StreamHandler
 from sys import flags
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
-from django.conf import settings
+from django.conf import Settings, settings
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
@@ -38,14 +38,14 @@ def logout_user(request):
     return JsonResponse({"status": "Logged out"})
 
 
-def path_to_dict(path):
+def path_to_dict(path, request):
         d = {'name': os.path.basename(path)}
         if os.path.isdir(path):
             d['type'] = "folder"
-            d['children'] = [path_to_dict(os.path.join(path,x)) for x in os.listdir\
-(path)]
+            d['children'] = [path_to_dict(os.path.join(path,x), request) for x in os.listdir(path)]
         else:
             d['type'] = "file"
+            d['path']=os.path.relpath(os.path.dirname(path), settings.MEDIA_ROOT+'personal_file/'+str(request.user.id))
         return d
 
 
@@ -54,7 +54,7 @@ def make_map(request):
     if not request.user.is_authenticated:
         return JsonResponse({'Status': 'not logged in'})
     if request.method=='GET':
-       return JsonResponse(path_to_dict(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)))
+       return JsonResponse(path_to_dict(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id), request))
 
 def upload_from_computer(request):
     form = DocumentForm(request.POST, request.FILES)

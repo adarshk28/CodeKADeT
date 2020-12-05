@@ -7,6 +7,7 @@ import { TreeService } from '../tree.service';
 export interface FileNode {
   name: string;
   type: string;
+  path: string;
   children?: FileNode[];
 }
 
@@ -25,7 +26,7 @@ export interface TreeNode {
 })
 export class TryComponent implements OnInit{
 
-  files =[{name: "danish", type: 'file'}];
+  files =[{name: "danish", type: 'file', path: ''}];
   loaded=false;
   treeControl: FlatTreeControl<TreeNode>;
   treeFlattener: MatTreeFlattener<FileNode, TreeNode>;
@@ -56,6 +57,7 @@ export class TryComponent implements OnInit{
       name: node.name,
       type: node.type,
       level: level,
+      path: node.path,
       expandable: !!node.children
     };
   }
