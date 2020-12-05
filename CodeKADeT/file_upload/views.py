@@ -79,7 +79,7 @@ def emptyFileUpload(request):
 def edit_from_textbox(request):
     print('User is:', request.user)
     data = json.loads(request.body)
-    name=data.get('file_name')
+    name=data.get('name')
     content=data.get('content')
     path=data.get('path')
     print(name)

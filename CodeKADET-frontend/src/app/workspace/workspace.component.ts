@@ -45,7 +45,8 @@ export class WorkspaceComponent implements OnInit {
 
   DisplayForm = new FormGroup({
     name: new FormControl(''),
-    path: new FormControl('')
+    path: new FormControl(''),
+    content: new FormControl('')
   })
 
   
@@ -72,9 +73,9 @@ export class WorkspaceComponent implements OnInit {
 
   onSave(): void {
       console.log('started upload');
-	this.FileForm.get('content').setValue(this.text);
-      console.log(this.FileForm.value);
-	this.fileser.editFromTextBox(this.FileForm.value).subscribe(
+	this.DisplayForm.get('content').setValue(this.text);
+      //console.log(this.FileForm.value);
+	this.fileser.editFromTextBox(this.DisplayForm.value).subscribe(
 	    result => console.log(result)
 	);
   }
