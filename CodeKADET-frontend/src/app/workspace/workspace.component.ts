@@ -154,6 +154,9 @@ export class WorkspaceComponent implements OnInit {
         console.log("file obtained from backend")
         console.log(result)
         this.text=result.lines
+        if (name.split('.').pop() == 'cpp') this.mode = 'c_cpp';
+	else if (name.split('.').pop() == 'py') this.mode = 'python';
+	else  this.mode = 'java';
       })
     }
 
