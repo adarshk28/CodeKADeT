@@ -21,7 +21,7 @@ import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 export class WorkspaceComponent implements OnInit {
   @ViewChild('editor') editor;
   text: string | ArrayBuffer = '';
-  mode: string = 'py';
+  mode: string = 'python';
   fileToUpload: File = null;
   items=[];
   id: string = '';
@@ -43,7 +43,6 @@ export class WorkspaceComponent implements OnInit {
     path: new FormControl(''),
   })
 
-    // constructor(private file:FileService, private route: ActivatedRoute, private location: Location) { }
     constructor(private fileser:FileService, private logser: LoginService, private router: Router, private location: Location) { }
 
 
@@ -67,10 +66,8 @@ export class WorkspaceComponent implements OnInit {
 
   onSave(): void {
       console.log('started upload');
-      this.FileForm.get('file_name').setValue(this.textboxfile);
-      this.FileForm.get('language').setValue(this.textboxfile.split('.').pop());
-      this.FileForm.get('description').setValue('None');
 	this.FileForm.get('content').setValue(this.text);
+      console.log(this.FileForm.value);
 	this.fileser.editFromTextBox(this.FileForm.value).subscribe(
 	    result => console.log(result)
 	);
@@ -95,13 +92,15 @@ export class WorkspaceComponent implements OnInit {
       console.log('Mode is ' + this.mode);
       let fr = new FileReader();
       fr.onload = (e) => {
-	  console.log('File has been read');
 	  this.text = fr.result;
       }
       fr.readAsText(this.fileToUpload);
       this.FileForm.get('content').setValue(this.fileToUpload);
       console.log(this.FileForm.value);
       const formData = new FormData();
+	if (this.FileForm.get('language').value == 'cpp') this.mode = 'c_cpp';
+	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
+	else  this.mode = 'java';
       formData.append('path', this.FileForm.get('path').value)
       formData.append('file_name', this.FileForm.get('file_name').value)
       formData.append('language', this.FileForm.get('language').value)
@@ -115,11 +114,11 @@ export class WorkspaceComponent implements OnInit {
 
     makeEmptyFile(): void {
       console.log('started upload');
-  //     this.FileForm.get('file_name').setValue(this.textboxfile);
-  //     this.FileForm.get('language').setValue(this.textboxfile.split('.').pop());
-  //     this.FileForm.get('description').setValue('None');
-  this.FileForm.get('content').setValue(null);
-  console.log(this.FileForm.value);
+	this.FileForm.get('content').setValue(null);
+	if (this.FileForm.get('language').value == 'cpp') this.mode = 'c_cpp';
+	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
+	else  this.mode = 'java';
+      console.log(this.FileForm.value);
 	this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
 	    result => console.log(result)
 	);

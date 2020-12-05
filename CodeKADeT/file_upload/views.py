@@ -74,6 +74,7 @@ def emptyFileUpload(request):
     request.user.code_file_set.create(description = data.get('description'), content = f, language = data.get('language'), file_name = data.get('file_name'), path=data.get('path'))
     os.remove(data.get('file_name'))
     return JsonResponse({'status': 'Empty file uploaded'})
+
 @api_view(['POST'])
 def edit_from_textbox(request):
     print('User is:', request.user)
@@ -81,8 +82,10 @@ def edit_from_textbox(request):
     name=data.get('file_name')
     content=data.get('content')
     path=data.get('path')
+    print(name)
+    print(path)
     myfile=request.user.code_file_set.get(file_name=name, path=path).content
-    GDRAT_abs_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../CodeKADeT/media/'+str(myfile))
+    GDRAT_abs_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../CodeKADeT/media/'+ str(myfile))
     fil=open(GDRAT_abs_path, 'w')
     fil.write(content)
     fil.close()
@@ -112,8 +115,6 @@ def newfile(request):
             return JsonResponse({'status': 'file with same name exists'})
         myfile=request.user.code_file_set.create(description=request.POST['description'], content=request.FILES['content'], language=request.POST['language'], file_name=request.POST['file_name'])
         return JsonResponse({'status': 'done'})
-
-
 
 def view_function(request):
     if request.method=='GET':
@@ -174,19 +175,20 @@ def exec_from_textbox(request):
         exename=''
         input=data.get('Input')
         language=data.get('Language')
-        print(language)
+        print('Language is:', language)
         if language == "cpp" or language == "c":
             mode=2
             args=["g++", filename]
             exe="./a.out"
-            exename='a.out'
+            # exename='a.out'
         elif language == "py": 
             mode=1
             args=['python3', filename]
         elif language == "java":
             mode=2
+            print("Filename is: ",filename)
             args=['javac', filename]
-            exe=['java', os.path.splitext(filename)]
+            exe=['java', os.path.splitext(filename)[0]]
         if(mode==0):
             return JsonResponse({'out':"invalid language"})
         # if(request.POST.get('args')):
