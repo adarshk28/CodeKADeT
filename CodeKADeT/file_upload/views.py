@@ -21,7 +21,7 @@ import logging
 logger=logging.getLogger(__name__)
 from .serializers import *
 from rest_framework.decorators import api_view, parser_classes
-from rest_framework.parsers import FileUploadParser
+from rest_framework.parsers import FileUploadParser, JSONParser
 from django.core.files.base import ContentFile
 import json
 #def home(request):
@@ -34,14 +34,14 @@ def logout_user(request):
     logout(request)
     return JsonResponse({"status": "Logged out"})
 
-@api_view(['POST', 'GET'])
+@api_view(['POST'])
 # @parser_classes([FileUploadParser,])
 def upload_from_computer(request):
     print('User is: ',request.user.id)
     if request.method=='POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            myfile = request.user.code_file_set.create(description = request.POST['description'], content = request.FILES['content'], language = request.POST['language'], file_name = request.POST['file_name'])
+            myfile = request.user.code_file_set.create(description = request.POST['description'], content = request.FILES['content'], language = request.POST['language'], file_name = request.POST['file_name'], path=request.POST['path'])
             myfile.save()
             return JsonResponse({'status': 'successful'})
         else:
@@ -91,13 +91,32 @@ def upload_from_computer(request):
     # #     return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
     # # else:
     # #     return JsonResponse({"status":"Failed to upload as User not authenticated"})
+def path_to_dict(path):
+        d = {'name': os.path.basename(path)}
+        if os.path.isdir(path):
+            d['type'] = "folder"
+            d['children'] = [path_to_dict(os.path.join(path,x)) for x in os.listdir\
+(path)]
+        else:
+            d['type'] = "file"
+        return d
+
+
+@api_view(['GET'])
+def make_map(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({'Status': 'not logged in'})
+    if request.method=='GET':
+       return JsonResponse(path_to_dict(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)))
+
 def edit_from_textbox(request):
-    if not request.user.is_authenticaed:
+    if not request.user.is_authenticated:
         return JsonResponse({'Status': 'not logged in'})
     if request.method=='POST':
         name=request.POST.get('filename')
         content=request.POST.get('content')
-        myfile=request.user.code_file_set.get(file_name=name).content
+        path=request.POST.get('path')
+        myfile=request.user.code_file_set.get(file_name=name, path=path).content
         open(myfile, 'w').close()
         myfile.write(content)
         return JsonResponse({"status":"done"})
@@ -107,7 +126,8 @@ def deletefile(request):
         return JsonResponse({'Status': 'not logged in'})
     if request.method=='POST':
         name=request.POST.get('filename')
-        request.user.code_file_set.get(file_name=name).delete()
+        path=request.POST.get('path')
+        request.user.code_file_set.get(file_name=name, path=path).delete()
         return JsonResponse({"status":"done"})
 
 def rename(request):
@@ -172,7 +192,7 @@ def execute(request):
         if(mode==1):
             result=subprocess.Popen(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/' ,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')
-            return JsonResponse({'out': ans})
+            return JsonResponse({'out': ans}) 
         if(mode==2):
             comp=subprocess.run(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', capture_output=True)
             # move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)

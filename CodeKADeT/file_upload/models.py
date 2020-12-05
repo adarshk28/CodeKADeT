@@ -16,5 +16,6 @@ class Code_file(models.Model):
     creator=models.ForeignKey(UserProfile, on_delete=models.CASCADE, default='')
     content=models.FileField(upload_to=user_directory_path)
     language=models.CharField(max_length=20)
+    path=models.CharField(max_length=200)
     
 # Create your models here.
