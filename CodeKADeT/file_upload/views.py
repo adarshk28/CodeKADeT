@@ -116,13 +116,23 @@ def newfile(request):
         myfile=request.user.code_file_set.create(description=request.POST['description'], content=request.FILES['content'], language=request.POST['language'], file_name=request.POST['file_name'])
         return JsonResponse({'status': 'done'})
 
+@api_view(['GET'])
 def view_function(request):
+    print(request.user.id)
     if request.method=='GET':
-        filename=request.GET.get('file','')
-        language=request.user.code_file_set.get(file_name=filename).language
+        print(request.GET)
+        filename=request.GET["name"]
+        path=request.GET["path"]
+        print('/////////////////////////////////////////////')
+        print(filename) 
+        print(path) 
+        print('//////////////////////////////////////////////')
+        language=request.user.code_file_set.get(file_name=filename, path=path).language
+        print(language)
         lines=[]
-        with open(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+filename) as f:
-            lines=[line.rstrip('\n') for line in f]
+        with open(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(filename)) as f:
+
+            lines=[line for line in f]
         #return JsonResponse({'lines':lines})
         return JsonResponse({'lines':''.join(lines),'name': filename, 'language': language})
 
