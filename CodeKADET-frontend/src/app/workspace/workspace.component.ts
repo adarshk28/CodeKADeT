@@ -107,13 +107,21 @@ export class WorkspaceComponent implements OnInit {
       const formData = new FormData();
 	if (this.FileForm.get('language').value == 'cpp') this.mode = 'c_cpp';
 	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
-	else  this.mode = 'java';
+  else  this.mode = 'java';
+  if(this.FileForm.get('path').value==''){
+    this.FileForm.get('path').setValue('.')
+  }
       formData.append('path', this.FileForm.get('path').value)
       formData.append('file_name', this.FileForm.get('file_name').value)
       formData.append('language', this.FileForm.get('language').value)
       formData.append('content', this.FileForm.get('content').value)
       formData.append('description', this.FileForm.get('description').value)
       console.log(formData);
+      this.DisplayForm.get('path').setValue(this.FileForm.get('path').value)
+      this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value)
+      this.DisplayForm.get('content').setValue(this.FileForm.get('content').value)
+
+      console.log(this.DisplayForm.value)
       return this.fileser.postFile(formData).subscribe(
 	  result=> console.log(result)
       )
@@ -121,7 +129,10 @@ export class WorkspaceComponent implements OnInit {
 
     makeEmptyFile(): void {
       console.log('started upload');
-	this.FileForm.get('content').setValue(null);
+  this.FileForm.get('content').setValue(null);
+  if(this.FileForm.get('path').value==''){
+    this.FileForm.get('path').setValue('.')
+  }
 	if (this.FileForm.get('language').value == 'cpp') this.mode = 'c_cpp';
 	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
 	else  this.mode = 'java';

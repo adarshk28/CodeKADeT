@@ -130,6 +130,7 @@ def view_function(request):
         language=request.user.code_file_set.get(file_name=filename, path=path).language
         print(language)
         lines=[]
+        print(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(filename))
         with open(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(filename)) as f:
 
             lines=[line for line in f]
