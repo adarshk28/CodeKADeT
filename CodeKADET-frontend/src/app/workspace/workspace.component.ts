@@ -100,13 +100,15 @@ export class WorkspaceComponent implements OnInit {
       }
       fr.readAsText(this.fileToUpload);
       this.FileForm.get('content').setValue(this.fileToUpload);
+      console.log(this.FileForm.value);
       const formData = new FormData();
       formData.append('path', this.FileForm.get('path').value)
       formData.append('file_name', this.FileForm.get('file_name').value)
       formData.append('language', this.FileForm.get('language').value)
       formData.append('content', this.FileForm.get('content').value)
       formData.append('description', this.FileForm.get('description').value)
-      return this.fileser.postFile(this.FileForm.value).subscribe(
+      console.log(formData);
+      return this.fileser.postFile(formData).subscribe(
 	  result=> console.log(result)
       )
   }

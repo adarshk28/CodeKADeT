@@ -57,25 +57,10 @@ def make_map(request):
        return JsonResponse(path_to_dict(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id), request))
 @api_view(['POST'])
 def upload_from_computer(request):
-    # form = DocumentForm(request.POST, request.FILES)
-    # if form.is_valid():
-    #     try:
-    #         myfile = request.user.code_file_set.get(file_name = request.POST['file_name']).content
-    #         return JsonResponse({'status': 'Already exists'})
-    #     except:
-    #         myfile = request.user.code_file_set.create(description = request.POST['description'], content = request.FILES['content'], language = request.POST['language'], file_name = request.POST['file_name'])
-    #         myfile.save()
-    #         return JsonResponse({'status': 'successful'})
-    # else:
-    #     return JsonResponse({'status': 'failure'})
     print('User is:', request.user)
     if request.user.code_file_set.filter(file_name = request.POST['file_name'], path=request.POST['path']).exists():
         return JsonResponse({'status': 'Already exists'})
-    # temp=open(data.get('content'), 'w+')
-    # f=File(temp)
-    print(type(request.POST['content']))
-    request.user.code_file_set.create(description = request.POST['description'], content = request.POST['content'], language = request.POST['language'], file_name = request.POST['file_name'], path=request.POST['path'])
-    # os.remove(data.get('file_name'))
+    request.user.code_file_set.create(description = request.POST['description'], content = request.FILES['content'], language = request.POST['language'], file_name = request.POST['file_name'], path=request.POST['path'])
     return JsonResponse({'status': 'Empty file uploaded'})
 
 @api_view(['POST'])
