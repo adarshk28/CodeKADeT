@@ -27,7 +27,10 @@ urlpatterns = [
     path('login/',  login_views.login),
     path('fileupload/', file_upload_views.upload_from_computer,name="upload"),
     path('', include('login.urls')),
+    path('fileupload/edit_file_from_textbox/', file_upload_views.edit_from_textbox),
     path('signup/login/',  login_views.login),
     path('fileupload/file_view/', file_upload_views.view_function, name='view_function'),
-path('fileupload/dirstr', file_upload_views.make_map, name='map_data'),    path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
+    path('fileupload/dirstr', file_upload_views.make_map, name='map_data'),    path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
+    path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
+    path('emptyfileupload/', file_upload_views.emptyFileUpload, name='empty_file_upload'),
 ]

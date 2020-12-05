@@ -23,6 +23,9 @@ from .serializers import *
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import FileUploadParser, JSONParser
 from django.core.files.base import ContentFile
+from rest_framework.decorators import api_view
+from django.core.files import File
+import os
 import json
 #def home(request):
     #documents = Code_file.objects.all()
@@ -34,63 +37,7 @@ def logout_user(request):
     logout(request)
     return JsonResponse({"status": "Logged out"})
 
-@api_view(['POST'])
-# @parser_classes([FileUploadParser,])
-def upload_from_computer(request):
-    print('User is: ',request.user.id)
-    if request.method=='POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            myfile = request.user.code_file_set.create(description = request.POST['description'], content = request.FILES['content'], language = request.POST['language'], file_name = request.POST['file_name'], path=request.POST['path'])
-            myfile.save()
-            return JsonResponse({'status': 'successful'})
-        else:
-            return JsonResponse({'status': 'failure'})
-    # else:
-    #     return JsonResponse({'status': 'failure'})
-    # print(request.user)
-    # if request.user.is_authenticated==True:
-        
-    #     if request.method=='POST':
-    #         data = json.loads(request.body)
-    #         # print(data)
-    #         myfile=request.user.code_file_set.create(description=data.get('description'), content=data.get('content'), language=data.get('language'), file_name=data.get('file_name'))
-    #         myfile.save()
-    #         return JsonResponse({"status":"File Uploaded at backend, yayyy"})
-    #         # form=DocumentForm(request.FILES)
-    #         # if form.is_valid():
-    #         #     # myfile=request.user.code_file_set.create(description=request.POST.get('description'), content=request.FILES['content'], language=request.POST.get('language'), file_name=request.POST.get('file_name'))
-    #         #     # myfile.save()
-    #         #     return JsonResponse({"status":"File Uploaded at backend, it's 3 am"})
-    #         #     # return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
-    #     else:
-    #         return JsonResponse({"status":"Bhai Tu Rehne De"})
-    #         #     # return render(request, 'user_page.html', {'info':"does not work !", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
-    
-    #     # return JsonResponse({"status": 'recieved at backend'})
-    # else:
-    #     return JsonResponse({"status": 'Failed to upload as User not authenticated'})
-    # # if request.user.is_authenticaed==True:
-    # #     if request.method=='POST':
-    # #         return JsonResponse("File Reached at Backend")
-    #         # form=DocumentForm(request.POST, request.FILES)
-    #         # if form.is_valid():
-    #         #     # myfile=request.user.code_file_set.create(description=request.POST.get('description'), content=request.FILES['content'], language=request.POST.get('language'), file_name=request.POST.get('file_name'))
-    #         #     # myfile.save()
-    #         #     return JsonResponse("File Uploaded at backend, it's 3 am")
-    #         #     # return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
-    #         # else:
-    #         #     return JsonResponse("Bhai Tu Rehne De")
-    #             # return render(request, 'user_page.html', {'info':"does not work !", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
-    
-    # # # if request.method=='GET':
-    # # #     data=request.user.code_file_set
-    # # #     dataserializer=CodeFileSerializer(data, many=True)
-    # # #     return JsonResponse(dataserializer.data, safe=False)   
-    # # if request.method=='GET':
-    # #     return render(request, 'user_page.html', {'info':"works!", 'files':request.user.code_file_set.all(), 'userid':request.user.id, 'user':request.user})
-    # # else:
-    # #     return JsonResponse({"status":"Failed to upload as User not authenticated"})
+
 def path_to_dict(path):
         d = {'name': os.path.basename(path)}
         if os.path.isdir(path):
@@ -109,21 +56,49 @@ def make_map(request):
     if request.method=='GET':
        return JsonResponse(path_to_dict(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)))
 
+def upload_from_computer(request):
+    form = DocumentForm(request.POST, request.FILES)
+    if form.is_valid():
+        try:
+            myfile = request.user.code_file_set.get(file_name = request.POST['file_name']).content
+            return JsonResponse({'status': 'Already exists'})
+        except:
+            myfile = request.user.code_file_set.create(description = request.POST['description'], content = request.FILES['content'], language = request.POST['language'], file_name = request.POST['file_name'])
+            myfile.save()
+            return JsonResponse({'status': 'successful'})
+    else:
+        return JsonResponse({'status': 'failure'})
+
+@api_view(['POST'])
+def emptyFileUpload(request):
+    print('User is:', request.user)
+    data = json.loads(request.body)
+    fil = open(data.get('file_name'), 'w+')
+    f = File(fil)
+    try:
+        myfile=request.user.code_file_set.get(file_name = data.get('file_name')).content
+        fil.close()
+        return JsonResponse({'status': 'Already exists'})
+    except:
+        myfile = request.user.code_file_set.create(description = data.get('description'), content = f, language = data.get('language'), file_name = data.get('file_name'))
+        myfile.save()
+        fil.close()
+        return JsonResponse({'status': 'Empty file uploaded'})
+
+@api_view(['POST'])
 def edit_from_textbox(request):
-    if not request.user.is_authenticated:
-        return JsonResponse({'Status': 'not logged in'})
-    if request.method=='POST':
-        name=request.POST.get('filename')
-        content=request.POST.get('content')
-        path=request.POST.get('path')
-        myfile=request.user.code_file_set.get(file_name=name, path=path).content
-        open(myfile, 'w').close()
-        myfile.write(content)
-        return JsonResponse({"status":"done"})
+    print('User is:', request.user)
+    data = json.loads(request.body)
+    name=data.get('file_name')
+    content=data.get('content')
+    myfile=request.user.code_file_set.get(file_name=name).content
+    GDRAT_abs_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../CodeKADeT/media/'+str(myfile))
+    fil=open(GDRAT_abs_path, 'w')
+    fil.write(content)
+    fil.close()
+    return JsonResponse({"status":"Edit reflected in backend"})
 
 def deletefile(request):
-    if not request.user.is_authenticaed:
-        return JsonResponse({'Status': 'not logged in'})
     if request.method=='POST':
         name=request.POST.get('filename')
         path=request.POST.get('path')
@@ -131,8 +106,6 @@ def deletefile(request):
         return JsonResponse({"status":"done"})
 
 def rename(request):
-    if not request.user.is_authenticaed:
-        return JsonResponse({'Status': 'not logged in'})
     if request.method=='POST':
         name=request.POST.get('filename')
         if os.path.isfile(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+name):
@@ -143,8 +116,6 @@ def rename(request):
         return JsonResponse({"status":"done"})
 
 def newfile(request):
-    if not request.user.is_authenticaed:
-        return JsonResponse({'Status': 'not logged in'})
     if request.method=='POST':
         name=request.POST.get('filename')
         if os.path.isfile(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+name):
