@@ -3,6 +3,10 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { of as observableOf } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { TreeService } from '../tree.service';
+import { FileService } from '../file.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 export interface FileNode {
   name: string;
@@ -26,18 +30,27 @@ export interface TreeNode {
 })
 export class TryComponent implements OnInit{
 
+
+  @Output() newItemEvent = new EventEmitter<any>();
+
+  sendFilename(name: string, path: string) {
+    console.log(name)
+    console.log(path)
+    this.newItemEvent.emit({"name":name,"path":path});
+  }
+
+  
+
+
   files =[{name: "danish", type: 'file', path: ''}];
   loaded=false;
   treeControl: FlatTreeControl<TreeNode>;
   treeFlattener: MatTreeFlattener<FileNode, TreeNode>;
   dataSource: MatTreeFlatDataSource<FileNode, TreeNode>;
-  constructor(public treeService: TreeService) {
-   
+  constructor(public treeService: TreeService, public fileService: FileService) {  
     console.log("time2", this.files);
   }
-  getfile(name: string, path: string){
-    console.log(name, path);
-  }
+  
   ngOnInit(){
     this.treeService.getRequest().subscribe(result=>{
       this.files=result.children;

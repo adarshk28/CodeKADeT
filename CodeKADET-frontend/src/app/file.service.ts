@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 @Injectable({
@@ -18,10 +18,14 @@ export class FileService {
   }
 
 
-  getRequest():any{
-    return this.http.get<any>('http://127.0.0.1:8000/fileupload').subscribe(data => {
-      console.log(data.json())
-    });
+  getFile(name: any,path: any):any{
+    // let heads = new HttpHeaders();
+    // heads.append('Content-Type', 'application/json');
+    // let param = new HttpParams();
+    // param.set("name", form.get("name").value)
+    // param.set("path", form.get("path").value)
+    console.log('Service trying to get your file')
+    return this.http.get<any>('http://127.0.0.1:8000/fileupload/file_view/',{params: {"name":  name,"path": path }})
   }
 
   uploadFromTextBox(form: any): Observable<any> {

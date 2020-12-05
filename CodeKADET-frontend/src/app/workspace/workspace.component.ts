@@ -43,6 +43,12 @@ export class WorkspaceComponent implements OnInit {
     path: new FormControl(''),
   })
 
+  DisplayForm = new FormGroup({
+    name: new FormControl(''),
+    path: new FormControl('')
+  })
+
+  
     constructor(private fileser:FileService, private logser: LoginService, private router: Router, private location: Location) { }
 
 
@@ -123,11 +129,30 @@ export class WorkspaceComponent implements OnInit {
 	    result => console.log(result)
 	);
     }
+
+    getFile(data: any){
+      console.log("you want file: ")
+      var name = data["name"]
+      var path = data["path"]
+      this.DisplayForm.get("name").setValue(name)
+      this.DisplayForm.get("path").setValue(path)
+      console.log(name)
+      console.log(path)  
+      this.fileser.getFile(name,path).subscribe(result=>{
+        console.log("file obtained from backend")
+        console.log(result)
+        this.text=result.lines
+      })
+    }
+
+
+
     run(){
       console.log('running///////////')
-      this.RunForm.get('Filename').setValue(this.FileForm.get('file_name').value)
-      this.RunForm.get('Language').setValue(this.FileForm.get('file_name').value.split('.').pop())
-      this.RunForm.get('path').setValue(this.FileForm.get('path').value)
+      console.log(this.DisplayForm.value)
+      this.RunForm.get('Filename').setValue(this.DisplayForm.get('name').value)
+      this.RunForm.get('Language').setValue(this.DisplayForm.get('name').value.split('.').pop())
+      this.RunForm.get('path').setValue(this.DisplayForm.get('path').value)
       console.log(this.RunForm.value)
       this.fileser.runFromTextbox(this.RunForm.value).subscribe(result=>{
         this.RunForm.get('Output').setValue(result["out"]);

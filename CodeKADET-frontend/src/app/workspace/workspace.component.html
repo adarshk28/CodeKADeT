@@ -4,7 +4,7 @@
     <br><br>
     <button mat-raised-button color='accent' type="submit" (click)='onLogout()'>Logout</button>
     <h4>Your Files:</h4><br> 
-   <try-component></try-component>
+   <try-component (newItemEvent)="getFile($event)">  </try-component>
     <br><br><br><br><br><br>
 <!-- <div class='form-group'>
   Upload file
