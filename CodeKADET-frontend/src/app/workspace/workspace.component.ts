@@ -1,25 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FileService } from '../file.service';
 import { LoginService } from '../login.service';
 import {  Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
-// import * as ace from 'ace-builds/src-noconflict/ace';
-    // ace.config.set('basePath', '');
-    // ace.config.set('modePath', '');
-    // ace.config.set('themePath', '');
 
-    interface User_Id {
-      id: string;
-    }
 @Component({
   selector: 'app-workspace',
   templateUrl: './workspace.component.html',
   styleUrls: ['./workspace.component.scss']
 })
-export class WorkspaceComponent implements OnInit {
+export class WorkspaceComponent implements AfterViewInit {
   @ViewChild('editor') editor;
+
   text: string | ArrayBuffer = '';
   mode: string = 'python';
   fileToUpload: File = null;
@@ -48,12 +42,20 @@ export class WorkspaceComponent implements OnInit {
     path: new FormControl(''),
     content: new FormControl('')
   })
+  constructor(private fileser:FileService, private logser: LoginService, private router: Router, private location: Location) { }
 
-  
-    constructor(private fileser:FileService, private logser: LoginService, private router: Router, private location: Location) { }
-
-
-  ngOnInit(): void {}
+  // ngOnInit(): void {}
+  ngAfterViewInit() {
+    this.editor.getEditor().setOptions({
+      enableBasicAutocompletion: true,
+      enableLiveAutocompletion: true
+    });
+    this.editor.getEditor().commands.addCommand({
+      name: 'save',
+      bindKey: {win: "Ctrl-S", mac: "Cmd-S"},
+      exec: this.onSave
+    })
+  }
 
   onSubmit(): void {
     console.log('Submitted!');
@@ -71,8 +73,10 @@ export class WorkspaceComponent implements OnInit {
     this.showwhat=false;
   }
 
-  onSave(): void {
+  onSave = () => {
       console.log('started upload');
+      console.log('We are in onSave');
+      console.log(this.DisplayForm.value);
 	this.DisplayForm.get('content').setValue(this.text);
       //console.log(this.FileForm.value);
 	this.fileser.editFromTextBox(this.DisplayForm.value).subscribe(
@@ -82,9 +86,7 @@ export class WorkspaceComponent implements OnInit {
 
 
   onLogout(): void {
-    let obj: User_Id = { id: this.id };
-    console.log(obj);
-    this.logser.logout(obj).subscribe(
+    this.logser.logout().subscribe(
       _ => {
         localStorage.removeItem('access_token');
         this.router.navigate(['/homepage/']);
@@ -117,7 +119,7 @@ export class WorkspaceComponent implements OnInit {
       formData.append('content', this.FileForm.get('content').value)
       formData.append('description', this.FileForm.get('description').value)
       console.log(formData);
-      this.DisplayForm.get('path').setValue(this.FileForm.get('path').value)
+      this.DisplayForm.get('path').setValue(this.FileForm.get('path').value);
       this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value)
       this.DisplayForm.get('content').setValue(this.FileForm.get('content').value)
 
@@ -128,14 +130,17 @@ export class WorkspaceComponent implements OnInit {
   }
 
     makeEmptyFile(): void {
-      console.log('started upload');
-  this.FileForm.get('content').setValue(null);
-  if(this.FileForm.get('path').value==''){
-    this.FileForm.get('path').setValue('.')
-  }
+	console.log('started upload');
+	this.FileForm.get('content').setValue(null);
+	if(this.FileForm.get('path').value==''){
+	    this.FileForm.get('path').setValue('.')
+	}
 	if (this.FileForm.get('language').value == 'cpp') this.mode = 'c_cpp';
 	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
 	else  this.mode = 'java';
+	this.DisplayForm.get('path').setValue(this.FileForm.get('path').value);
+	this.DisplayForm.get('content').setValue('');
+	this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value);
       console.log(this.FileForm.value);
 	this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
 	    result => console.log(result)

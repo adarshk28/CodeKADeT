@@ -67,6 +67,7 @@
               "./node_modules/ace-builds/src-min/mode-c_cpp.js",
               "./node_modules/ace-builds/src-min/mode-python.js",
               "./node_modules/ace-builds/src-min/mode-java.js",
+              "./node_modules/ace-builds/src-min/ext-language_tools.js",
               "./node_modules/particles.js/particles.js"
             ]
           },

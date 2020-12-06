@@ -55,6 +55,7 @@ def make_map(request):
         return JsonResponse({'Status': 'not logged in'})
     if request.method=='GET':
        return JsonResponse(path_to_dict(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id), request))
+
 @api_view(['POST'])
 def upload_from_computer(request):
     print('User is:', request.user)
@@ -85,8 +86,8 @@ def edit_from_textbox(request):
     print(name)
     print(path)
     myfile=request.user.code_file_set.get(file_name=name, path=path).content
-    GDRAT_abs_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../CodeKADeT/media/'+ str(myfile))
-    fil=open(GDRAT_abs_path, 'w')
+    abs_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../CodeKADeT/media/'+ str(myfile))
+    fil=open(abs_path, 'w')
     fil.write(content)
     fil.close()
     return JsonResponse({"status":"Edit reflected in backend"})
@@ -174,6 +175,7 @@ def execute(request):
             result=subprocess.Popen(exe, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8')
         return JsonResponse({"out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
+    
 @api_view(['POST'])
 def exec_from_textbox(request):
      if(request.method=='POST'):
