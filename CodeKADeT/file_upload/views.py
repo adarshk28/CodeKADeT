@@ -8,8 +8,6 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from rest_framework import serializers
 from shutil import move
-from .models import Code_file
-from .forms import DocumentForm
 from django.middleware.csrf import CsrfViewMiddleware
 from django.contrib.auth import logout
 from .models import UserProfile as User
@@ -19,7 +17,6 @@ import subprocess
 from django.http import JsonResponse
 import logging
 logger=logging.getLogger(__name__)
-from .serializers import *
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import FileUploadParser, JSONParser
 from django.core.files.base import ContentFile
@@ -27,9 +24,7 @@ from rest_framework.decorators import api_view
 from django.core.files import File
 import os
 import json
-#def home(request):
-    #documents = Code_file.objects.all()
-    #return render(request, 'core/home.html', { 'documents': documents })
+import shutil
 
 @api_view(['GET'])
 def logout_user(request):
@@ -42,6 +37,7 @@ def path_to_dict(path, request):
         d = {'name': os.path.basename(path)}
         if os.path.isdir(path):
             d['type'] = "folder"
+            d['path']=os.path.relpath(os.path.dirname(path), settings.MEDIA_ROOT+'personal_file/'+str(request.user.id))
             d['children'] = [path_to_dict(os.path.join(path,x), request) for x in os.listdir(path)]
         else:
             d['type'] = "file"
@@ -54,141 +50,68 @@ def make_map(request):
     if not request.user.is_authenticated:
         return JsonResponse({'Status': 'not logged in'})
     if request.method=='GET':
-       return JsonResponse(path_to_dict(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id), request))
+       return JsonResponse(path_to_dict(os.readlink(request.user.symlink), request))
 
 @api_view(['POST'])
 def upload_from_computer(request):
     print('User is:', request.user)
-    if request.user.code_file_set.filter(file_name = request.POST['file_name'], path=request.POST['path']).exists():
-        return JsonResponse({'status': 'Already exists'})
-    request.user.code_file_set.create(description = request.POST['description'], content = request.FILES['content'], language = request.POST['language'], file_name = request.POST['file_name'], path=request.POST['path'])
+    try:
+        os.makedirs(os.readlink(request.user.symlink)+request.POST['path']+'/')
+        with open(os.readlink(request.user.symlink)+request.POST['path']+'/'+request.POST['file_name'], 'w+') as stored_file:
+            stored_file.write(request.FILES['content'].read().decode('utf-8'))
+    except:
+        with open(os.readlink(request.user.symlink)+request.POST['path']+'/'+request.POST['file_name'], 'w+') as stored_file:
+            stored_file.write(request.FILES['content'].read().decode('utf-8'))
     return JsonResponse({'status': 'Empty file uploaded'})
 
 @api_view(['POST'])
 def emptyFileUpload(request):
     print('User is:', request.user)
     data = json.loads(request.body)
-    if request.user.code_file_set.filter(file_name = data.get('file_name'), path=data.get('path')).exists():
-        return JsonResponse({'status': 'Already exists'})
-    temp=open(data.get('file_name'), 'w+')
-    f=File(temp)
-    request.user.code_file_set.create(description = data.get('description'), content = f, language = data.get('language'), file_name = data.get('file_name'), path=data.get('path'))
-    os.remove(data.get('file_name'))
+    try:
+        os.makedirs(os.readlink(request.user.symlink)+data.get('path')+'/')
+        with open(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('file_name'), 'w+') as stored_file:
+            stored_file.write('')
+    except:
+        with open(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('file_name'), 'w+') as stored_file:
+            stored_file.write('')
     return JsonResponse({'status': 'Empty file uploaded'})
 
 @api_view(['POST'])
 def edit_from_textbox(request):
     print('User is:', request.user)
     data = json.loads(request.body)
-    name=data.get('name')
-    content=data.get('content')
-    path=data.get('path')
-    print(name)
-    print(path)
-    myfile=request.user.code_file_set.get(file_name=name, path=path).content
-    abs_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../CodeKADeT/media/'+ str(myfile))
-    fil=open(abs_path, 'w')
-    fil.write(content)
-    fil.close()
+    print('Data is:', data)
+    with open(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('name'), 'w+') as stored_file:
+        stored_file.write(data.get('content'))
     return JsonResponse({"status":"Edit reflected in backend"})
 
-def deletefile(request):
-    if request.method=='POST':
-        name=request.POST.get('filename')
-        path=request.POST.get('path')
-        request.user.code_file_set.get(file_name=name, path=path).delete()
-        return JsonResponse({"status":"done"})
-
+@api_view(['POST'])
+def delete(request):
+    data = json.loads(request.body)
+    name=data.get('old_name')
+    path=data.get('path')
+    a_path = os.readlink(request.user.symlink) + path + '/' + name
+    if os.path.isdir(a_path):
+        shutil.rmtree(a_path)
+    else:
+        os.remove(os.readlink(request.user.symlink) + path + '/' + name)
+    return JsonResponse({"status":"done"})   
 
 @api_view(['POST'])
 def rename(request):
-    if request.method=='POST':
-        data = json.loads(request.body)
-        new_name=data.get('new_name')
-        old_name=data.get('old_name')
-        path=data.get('path')
-        print('/////////////////////////////////////////')
-        print("new name: "+new_name)
-        print("old name: "+old_name)
-        print("path: "+path)
-        print('/////////////////////////////////////////')
-        if os.path.isfile(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(new_name)):
-            return JsonResponse({'status': 'file with same name exists'})
-        myfile=request.user.code_file_set.get(file_name=old_name, path=path)
-        print(myfile)
-        myfile.file_name=new_name
-        myfile.save()
-        print(myfile.file_name)
-        os.rename(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(old_name),settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(new_name))
-        return JsonResponse({"status":"done"})
-
-def newfile(request):
-    if request.method=='POST':
-        name=request.POST.get('filename')
-        if os.path.isfile(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+name):
-            return JsonResponse({'status': 'file with same name exists'})
-        myfile=request.user.code_file_set.create(description=request.POST['description'], content=request.FILES['content'], language=request.POST['language'], file_name=request.POST['file_name'])
-        return JsonResponse({'status': 'done'})
+    data = json.loads(request.body)
+    if os.path.isfile((request.user.symlink)+data.get('path')+'/'+data.get('new_name')):
+        return JsonResponse({'status': 'file with same name exists'})
+    os.rename(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('old_name'), os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('new_name'))
+    return JsonResponse({"status":"done"})
 
 @api_view(['GET'])
 def view_function(request):
-    print(request.user.id)
-    if request.method=='GET':
-        print(request.GET)
-        filename=request.GET["name"]
-        path=request.GET["path"]
-        print('/////////////////////////////////////////////')
-        print(filename) 
-        print(path) 
-        print('//////////////////////////////////////////////')
-        language=request.user.code_file_set.get(file_name=filename, path=path).language
-        print(language)
-        lines=[]
-        print(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(filename))
-        with open(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(filename)) as f:
+    with open(os.readlink(request.user.symlink)+request.GET['path']+'/'+request.GET['name']) as f:
+        lines=[line for line in f]
+    return JsonResponse({'lines':''.join(lines),'name': request.GET['name'], 'language': request.GET['name'].split('.')[-1]})
 
-            lines=[line for line in f]
-        #return JsonResponse({'lines':lines})
-        return JsonResponse({'lines':''.join(lines),'name': filename, 'language': language})
-
-def execute(request):
-    if(request.method=='POST'):
-        filename=request.POST.get('file','')
-        mode=0
-        args=[]
-        exe=""
-        exename=''
-        input=request.POST.get('input')
-        language=request.POST.get('language', '')
-        if language == "c++" or language == "c":
-            mode=2
-            args=["g++", filename]
-            exe="./a.out"
-            exename='a.out'
-        elif language == "python": 
-            mode=1
-            args=['python3', filename]
-        elif language == "java":
-            mode=2
-            args=['javac', filename]
-            exe=['java', os.path.splitext(filename)]
-        if(mode==0):
-            return render(request, 'output.html' ,{'out':"invalid language"})
-        if(request.POST.get('args')):
-            args=request.POST.get('args')
-        if(mode==1):
-            result=subprocess.Popen(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/' ,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            ans = result.communicate(input=input.encode())[0].decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')
-            return JsonResponse({'out': ans}) 
-        if(mode==2):
-            comp=subprocess.run(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', capture_output=True)
-            # move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
-            if(comp.stderr):
-                return JsonResponse({'status':'1', 'ans':'compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
-            result=subprocess.Popen(exe, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            ans = result.communicate(input=input.encode())[0].decode('utf-8')
-        return JsonResponse({"out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
-    
 @api_view(['POST'])
 def exec_from_textbox(request):
      if(request.method=='POST'):
@@ -206,7 +129,6 @@ def exec_from_textbox(request):
             mode=2
             args=["g++", filename]
             exe="./a.out"
-            # exename='a.out'
         elif language == "py": 
             mode=1
             args=['python3', filename]
@@ -217,17 +139,15 @@ def exec_from_textbox(request):
             exe=['java', os.path.splitext(filename)[0]]
         if(mode==0):
             return JsonResponse({'out':"invalid language"})
-        # if(request.POST.get('args')):
-        #     args=request.POST.get('args')
         if(mode==1):
-            result=subprocess.Popen(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path) ,stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            result=subprocess.Popen(args, cwd= os.readlink(request.user.symlink)+path+'/',stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')
             return JsonResponse({'out': ans})
         if(mode==2):
-            comp=subprocess.run(args, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path), capture_output=True)
+            comp=subprocess.run(args, cwd= os.readlink(request.user.symlink)+path+'/', capture_output=True)
             # move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
             if(comp.stderr):
                 return JsonResponse({'status':'1', 'ans':'compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
-            result=subprocess.Popen(exe, cwd= settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            result=subprocess.Popen(exe, cwd= os.readlink(request.user.symlink)+path+'/', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8')
         return JsonResponse({"out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})

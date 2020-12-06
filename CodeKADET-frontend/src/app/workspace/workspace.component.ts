@@ -81,6 +81,7 @@ export class WorkspaceComponent implements AfterViewInit {
       console.log('We are in onSave');
       console.log(this.DisplayForm.value);
 	this.DisplayForm.get('content').setValue(this.text);
+      if (this.DisplayForm.get('path').value == '') this.DisplayForm.get('path').setValue('.');
       //console.log(this.FileForm.value);
 	this.fileser.editFromTextBox(this.DisplayForm.value).subscribe(
 	    result => {

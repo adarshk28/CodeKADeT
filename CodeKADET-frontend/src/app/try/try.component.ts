@@ -75,10 +75,11 @@ export class TryComponent implements OnInit{
       this.treeControl = new FlatTreeControl<TreeNode>(this.getLevel, this.isExpandable);
       this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
       this.dataSource.data = this.files;
+	console.log(this.dataSource.data);
     })
   }
   /** Transform the data to something the tree can read. */
-  transformer(node: FileNode, level: number) {
+  transformer(node: TreeNode, level: number) {
     return {
       name: node.name,
       type: node.type,
@@ -99,7 +100,7 @@ export class TryComponent implements OnInit{
   };
 
   /** Get the children for the node. */
-  getChildren(node: FileNode) {
+  getChildren(node: TreeNode) {
     return observableOf(node.children);
   }
 
@@ -141,4 +142,14 @@ export class TryComponent implements OnInit{
     
   }
 
+  @Output() deleteEvent = new EventEmitter<any>();
+
+  file_delete(){
+    this.deleteEvent.emit(this.RenameForm.get('old_name').value);
+    console.log("deleting file: "+this.RenameForm.get('old_name').value+" from "+this.RenameForm.get('path').value)
+    this.fileService.deleteFile(this.RenameForm.value).subscribe(result => {
+      console.log(result)
+      this.getTree()
+    })
+  }
 }

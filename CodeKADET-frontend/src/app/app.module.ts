@@ -19,9 +19,7 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SignupComponent } from './signup/signup.component';
-// import { SidenavComponent } from './sidenav/sidenav.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ListComponent } from './list/list.component';
 import { ClipboardModule } from '@angular/cdk/clipboard'
 import { IvyCarouselModule } from 'angular-responsive-carousel'
 import { TryComponent } from './try/try.component';
@@ -36,7 +34,6 @@ import { JwtModule } from '@auth0/angular-jwt';
     ContactComponent,
     HomepageComponent,
     SignupComponent,
-    ListComponent,
     TryComponent,
   ],
   imports: [

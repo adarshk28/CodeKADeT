@@ -15,7 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_jwt.settings import api_settings
 from rest_framework.permissions import AllowAny
-
+import os
 from .serializers import *
 
 from django.conf import settings
@@ -23,30 +23,25 @@ from django.conf import settings
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
+abs_path = settings.MEDIA_ROOT+'personal_file/'
+
 
 @api_view(['POST'])
+@permission_classes([AllowAny, ])
 def signup(request):
     if request.method=="POST":
         data = json.loads(request.body)
-        # if data.get('password1')==data.get('password2'):
         try:
             saveuser=User.objects.create_user(data.get('username'),password=data.get('password1'))
+            os.mkdir(abs_path+str(saveuser.id)+'/')
+            os.symlink(abs_path+str(saveuser.id)+'/',abs_path+str(saveuser.id)+'sym')
+            saveuser.symlink = abs_path+str(saveuser.id)+'sym'
             saveuser.save()
-            # return render(request,'signup.html',{'form':UserCreationForm,'info':'User '+request.POST.get('username')+' registered succssfully!'})
             return JsonResponse({'Status':"Registration Successful!"})
         except IntegrityError:
-            # return render(request,'signup.html',{'form':UserCreationForm,'info':'User '+request.POST.get('username')+' already exists! Try to login!'})
             return JsonResponse({'Status':'User Registered Already!'})
-        # else:
-        #     # return render(request,'signup.html',{'form':UserCreationForm,'info':'Passwords don\'t match! Try again!'})
-        #     return JsonResponse({'Status':'Passwords dont match'})
     else:
         return render(request,'signup.html',{'form':UserCreationForm})
-
-@api_view(['POST'])
-def test(request):
-    print(request.POST)
-    return JsonResponse({'status': 'Logged in'})
 
 @api_view(['POST'])
 @permission_classes([AllowAny, ])
@@ -71,11 +66,6 @@ def login(request):
                 user_details['refer_id'] = user.data['refer_id']
                 user_details['token'] = token
                 return Response(user_details)
-                # print(success)
-                # successSerializer=UserSerializer(success)
-                # return Response(successSerializer.data)
-                # person = UserProfile.objects.get(username = username)
-                # return JsonResponse(person)
         else:
             print("GET request to login")
             return render(request, 'login.html', {'form':AuthenticationForm})

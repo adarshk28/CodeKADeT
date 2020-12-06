@@ -21,7 +21,6 @@ from file_upload import views as file_upload_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-token-auth/', obtain_jwt_token),
-    path('test/', login_views.test, name="test"),
     path('signup/', login_views.signup,name="signup"),
     path('fileupload/logout/',file_upload_views.logout_user,name="logout"),
     path('login/',  login_views.login),
@@ -30,8 +29,10 @@ urlpatterns = [
     path('fileupload/edit_file_from_textbox/', file_upload_views.edit_from_textbox),
     path('signup/login/',  login_views.login),
     path('fileupload/file_view/', file_upload_views.view_function, name='view_function'),
-    path('fileupload/dirstr', file_upload_views.make_map, name='map_data'),    path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
+    path('fileupload/dirstr', file_upload_views.make_map, name='map_data'),
+    # path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
     path('emptyfileupload/', file_upload_views.emptyFileUpload, name='empty_file_upload'),
     path('fileupload/exec_from_textbox', file_upload_views.exec_from_textbox, name='exec_from_textbox'),
     path('fileupload/rename/', file_upload_views.rename, name='rename'),
+    path('fileupload/delete/', file_upload_views.delete, name='delete'),
 ]
