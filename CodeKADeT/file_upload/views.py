@@ -99,14 +99,27 @@ def deletefile(request):
         request.user.code_file_set.get(file_name=name, path=path).delete()
         return JsonResponse({"status":"done"})
 
+
+@api_view(['POST'])
 def rename(request):
     if request.method=='POST':
-        name=request.POST.get('filename')
-        if os.path.isfile(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+name):
+        data = json.loads(request.body)
+        new_name=data.get('new_name')
+        old_name=data.get('old_name')
+        path=data.get('path')
+        print('/////////////////////////////////////////')
+        print("new name: "+new_name)
+        print("old name: "+old_name)
+        print("path: "+path)
+        print('/////////////////////////////////////////')
+        if os.path.isfile(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(new_name)):
             return JsonResponse({'status': 'file with same name exists'})
-        myfile=request.user.code_file_set.get(file_name=name)
-        myfile.filename=name
-        os.rename(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+name)
+        myfile=request.user.code_file_set.get(file_name=old_name, path=path)
+        print(myfile)
+        myfile.file_name=new_name
+        myfile.save()
+        print(myfile.file_name)
+        os.rename(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(old_name),settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(new_name))
         return JsonResponse({"status":"done"})
 
 def newfile(request):

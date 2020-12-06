@@ -8,6 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
+
 export interface FileNode {
   name: string;
   type: string;
@@ -30,14 +31,26 @@ export interface TreeNode {
 })
 export class TryComponent implements OnInit{
 
+  showRightMenu: boolean;
+  renameModal: boolean;
+  RenameForm = new FormGroup({
+    old_name: new FormControl(''),
+    new_name: new FormControl(''),
+    path: new FormControl(''),
+  })
 
+
+
+  
   @Output() newItemEvent = new EventEmitter<any>();
 
   sendFilename(name: string, path: string) {
-    console.log(name)
+    console.log("send file "+name)
     console.log(path)
     this.newItemEvent.emit({"name":name,"path":path});
   }
+
+
 
   
 
@@ -49,6 +62,7 @@ export class TryComponent implements OnInit{
   dataSource: MatTreeFlatDataSource<FileNode, TreeNode>;
   constructor(public treeService: TreeService, public fileService: FileService) {  
     console.log("time2", this.files);
+   
   }
   
   ngOnInit(){
@@ -96,6 +110,38 @@ export class TryComponent implements OnInit{
   /** Get whether the node has children or not. */
   hasChild(index: number, node: TreeNode){
     return node.expandable;
+  }
+
+  rename_modal(){
+    this.renameModal = !this.renameModal;
+  }
+
+  file_rename(){
+    console.log("file-renam start ")
+    console.log("before rename service ")
+    console.log(this.RenameForm.get('new_name').value)
+    this.fileService.renameFile(this.RenameForm.value).subscribe(result => {
+      console.log(result);
+    })
+  }
+
+  showRightMenu = false;
+  renameModal = false;
+
+  showRight(name: string,path: string){
+    console.log('Opening right enu')
+    console.log(name)
+    console.log(path)
+    this.RenameForm.get('old_name').setValue(name);
+    this.RenameForm.get('path').setValue(path);
+    console.log('hey')
+    console.log(this.showRightMenu)
+    this.showRightMenu = !this.showRightMenu;
+    console.log(this.showRightMenu)
+  }
+
+  file_delete(){
+    
   }
 
 }

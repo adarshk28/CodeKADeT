@@ -42,6 +42,8 @@ export class WorkspaceComponent implements AfterViewInit {
     path: new FormControl(''),
     content: new FormControl('')
   })
+
+ 
   constructor(private fileser:FileService, private logser: LoginService, private router: Router, private location: Location) { }
 
   // ngOnInit(): void {}
@@ -181,5 +183,8 @@ export class WorkspaceComponent implements AfterViewInit {
       })
       console.log("done")
     }
+
+
+   
     
 }
