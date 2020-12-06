@@ -4,6 +4,7 @@ import { FileService } from '../file.service';
 import { LoginService } from '../login.service';
 import {  Router } from '@angular/router';
 import { Location } from '@angular/common';
+import * as fileSaver from 'file-saver';
 
 @Component({
   selector: 'app-workspace',
@@ -212,5 +213,13 @@ export class WorkspaceComponent implements AfterViewInit {
         this.DisplayForm.get('path').setValue("")
       }
     }
+
+    downLoadFile() {
+      var blob = new Blob([this.text], { type: 'text/file' });
+      var url = window.URL.createObjectURL(blob);
+      fileSaver(blob,this.DisplayForm.get('name').value);
+      window.open(url);
+
+  }
     
 }

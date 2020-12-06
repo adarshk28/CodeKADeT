@@ -31,10 +31,12 @@ export class LoginComponent implements OnInit {
 	      if (result['status'] == undefined) {
          this.router.navigate(['/workspace/']);
         }
-        else 
+        else{
           alert("Invalid username or password");
+          window.location.href = './homepage';
+        }
+          
 	    }
     );
-
-  }
+}
 }
