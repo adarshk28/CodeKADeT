@@ -3,33 +3,17 @@
     <h2>Welcome to CodeKADeT!</h2>
     <br><br>
     <button mat-raised-button color='accent' type="submit" (click)='onLogout()'>Logout</button>
-    <h4>Your Files:</h4><br> 
-   <try-component (newItemEvent)="getFile($event)">  </try-component>
+   <try-component #treecomp (newItemEvent)="getFile($event)">  </try-component>
     <br><br><br><br><br><br>
-<!-- <div class='form-group'>
-  Upload file
-  <label for="file">Choose File</label>
-  <input type="file" id='file' (change)='handleFileInput($event.target.files)'>
-</div>
-<br>
 
-<label for='newfile'>Create new file</label>
-<input type='text' id='newfile' [(ngModel)] = 'textboxfile'>
-<button type='submit' (click) = 'makeEmptyFile()'>Create!</button>
-<p> {{ textboxfile}} </p> -->
-
-<button (click)='modalview()'> new file</button>
+<button mat-raised-button color='accent' (click)='modalview()'> Create New File</button>
     
 </div>
 <div class='grid-item'>
-    <label>
-        Choose Language:
-        <select [(ngModel)]='mode' id="lang">
-            <option value="c_cpp">C++</option>
-            <option value="java">Java</option>
-            <option value="python">Python</option>
-        </select>
-    </label><br><br>
+    <h3>
+    <span>File: {{ DisplayForm.get('name').value }}</span>
+    <span style='margin: 100px'>Language: {{ formalName[mode] }}</span>
+    </h3>
     <br>
     <div id="interface1" style="float: left;">
         <ace-editor #editor [(text)]='text' theme='monokai' [(mode)]='mode'></ace-editor>
@@ -47,7 +31,6 @@
         </div>
    </div>
 </form>
-<button mat-raised-button color='accent' type="submit" (click)='onSubmit()'>Submit</button>
 <button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
 <button mat-raised-button color='warn' type="Run" (click)="run()">Run</button>
 <br>
@@ -58,25 +41,30 @@
 </div>
 
 <div *ngIf='showmodal' class=modal>
-    <button (click)='empty()' class='choicebutton'>empty file</button>
-    <button (click)='comp()' class='choicebutton'>upload from computer</button>
+    <button (click)='empty()' [ngClass]="{'yellow': showwhat, 'white': !showwhat}"class='choicebutton'>Make Empty File</button>
+    <button (click)='comp()' [ngClass]="{'white': showwhat, 'yellow': !showwhat}" class='choicebutton'>Upload From Computer</button>
     <div *ngIf='showwhat; else other'>
        <form [formGroup]='FileForm' (ngSubmit)='makeEmptyFile()'>  
-        file name<input type="text" formControlName='file_name'><br>
-        path<input type="text" formControlName='path'><br>
-        description<input type='text' formControlName='description'><br>
-        language<input type='text' formControlName='language'><br>
-        <input type='submit' value=''>
+	<label for='file_name'>File Name: </label>
+        <input type="text" id='file_name'formControlName='file_name'><br>
+	<label for='path'>Path: </label>
+        <input type="text" id='path' formControlName='path'><br>
+	<label for='description'> File Description</label>
+        <input type='text' id='description' formControlName='description'><br>
        </form>
+	<button mat-raised-button color='primary' type='submit' (click)='makeEmptyFile()'>Create</button>
     </div>
     <ng-template #other>
         <form [formGroup]='FileForm'>  
-            file name<input type="text" formControlName='file_name'><br>
-            path<input type="text" formControlName='path'><br>
-            description<input type='text' formControlName='description'><br>
-            language<input type='text' formControlName='language'><br>
-            <input type='submit' value=''>
+	<label for='file_name'>File Name: </label>
+        <input type="text" id='file_name'formControlName='file_name'><br>
+	<label for='path'>Path: </label>
+        <input type="text" id='path' formControlName='path'><br>
+	<label for='description'> File Description</label>
+        <input type='text' id='description' formControlName='description'><br>
            </form>
-  <input type="file" id='file' (change)='handleFileInput($event.target.files)'>
+	    <input type="file" id='file' (change)='setFile($event.target.files)'> 
+	    <br>
+	<button mat-raised-button color='primary' type='submit' (click)='handleFileInput()'>Create</button>
         </ng-template>
 </div>

@@ -38,22 +38,14 @@ export class TryComponent implements OnInit{
     new_name: new FormControl(''),
     path: new FormControl(''),
   })
-
-
-
   
   @Output() newItemEvent = new EventEmitter<any>();
 
   sendFilename(name: string, path: string) {
-    console.log("send file "+name)
+    console.log(name)
     console.log(path)
     this.newItemEvent.emit({"name":name,"path":path});
   }
-
-
-
-  
-
 
   files =[{name: "danish", type: 'file', path: ''}];
   loaded=false;
@@ -62,10 +54,14 @@ export class TryComponent implements OnInit{
   dataSource: MatTreeFlatDataSource<FileNode, TreeNode>;
   constructor(public treeService: TreeService, public fileService: FileService) {  
     console.log("time2", this.files);
-   
   }
   
   ngOnInit(){
+    this.getTree();
+  }
+
+  getTree() {
+    console.log("At getting tree function");
     this.treeService.getRequest().subscribe(result=>{
       this.files=result.children;
       this.loaded=true;
@@ -122,6 +118,7 @@ export class TryComponent implements OnInit{
     console.log(this.RenameForm.get('new_name').value)
     this.fileService.renameFile(this.RenameForm.value).subscribe(result => {
       console.log(result);
+	this.getTree();
     })
   }
 

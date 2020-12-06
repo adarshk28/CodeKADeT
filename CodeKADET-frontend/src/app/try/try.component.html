@@ -4,8 +4,8 @@
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
-      <button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
-      <button (click)="showRight(node.name, node.path)">Options</button>
+      <button mat-button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
+      <button mat-button (click)="showRight(node.name, node.path)">Options</button>
   </mat-tree-node>
 
   <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
@@ -18,16 +18,16 @@
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
-   <button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
-    <button (click)="showRight(node.name, node.path)">Options</button>
+   <button mat-button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
+    <button mat-button (click)="showRight(node.name, node.path)">Options</button>
   </mat-tree-node>
 </mat-tree>
 
 
  
 <div *ngIf='showRightMenu' class=modal>
-    <button (click)='rename_modal()'>Rename</button>
-    <button (click)='file_delete()'>Delete</button>  
+    <button mat-button (click)='rename_modal()'>Rename</button>
+    <button mat-button (click)='file_delete()'>Delete</button>  
 </div>
 
 <div *ngIf='renameModal' class=modal>

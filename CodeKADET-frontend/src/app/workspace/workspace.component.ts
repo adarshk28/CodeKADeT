@@ -4,7 +4,6 @@ import { FileService } from '../file.service';
 import { LoginService } from '../login.service';
 import {  Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'app-workspace',
@@ -13,13 +12,20 @@ import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 })
 export class WorkspaceComponent implements AfterViewInit {
   @ViewChild('editor') editor;
+  @ViewChild('treecomp') treecomp;
 
   text: string | ArrayBuffer = '';
-  mode: string = 'python';
+  mode: string = 'javascript';
   fileToUpload: File = null;
   items=[];
   id: string = '';
   textboxfile: string = '';
+    formalName = {
+	'c_cpp': 'C/C++',
+	'python': 'Python',
+	'java': 'Java',
+	'javascript': 'Unsupported',
+    };
 
   RunForm= new FormGroup({
     Filename: new FormControl(''),
@@ -42,8 +48,6 @@ export class WorkspaceComponent implements AfterViewInit {
     path: new FormControl(''),
     content: new FormControl('')
   })
-
- 
   constructor(private fileser:FileService, private logser: LoginService, private router: Router, private location: Location) { }
 
   // ngOnInit(): void {}
@@ -59,9 +63,6 @@ export class WorkspaceComponent implements AfterViewInit {
     })
   }
 
-  onSubmit(): void {
-    console.log('Submitted!');
-  }
   showmodal=false;
   modalview(){
     this.showmodal=!this.showmodal;
@@ -82,7 +83,10 @@ export class WorkspaceComponent implements AfterViewInit {
 	this.DisplayForm.get('content').setValue(this.text);
       //console.log(this.FileForm.value);
 	this.fileser.editFromTextBox(this.DisplayForm.value).subscribe(
-	    result => console.log(result)
+	    result => {
+        console.log(result);
+        this.treecomp.getTree();
+      }
 	);
   }
 
@@ -96,8 +100,11 @@ export class WorkspaceComponent implements AfterViewInit {
     );
   }
 
-    handleFileInput(files: FileList) {
+    setFile(files: FileList) {
       this.fileToUpload = files.item(0);
+  }
+
+    handleFileInput() {
       console.log('started upload');
       this.mode = this.fileToUpload.name.split('.').pop();
       console.log('Mode is ' + this.mode);
@@ -107,11 +114,13 @@ export class WorkspaceComponent implements AfterViewInit {
       }
       fr.readAsText(this.fileToUpload);
       this.FileForm.get('content').setValue(this.fileToUpload);
+      this.FileForm.get('language').setValue(this.FileForm.get('file_name').value.split('.').pop())
       console.log(this.FileForm.value);
       const formData = new FormData();
-	if (this.FileForm.get('language').value == 'cpp') this.mode = 'c_cpp';
+      if (this.FileForm.get('language').value == 'cpp' || this.FileForm.get('language').value == 'h' || this.FileForm.get('language').value == 'c') this.mode = 'c_cpp';
 	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
-  else  this.mode = 'java';
+      else if (this.FileForm.get('language').value == 'java') this.mode = 'java';
+      else this.mode='javascript'
   if(this.FileForm.get('path').value==''){
     this.FileForm.get('path').setValue('.')
   }
@@ -127,26 +136,35 @@ export class WorkspaceComponent implements AfterViewInit {
 
       console.log(this.DisplayForm.value)
       return this.fileser.postFile(formData).subscribe(
-	  result=> console.log(result)
-      )
+	  result=> {
+	      console.log(result);
+	      this.showmodal=!this.showmodal;
+	      this.treecomp.getTree();
+	  });
   }
 
     makeEmptyFile(): void {
 	console.log('started upload');
+	this.FileForm.get('language').setValue(this.FileForm.get('file_name').value.split('.').pop())
 	this.FileForm.get('content').setValue(null);
 	if(this.FileForm.get('path').value==''){
 	    this.FileForm.get('path').setValue('.')
 	}
-	if (this.FileForm.get('language').value == 'cpp') this.mode = 'c_cpp';
+      if (this.FileForm.get('language').value == 'cpp' || this.FileForm.get('language').value == 'h' || this.FileForm.get('language').value == 'c') this.mode = 'c_cpp';
 	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
-	else  this.mode = 'java';
+      else if (this.FileForm.get('language').value == 'java') this.mode = 'java';
+      else this.mode='javascript'
 	this.DisplayForm.get('path').setValue(this.FileForm.get('path').value);
 	this.DisplayForm.get('content').setValue('');
 	this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value);
       console.log(this.FileForm.value);
 	this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
-	    result => console.log(result)
-	);
+	    result => {
+		console.log(result);
+		this.showmodal=!this.showmodal;
+		this.treecomp.getTree();
+	    });
+        // this.treecomp.getTree();
     }
 
     getFile(data: any){
@@ -161,9 +179,11 @@ export class WorkspaceComponent implements AfterViewInit {
         console.log("file obtained from backend")
         console.log(result)
         this.text=result.lines
-        if (name.split('.').pop() == 'cpp') this.mode = 'c_cpp';
+	
+          if (name.split('.').pop() == 'cpp' || name.split('.').pop() == 'c' || name.split('.').pop() == 'h') this.mode = 'c_cpp';
 	else if (name.split('.').pop() == 'py') this.mode = 'python';
-	else  this.mode = 'java';
+	  else if (name.split('.').pop() == 'java') this.mode = 'java';
+	  else this.mode='javascript';
       })
     }
 
@@ -183,8 +203,5 @@ export class WorkspaceComponent implements AfterViewInit {
       })
       console.log("done")
     }
-
-
-   
     
 }

@@ -1,5 +1,6 @@
-#workspace {
-  font-family: Verdana, Geneva, Tahoma, sans-serifj;
+
+body {
+  font-family: Verdana, Roboto, Geneva, Tahoma, sans-serifj;
 }
 ace-editor {
   // margin: 0 5%;
@@ -36,6 +37,7 @@ button {
 .modal{
   z-index: 100;
   position: absolute;
+  padding: 10px;
   top: 40%;
   left: 40%;
   margin: auto;
@@ -51,4 +53,12 @@ button {
   background-color: white;
   border-width: 0;
   height: 50px;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.white {
+    background-color: white;
 }
