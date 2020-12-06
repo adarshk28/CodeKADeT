@@ -34,4 +34,5 @@ urlpatterns = [
     path('emptyfileupload/', file_upload_views.emptyFileUpload, name='empty_file_upload'),
     path('fileupload/exec_from_textbox', file_upload_views.exec_from_textbox, name='exec_from_textbox'),
     path('fileupload/rename/', file_upload_views.rename, name='rename'),
+     path('fileupload/delete/', file_upload_views.delete, name='delete'),
 ]

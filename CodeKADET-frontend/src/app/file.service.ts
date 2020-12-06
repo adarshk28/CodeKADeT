@@ -11,6 +11,7 @@ export class FileService {
   runtextbox_url = 'http://127.0.0.1:8000/fileupload/exec_from_textbox';
   edit_url = 'http://127.0.0.1:8000/fileupload/edit_file_from_textbox/';
   rename_url = 'http://127.0.0.1:8000/fileupload/rename/';
+  delete_url = 'http://127.0.0.1:8000/fileupload/delete/';
   constructor(private http:HttpClient) { }
 
   postFile(form: any): Observable<any> {
@@ -40,5 +41,10 @@ export class FileService {
     renameFile(form: any){
       console.log('rename service')
       return this.http.post(this.rename_url,form);
+    }
+
+    deleteFile(form: any){
+      console.log('delete service')
+      return this.http.post(this.delete_url,form);
     }
 }

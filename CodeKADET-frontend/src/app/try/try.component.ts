@@ -134,11 +134,19 @@ export class TryComponent implements OnInit{
     console.log('hey')
     console.log(this.showRightMenu)
     this.showRightMenu = !this.showRightMenu;
+    if(this.renameModal) this.renameModal = !this.renameModal
     console.log(this.showRightMenu)
   }
 
+  @Output() deleteEvent = new EventEmitter<any>();
+
   file_delete(){
-    
+    this.deleteEvent.emit(this.RenameForm.get('old_name').value);
+    console.log("deleting file: "+this.RenameForm.get('old_name').value+" from "+this.RenameForm.get('path').value)
+    this.fileService.deleteFile(this.RenameForm.value).subscribe(result => {
+      console.log(result)
+      this.getTree()
+    })
   }
 
 }

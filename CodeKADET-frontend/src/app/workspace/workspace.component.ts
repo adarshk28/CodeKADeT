@@ -203,5 +203,14 @@ export class WorkspaceComponent implements AfterViewInit {
       })
       console.log("done")
     }
+
+
+    deleteText(deletename:string){
+      if(this.DisplayForm.get('name').value==deletename){
+        this.text="current file has been deleted, choose another file"
+        this.DisplayForm.get('name').setValue("")
+        this.DisplayForm.get('path').setValue("")
+      }
+    }
     
 }

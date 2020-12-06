@@ -92,10 +92,13 @@ def edit_from_textbox(request):
     fil.close()
     return JsonResponse({"status":"Edit reflected in backend"})
 
-def deletefile(request):
+@api_view(['POST'])
+def delete(request):
     if request.method=='POST':
-        name=request.POST.get('filename')
-        path=request.POST.get('path')
+        data = json.loads(request.body)
+        name=data.get('old_name')
+        path=data.get('path')
+        os.remove(settings.MEDIA_ROOT+'personal_file/'+str(request.user.id)+'/'+str(path)+'/'+str(name))
         request.user.code_file_set.get(file_name=name, path=path).delete()
         return JsonResponse({"status":"done"})
 

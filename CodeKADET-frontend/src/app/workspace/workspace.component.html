@@ -3,7 +3,7 @@
     <h2>Welcome to CodeKADeT!</h2>
     <br><br>
     <button mat-raised-button color='accent' type="submit" (click)='onLogout()'>Logout</button>
-   <try-component #treecomp (newItemEvent)="getFile($event)">  </try-component>
+   <try-component #treecomp (newItemEvent)="getFile($event)" (deleteEvent)="deleteText($event)">  </try-component>
     <br><br><br><br><br><br>
 
 <button mat-raised-button color='accent' (click)='modalview()'> Create New File</button>
