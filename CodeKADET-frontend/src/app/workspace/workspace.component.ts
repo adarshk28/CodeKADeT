@@ -175,13 +175,21 @@ export class WorkspaceComponent implements AfterViewInit {
       this.DisplayForm.get('content').setValue(this.FileForm.get('content').value)
 
       console.log(this.DisplayForm.value)
+      var nm: string;
+      nm = this.FileForm.get("file_name").value
+      if(nm.search('/')!=-1){
+        console.log("no / allowed")
+        confirm("Do not add / in the name")
+      }
+      else{
       return this.fileser.postFile(formData).subscribe(
 	  result=> {
 	      console.log(result);
 	      this.showmodal=!this.showmodal;
         this.treecomp.getTree();
         this.folderModal = false;
-	  });
+    });
+  }
   }
 
     makeEmptyFile(): void {
@@ -196,6 +204,14 @@ export class WorkspaceComponent implements AfterViewInit {
 	this.DisplayForm.get('content').setValue('');
 	this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value);
       console.log(this.FileForm.value);
+      var nm: string;
+      nm = this.FileForm.get("file_name").value
+      console.log(nm)
+      if(nm.search('/')!=-1){
+        console.log("no / allowed")
+        confirm("Do not add / to the name")
+      }
+      else{
 	this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
 	    result => {
 		console.log(result);
@@ -203,6 +219,7 @@ export class WorkspaceComponent implements AfterViewInit {
 		this.treecomp.getTree();
 	    });
     }
+  }
 
     getFile(data: any){
       console.log("you want file: ")
@@ -250,6 +267,11 @@ export class WorkspaceComponent implements AfterViewInit {
     }
 
     addNewFolder(){
+      if(this.newName.search('/')!=-1){
+        console.log('/ not allowed')
+        confirm("Do not add / to the name")
+      }
+      else{
       this.fileser.addFolder(this.newFolder+'/'+this.newName).subscribe(result => {
         this.folderModal = !this.folderModal;
         console.log(result);
@@ -257,6 +279,7 @@ export class WorkspaceComponent implements AfterViewInit {
         this.showmodal = false;
       })
     }
+  }
 
     deleteText(data: any){
       console.log(data["name"])
