@@ -13,7 +13,7 @@
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
       <button mat-button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
-      <button mat-button (click)="showRight(node.name, node.path, node.type)">Options</button>
+      <button mat-button (click)="showRight(node.name, node.path, node.type)"><mat-icon>more_vert</mat-icon></button>
       <br>
       <mat-divider></mat-divider>
     </div>
@@ -33,7 +33,7 @@
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
    <button mat-button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
-    <button mat-button (click)="showRight(node.name, node.path, node.type)">Options</button>
+    <button mat-button (click)="showRight(node.name, node.path, node.type)"><mat-icon>more_vert</mat-icon></button>
     <mat-divider></mat-divider>
   </div>
 
