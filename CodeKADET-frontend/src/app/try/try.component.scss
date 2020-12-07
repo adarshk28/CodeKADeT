@@ -2,3 +2,45 @@
   color: #999;
   margin-right: 5px;
 }
+body{
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 300px;
+  height: 600px;
+  margin: 20px;
+  border-color: white;
+  border-width: 1px;
+  border-style: dotted;
+  border-radius: 2px;
+  background-color: 	#333232;
+  margin-top: -8px;
+  margin-left: 60px;
+ 
+}
+.header{
+  font-size: small;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: bold;
+  text-align: left;
+  background-color: #999;
+  color: white;
+  margin-bottom: 0;
+}
+mat-tree{
+  background-color: 	#333232;
+  color: white;
+  margin-top: 0px;
+  font-size: small;
+  padding: 0px;
+  :hover{
+    background-color: #444444;
+  }
+}
+.mat-divider {
+  // width: 300px;
+  height: 0px;
+  border-color:  	#181818;
+}
+mat-tree-node{
+  color: white;
+}

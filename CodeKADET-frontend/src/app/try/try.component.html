@@ -1,14 +1,26 @@
-<mat-tree *ngIf="loaded" [dataSource]="dataSource" [treeControl]="treeControl">
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
-    <button mat-icon-button disabled></button>
+
+<body>
+  <div class='header'>
+    <p>YOUR W0RKING TREE</p>
+  </div>
+  <mat-tree *ngIf="loaded" [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="20">
+      <div class='part'>
+      <button mat-icon-button disabled></button>
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
       <button mat-button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
       <button mat-button (click)="showRight(node.name, node.path, node.type)">Options</button>
+      <br>
+      <mat-divider></mat-divider>
+    </div>
+
   </mat-tree-node>
 
-  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="20"> 
+    <div class='part'>
     <button mat-icon-button matTreeNodeToggle
             [attr.aria-label]="'toggle ' + node.name">
       <mat-icon class="mat-icon-rtl-mirror">
@@ -20,9 +32,12 @@
     </mat-icon>
    <button mat-button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
     <button mat-button (click)="showRight(node.name, node.path, node.type)">Options</button>
+    <mat-divider></mat-divider>
+  </div>
+
   </mat-tree-node>
 </mat-tree>
-
+</body>
 
  
 <div *ngIf='showRightMenu' class=modal>
