@@ -79,6 +79,20 @@ def emptyFileUpload(request):
     return JsonResponse({'status': 'Empty file uploaded'})
 
 @api_view(['POST'])
+def makeFolder(request):
+    fullPath = request.body.decode('utf-8')
+    try:
+        os.makedirs(os.readlink(request.user.symlink)+fullPath+'/')
+        return JsonResponse({"status":"done"})
+    except:
+        return JsonResponse({"status":"already exists!"})
+
+
+
+
+
+
+@api_view(['POST'])
 def edit_from_textbox(request):
     print('User is:', request.user)
     data = json.loads(request.body)
@@ -152,3 +166,5 @@ def exec_from_textbox(request):
             result=subprocess.Popen(exe, cwd= os.readlink(request.user.symlink)+path+'/', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8')
         return JsonResponse({"out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
+
+

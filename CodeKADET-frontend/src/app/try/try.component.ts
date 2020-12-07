@@ -160,4 +160,21 @@ export class TryComponent implements OnInit{
       this.getTree()
     })
   }
+
+  @Output() uploadFileEvent = new EventEmitter<any>();
+
+  add_file(){
+    this.uploadFileEvent.emit({"name": this.RenameForm.get('old_name').value, "path": this.RenameForm.get('path').value});
+    console.log(this.RenameForm.get('path').value);
+    console.log(this.RenameForm.get('old_name').value);
+  }
+
+  @Output() uploadFolderEvent = new EventEmitter<any>();
+
+  add_folder(){
+    this.uploadFolderEvent.emit({"name": this.RenameForm.get('old_name').value, "path": this.RenameForm.get('path').value});
+    console.log(this.RenameForm.get('path').value);
+    console.log(this.RenameForm.get('old_name').value);
+  }
+  
 }

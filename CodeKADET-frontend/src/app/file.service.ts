@@ -12,6 +12,7 @@ export class FileService {
   edit_url = 'http://127.0.0.1:8000/fileupload/edit_file_from_textbox/';
   rename_url = 'http://127.0.0.1:8000/fileupload/rename/';
   delete_url = 'http://127.0.0.1:8000/fileupload/delete/';
+  folder_upload_url = 'http://127.0.0.1:8000/fileupload/folder/';
   constructor(private http:HttpClient) { }
 
   postFile(form: any): Observable<any> {
@@ -46,5 +47,11 @@ export class FileService {
     deleteFile(form: any){
       console.log('delete service')
       return this.http.post(this.delete_url,form);
+    }
+
+
+    addFolder(full_path: string){
+      console.log('folder upload starting')
+      return this.http.post(this.folder_upload_url,full_path);
     }
 }

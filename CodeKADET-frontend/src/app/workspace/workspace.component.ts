@@ -20,6 +20,8 @@ export class WorkspaceComponent implements AfterViewInit {
   items=[];
   id: string = '';
   textboxfile: string = '';
+  newFolder: string;
+  newName: string;
     formalName = {
 	'c_cpp': 'C/C++',
 	'python': 'Python',
@@ -38,10 +40,10 @@ export class WorkspaceComponent implements AfterViewInit {
   FileForm = new FormGroup({
     language: new FormControl(''),
     content: new FormControl(''),
-    description: new FormControl(''),
     file_name: new FormControl(''),
     path: new FormControl(''),
   })
+
 
   DisplayForm = new FormGroup({
     name: new FormControl(''),
@@ -64,10 +66,28 @@ export class WorkspaceComponent implements AfterViewInit {
   }
 
   showmodal=false;
-  modalview(){
+  modalview(data: any){
+    var path = data["path"]+'/'+ data["name"];
+    this.FileForm.get("path").setValue(path);
     this.showmodal=!this.showmodal;
     console.log(this.showmodal);
   }
+
+  folderModal = false;
+
+  folderModalview(data: any){
+    var path = data["path"]+'/'+ data["name"];
+    this.newFolder = path;
+    this.folderModal = !this.folderModal;
+  }
+  closeModal(){
+    this.showmodal = !this.showmodal;
+  }
+
+  closeFolderModal(){
+    this.folderModal = !this.folderModal;
+  }
+
   showwhat=true;
   empty(){
     this.showwhat=true;
@@ -125,14 +145,10 @@ export class WorkspaceComponent implements AfterViewInit {
 	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
       else if (this.FileForm.get('language').value == 'java') this.mode = 'java';
       else this.mode='javascript'
-  if(this.FileForm.get('path').value==''){
-    this.FileForm.get('path').setValue('.')
-  }
       formData.append('path', this.FileForm.get('path').value)
       formData.append('file_name', this.FileForm.get('file_name').value)
       formData.append('language', this.FileForm.get('language').value)
       formData.append('content', this.FileForm.get('content').value)
-      formData.append('description', this.FileForm.get('description').value)
       console.log(formData);
       this.DisplayForm.get('path').setValue(this.FileForm.get('path').value);
       this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value)
@@ -151,9 +167,6 @@ export class WorkspaceComponent implements AfterViewInit {
 	console.log('started upload');
 	this.FileForm.get('language').setValue(this.FileForm.get('file_name').value.split('.').pop())
 	this.FileForm.get('content').setValue(null);
-	if(this.FileForm.get('path').value==''){
-	    this.FileForm.get('path').setValue('.')
-	}
       if (this.FileForm.get('language').value == 'cpp' || this.FileForm.get('language').value == 'h' || this.FileForm.get('language').value == 'c') this.mode = 'c_cpp';
 	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
       else if (this.FileForm.get('language').value == 'java') this.mode = 'java';
@@ -168,7 +181,6 @@ export class WorkspaceComponent implements AfterViewInit {
 		this.showmodal=!this.showmodal;
 		this.treecomp.getTree();
 	    });
-        // this.treecomp.getTree();
     }
 
     getFile(data: any){
@@ -216,6 +228,13 @@ export class WorkspaceComponent implements AfterViewInit {
 
     }
 
+    addNewFolder(){
+      this.fileser.addFolder(this.newFolder+'/'+this.newName).subscribe(result => {
+        this.folderModal = !this.folderModal;
+        console.log(result);
+        this.treecomp.getTree();
+      })
+    }
 
 
 }
