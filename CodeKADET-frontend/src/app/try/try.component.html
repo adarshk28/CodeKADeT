@@ -1,14 +1,14 @@
 
 <body>
  
-  <div class='header'>
+  <div class='header' (contextmenu)='togglecontextmenu($event)'>
  
     <p>YOUR W0RKING TREE</p>
   </div>
   <mat-tree *ngIf="loaded" [dataSource]="dataSource" [treeControl]="treeControl">
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="10">
-      <div class='part' style="height: 20px">
-      <button mat-icon-button disabled style="font-size:18px"></button>
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="10" >
+      <div class='part' >
+      <button mat-icon-button disabled style="font-size:18px"(contextmenu)='togglecontextmenu($event)'></button>
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'" style="font-size:18px">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
@@ -42,7 +42,7 @@
 </body>
 
  
-<div *ngIf='showRightMenu' class=modal>
+<div *ngIf='showRightMenu' class=modal1>
     <button mat-button (click)='rename_modal()'>Rename</button> <br>
     <button mat-button (click)='file_delete()'>Delete</button>  <br> 
     <button mat-button *ngIf='isFolder' (click)='add_file()'>Add New File</button> <br>
@@ -50,13 +50,10 @@
    <button mat-raised-button color='warn' (click)="closeRight()">Close</button>
 </div>
 
-<div *ngIf='renameModal' class=modal>
+<div *ngIf='renameModal' class=modal2>
     <form [formGroup]='RenameForm' (ngSubmit)='file_rename()'>  
         Enter new name<input type="text" formControlName='new_name'><br>
         <input type='submit' value='Save'>
          <button mat-raised-button color='warn' (click)="rename_modal()">Close</button>
     </form>
 </div> 
-
-
-

@@ -6,7 +6,7 @@ body{
   overflow-y: auto;
   overflow-x: hidden;
   width: 300px;
-  height: 600px;
+  height: 635px;
   margin: 20px;
   border-color: white;
   border-width: 1px;
@@ -29,7 +29,7 @@ body{
 mat-tree{
   background-color: 	#333232;
   color: white;
-  margin-top: 0px;
+  margin-top: -10px;
   font-size: small;
   padding: 0px;
   :hover{
@@ -43,16 +43,33 @@ mat-tree{
 }
 mat-tree-node{
   color: white;
-  height:fit-content;
+  // min-height:40px;  
+  padding: 0;
 }
 
-.modal{
+.modal1{
   z-index: 100;
   position: absolute;
   padding: 10px;
   top: 30%;
   left: 10%;
   margin: auto;
-  background-color: aliceblue;
+  background-color: #444444;
+  color: white;
   border-radius: 10px;
+}
+.modal2{
+  z-index: 100;
+  position: absolute;
+  padding: 10px;
+  top: 30%;
+  left: 10%;
+  margin: auto;
+  background-color: #444444;
+  color: white;
+  border-radius: 10px;
+}
+.part{
+  height: fit-content;
+  min-height: 30px;
 }

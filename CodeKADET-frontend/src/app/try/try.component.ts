@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { of as observableOf } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -8,7 +8,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { MatDivider } from '@angular/material/divider'
-
 
 export interface FileNode {
   name: string;
@@ -23,7 +22,6 @@ export interface TreeNode {
   level: number;
   expandable: boolean;
 }
-
 @Component({
   selector: 'try-component',
   templateUrl: './try.component.html',
@@ -39,9 +37,10 @@ export class TryComponent implements OnInit{
     new_name: new FormControl(''),
     path: new FormControl(''),
   })
-  
+  contextmenu=false;
+  contextx: any;
+  contexty: any;
   @Output() newItemEvent = new EventEmitter<any>();
-
   sendFilename(name: string, path: string) {
     console.log(name)
     console.log(path)
@@ -56,9 +55,21 @@ export class TryComponent implements OnInit{
   constructor(public treeService: TreeService, public fileService: FileService) {  
     console.log("time2", this.files);
   }
-  
+  contextnode:any;
   ngOnInit(){
     this.getTree();
+  }
+
+  togglecontextmenu(event){
+    if(!this.contextmenu){
+      this.contextmenu=true;
+      this.contextx=event.clientX;
+      this.contexty=event.clientY;
+      console.log(this.contextmenu, event);
+    }
+    else{
+      this.contextmenu=false;
+    }
   }
 
   getTree() {
