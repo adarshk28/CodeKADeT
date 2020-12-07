@@ -4,6 +4,7 @@ import { FileService } from '../file.service';
 import { LoginService } from '../login.service';
 import {  Router } from '@angular/router';
 import { Location } from '@angular/common';
+import * as fileSaver from 'file-saver';
 
 @Component({
   selector: 'app-workspace',
@@ -212,4 +213,7 @@ export class WorkspaceComponent implements AfterViewInit {
       window.open(url);
 
     }
+
+    
+
 }

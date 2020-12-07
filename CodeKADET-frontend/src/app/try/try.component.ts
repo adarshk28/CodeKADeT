@@ -119,22 +119,32 @@ export class TryComponent implements OnInit{
     console.log(this.RenameForm.get('new_name').value)
     this.fileService.renameFile(this.RenameForm.value).subscribe(result => {
       console.log(result);
-	this.getTree();
+      this.renameModal = !this.renameModal;
+      this.showRightMenu = !this.showRightMenu;
+  this.getTree();
+
     })
   }
 
   showRightMenu = false;
   renameModal = false;
-
-  showRight(name: string,path: string){
+  isFolder = false;
+  showRight(name: string,path: string, type: string){
     console.log('Opening right enu')
     console.log(name)
     console.log(path)
+    console.log(type)
     this.RenameForm.get('old_name').setValue(name);
     this.RenameForm.get('path').setValue(path);
     console.log('hey')
     console.log(this.showRightMenu)
     this.showRightMenu = !this.showRightMenu;
+    if(type=="folder"){
+      this.isFolder = true;
+    }
+    else{
+      this.isFolder = false;
+    }
     console.log(this.showRightMenu)
   }
 
@@ -145,6 +155,7 @@ export class TryComponent implements OnInit{
     console.log("deleting file: "+this.RenameForm.get('old_name').value+" from "+this.RenameForm.get('path').value)
     this.fileService.deleteFile(this.RenameForm.value).subscribe(result => {
       console.log(result)
+      this.showRightMenu = !this.showRightMenu
       this.getTree()
     })
   }
