@@ -205,4 +205,11 @@ export class WorkspaceComponent implements AfterViewInit {
       console.log("done")
     }
     
+    downLoadFile() {
+      var blob = new Blob([this.text], { type: 'text/file' });
+      var url = window.URL.createObjectURL(blob);
+      fileSaver(blob,this.DisplayForm.get('name').value);
+      window.open(url);
+
+    }
 }
