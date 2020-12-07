@@ -43,4 +43,16 @@ mat-tree{
 }
 mat-tree-node{
   color: white;
+  height:fit-content;
+}
+
+.modal{
+  z-index: 100;
+  position: absolute;
+  padding: 10px;
+  top: 30%;
+  left: 10%;
+  margin: auto;
+  background-color: aliceblue;
+  border-radius: 10px;
 }

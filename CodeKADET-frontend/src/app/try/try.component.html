@@ -6,14 +6,14 @@
     <p>YOUR W0RKING TREE</p>
   </div>
   <mat-tree *ngIf="loaded" [dataSource]="dataSource" [treeControl]="treeControl">
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="20">
-      <div class='part'>
-      <button mat-icon-button disabled></button>
-    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="10">
+      <div class='part' style="height: 20px">
+      <button mat-icon-button disabled style="font-size:18px"></button>
+    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'" style="font-size:18px">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
-      <button mat-button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
-      <button mat-button (click)="showRight(node.name, node.path, node.type)"><mat-icon>more_vert</mat-icon></button>
+      <button mat-button (click)="sendFilename(node.name, node.path)" style="font-size:12px">{{node.name}}</button>
+      <button mat-button (click)="showRight(node.name, node.path, node.type)" style="font-size:12px"><mat-icon>more_vert</mat-icon></button>
       <br>
       <mat-divider></mat-divider>
     </div>
@@ -21,19 +21,19 @@
   </mat-tree-node>
 
 
-  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="20"> 
-    <div class='part'>
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="10"> 
+    <div class='part' style="height: 20px">
     <button mat-icon-button matTreeNodeToggle
-            [attr.aria-label]="'toggle ' + node.name">
-      <mat-icon class="mat-icon-rtl-mirror">
+            [attr.aria-label]="'toggle ' + node.name" style="font-size:18px">
+      <mat-icon class="mat-icon-rtl-mirror" style="font-size:18px">
         {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
       </mat-icon>
     </button>
-    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
+    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'" style="font-size:18px">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
-   <button mat-button (click)="sendFilename(node.name, node.path)">{{node.name}}</button>
-    <button mat-button (click)="showRight(node.name, node.path, node.type)"><mat-icon>more_vert</mat-icon></button>
+   <button mat-button (click)="sendFilename(node.name, node.path)" style="font-size:12px">{{node.name}}</button>
+    <button mat-button (click)="showRight(node.name, node.path, node.type)" style="font-size:12px"><mat-icon>more_vert</mat-icon></button>
     <mat-divider></mat-divider>
   </div>
 
@@ -43,16 +43,18 @@
 
  
 <div *ngIf='showRightMenu' class=modal>
-    <button mat-button (click)='rename_modal()'>Rename</button>
-    <button mat-button (click)='file_delete()'>Delete</button>  
-    <button mat-button *ngIf='isFolder' (click)='add_file()'>Add New File</button>
-    <button mat-button *ngIf='isFolder' (click)='add_folder()'>Add New Folder</button>
+    <button mat-button (click)='rename_modal()'>Rename</button> <br>
+    <button mat-button (click)='file_delete()'>Delete</button>  <br> 
+    <button mat-button *ngIf='isFolder' (click)='add_file()'>Add New File</button> <br>
+    <button mat-button *ngIf='isFolder' (click)='add_folder()'>Add New Folder</button> <br>
+   <button mat-raised-button color='warn' (click)="closeRight()">Close</button>
 </div>
 
 <div *ngIf='renameModal' class=modal>
     <form [formGroup]='RenameForm' (ngSubmit)='file_rename()'>  
         Enter new name<input type="text" formControlName='new_name'><br>
         <input type='submit' value='Save'>
+         <button mat-raised-button color='warn' (click)="rename_modal()">Close</button>
     </form>
 </div> 
 

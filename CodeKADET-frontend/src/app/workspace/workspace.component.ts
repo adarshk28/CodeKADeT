@@ -29,7 +29,7 @@ export class WorkspaceComponent implements AfterViewInit {
 	'java': 'Java',
 	'javascript': 'Unsupported',
     };
-    themes='monokai'
+    themes='eclipse'
   RunForm= new FormGroup({
     Filename: new FormControl(''),
     Language: new FormControl(''),
@@ -76,6 +76,7 @@ export class WorkspaceComponent implements AfterViewInit {
     modalview(data: any){
     var path = data["path"] +'/'+ data["name"];
     this.FileForm.get("path").setValue(path);
+    if(this.folderModal) this.folderModal=false
     this.showmodal=!this.showmodal;
     console.log(this.showmodal);
   }
@@ -85,6 +86,7 @@ export class WorkspaceComponent implements AfterViewInit {
   folderModalview(data: any){
     var path = data["path"] +'/'+ data["name"];
     this.newFolder = path;
+    if(this.showmodal) this.showmodal=false
     this.folderModal = !this.folderModal;
   }
     closeModal(isInEmpty: boolean){
@@ -119,10 +121,15 @@ export class WorkspaceComponent implements AfterViewInit {
 	    result => {
         console.log(result);
         this.treecomp.getTree();
+
       }
 	);
   }
 
+  closeModals(data: any){
+    this.folderModal = false;
+    this.showmodal = false;
+  }
 
   onLogout(): void {
     this.logser.logout().subscribe(
@@ -168,7 +175,8 @@ export class WorkspaceComponent implements AfterViewInit {
 	  result=> {
 	      console.log(result);
 	      this.showmodal=!this.showmodal;
-	      this.treecomp.getTree();
+        this.treecomp.getTree();
+        this.folderModal = false;
 	  });
   }
 
@@ -242,6 +250,7 @@ export class WorkspaceComponent implements AfterViewInit {
         this.folderModal = !this.folderModal;
         console.log(result);
         this.treecomp.getTree();
+        this.showmodal = false;
       })
     }
 

@@ -114,6 +114,15 @@ export class TryComponent implements OnInit{
     this.renameModal = !this.renameModal;
   }
 
+
+  @Output() rightClose = new EventEmitter<any>(); 
+
+  closeRight(){
+    this.rightClose.emit();
+    this.showRightMenu = false;
+    this.renameModal = false;
+  }
+
   file_rename(){
     console.log("file-renam start ")
     console.log("before rename service ")
