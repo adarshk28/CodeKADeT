@@ -12,7 +12,7 @@
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'" style="font-size:18px">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
-      <button mat-button (click)="sendFilename(node.name, node.path)" style="font-size:12px">{{node.name}}</button>
+      <button mat-button (click)="sendFilename(node.name, node.path, node.type)" style="font-size:12px">{{node.name}}</button>
       <button mat-button (click)="showRight(node.name, node.path, node.type)" style="font-size:12px"><mat-icon>more_vert</mat-icon></button>
       <br>
       <mat-divider></mat-divider>
@@ -32,7 +32,7 @@
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'" style="font-size:18px">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
-   <button mat-button (click)="sendFilename(node.name, node.path)" style="font-size:12px">{{node.name}}</button>
+   <button mat-button (click)="sendFilename(node.name, node.path, node.type)" style="font-size:12px">{{node.name}}</button>
     <button mat-button (click)="showRight(node.name, node.path, node.type)" style="font-size:12px"><mat-icon>more_vert</mat-icon></button>
     <mat-divider></mat-divider>
   </div>
