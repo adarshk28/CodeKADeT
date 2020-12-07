@@ -79,7 +79,7 @@ export class TryComponent implements OnInit{
     })
   }
   /** Transform the data to something the tree can read. */
-  transformer(node: TreeNode, level: number) {
+  transformer(node: FileNode, level: number) {
     return {
       name: node.name,
       type: node.type,
@@ -100,7 +100,7 @@ export class TryComponent implements OnInit{
   };
 
   /** Get the children for the node. */
-  getChildren(node: TreeNode) {
+  getChildren(node: FileNode) {
     return observableOf(node.children);
   }
 
@@ -136,10 +136,6 @@ export class TryComponent implements OnInit{
     console.log(this.showRightMenu)
     this.showRightMenu = !this.showRightMenu;
     console.log(this.showRightMenu)
-  }
-
-  file_delete(){
-    
   }
 
   @Output() deleteEvent = new EventEmitter<any>();
