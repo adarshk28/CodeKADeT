@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { of as observableOf } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -7,10 +7,15 @@ import { FileService } from '../file.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+<<<<<<< HEAD
 
 /**
  * Interface for the node for a file/folder in the file tree obtained from the nested JSON object passed from the backend
  */
+=======
+import { MatDivider } from '@angular/material/divider'
+
+>>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
 export interface FileNode {
   name: string;
   type: string;
@@ -27,7 +32,6 @@ export interface TreeNode {
   level: number;
   expandable: boolean;
 }
-
 @Component({
   selector: 'try-component',
   templateUrl: './try.component.html',
@@ -59,6 +63,7 @@ export class TryComponent implements OnInit{
     new_name: new FormControl(''),
     path: new FormControl(''),
   })
+<<<<<<< HEAD
   
   /**
    * An EventEmitter which is bound to getFile() in workspace.component.ts
@@ -75,6 +80,16 @@ export class TryComponent implements OnInit{
    */
   sendFilename(name: string, path: string, tp: string) {
     if (tp=='file') this.newItemEvent.emit({"name":name,"path":path});
+=======
+  contextmenu=false;
+  contextx: any;
+  contexty: any;
+  @Output() newItemEvent = new EventEmitter<any>();
+  sendFilename(name: string, path: string) {
+    console.log(name)
+    console.log(path)
+    this.newItemEvent.emit({"name":name,"path":path});
+>>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
   }
 
   // files =[{name: "danish", type: 'file', path: ''}];
@@ -110,17 +125,38 @@ export class TryComponent implements OnInit{
    */
   constructor(public treeService: TreeService, public fileService: FileService) {  
   }
+<<<<<<< HEAD
   
   /**
    * Gets the file tree when the component is initialized
    */
+=======
+  contextnode:any;
+>>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
   ngOnInit(){
     this.getTree();
   }
 
+<<<<<<< HEAD
   /** 
    * Gets the file tree from the backend as a nested JSON object using treeService and stores it in the  tree format needed for display
   */
+=======
+  togglecontextmenu(event, node){
+    if(!this.contextmenu){
+      this.contextmenu=true;
+      this.contextx=event.clientX;
+      this.contexty=event.clientY;
+      console.log(this.contextmenu, event);
+      this.showRight(node.name, node.path, node.type);
+    }
+    else{
+      this.contextmenu=false;
+    }
+    return false;
+  }
+
+>>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
   getTree() {
     this.treeService.getRequest().subscribe(result=>{
       this.files=result.children;
@@ -181,6 +217,8 @@ export class TryComponent implements OnInit{
    * Toggles whether the renaming modal is displayed or not
    */
   rename_modal(){
+    if(this.showRightMenu)
+    this.closeRight();
     this.renameModal = !this.renameModal;
   }
 
@@ -240,6 +278,8 @@ export class TryComponent implements OnInit{
    * Deletes the file from the backend using fileService. The change is reflected in the file tree.
    */
   file_delete(){
+    if(this.showRightMenu)
+    this.closeRight();
       if (confirm("Are you sure you want to PERMANENTLY DELETE "+this.RenameForm.get('old_name').value + '?')) {
     this.deleteEvent.emit({"name":this.RenameForm.get('old_name').value,"path":this.RenameForm.get('path').value});
     this.fileService.deleteFile(this.RenameForm.value).subscribe(result => {
@@ -258,6 +298,8 @@ export class TryComponent implements OnInit{
    * Emits the event when called to add the file
    */
   add_file(){
+    if(this.showRightMenu)
+    this.closeRight();
     this.uploadFileEvent.emit({"name": this.RenameForm.get('old_name').value, "path": this.RenameForm.get('path').value});
   }
 
@@ -270,6 +312,8 @@ export class TryComponent implements OnInit{
    * Emits the event when called to add the folder
    */
   add_folder(){
+    if(this.showRightMenu)
+    this.closeRight();
     this.uploadFolderEvent.emit({"name": this.RenameForm.get('old_name').value, "path": this.RenameForm.get('path').value});
   }
 }

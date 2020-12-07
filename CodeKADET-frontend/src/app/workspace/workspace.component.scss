@@ -27,7 +27,7 @@ button {
   background-color: #444444;
   height: fit-content;
   text-align: center;
-  margin-top: 27%;
+  margin-top: 26%;
 
 }
 #interface1{
@@ -49,24 +49,37 @@ button {
   margin: auto;
   width: 400px;
   height: 400px;
-  background-color: aliceblue;
+  background-color: 	#444444;
   border-radius: 10px;
+  color: white;
 }
-.choicebutton{
+.choicebutton1{
   width: 50%;
-  border-radius: 10px;
   margin: 0;
-  background-color: white;
+  background-color: #333232;
   border-width: 0;
   height: 50px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: white;
+}
+.choicebutton2{
+  width: 50%;
+  margin: 0;
+  background-color: #333232;
+  border-width: 0;
+  height: 50px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: white;
 }
 
 .yellow {
-    background-color: yellow;
-}
+   background-color: 	#444444;
+   border-bottom: orange;
+   border-bottom-width: 5px;;
+   color: white;
 
-.white {
-    background-color: white;
 }
 .buttons{
   margin-top: 10%;
@@ -78,6 +91,16 @@ button {
   }
 }
 
+.left-buttons{
+  width: fit-content;
+  display: inline-block;
+  position: absolute;
+  left: 3%;
+  margin-top: auto;
+  button{
+    margin: 5px;
+  }
+}
 
 
 .icon{
