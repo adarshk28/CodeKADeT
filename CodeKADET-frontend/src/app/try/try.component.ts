@@ -118,7 +118,7 @@ export class TryComponent implements OnInit{
     console.log("file-renam start ")
     console.log("before rename service ")
     console.log(this.RenameForm.get('new_name').value)
-    if (confirm("Are you sure you want to RENAME "+this.RenameForm.get('old_name')+" to "+this.RenameForm.get('new_name')+'?')) {
+    if (confirm("Are you sure you want to RENAME "+this.RenameForm.get('old_name').value+" to "+this.RenameForm.get('new_name').value+'?')) {
 	this.fileService.renameFile(this.RenameForm.value).subscribe(result => {
 	    console.log(result);
 	    this.renameModal = !this.renameModal;
@@ -154,7 +154,7 @@ export class TryComponent implements OnInit{
   @Output() deleteEvent = new EventEmitter<any>();
 
   file_delete(){
-      if (confirm("Are you sure you want to PERMANENTLY DELETE "+this.RenameForm.get('old_name') + '?')) {
+      if (confirm("Are you sure you want to PERMANENTLY DELETE "+this.RenameForm.get('old_name').value + '?')) {
     this.deleteEvent.emit(this.RenameForm.get('old_name').value);
     console.log("deleting file: "+this.RenameForm.get('old_name').value+" from "+this.RenameForm.get('path').value)
     this.fileService.deleteFile(this.RenameForm.value).subscribe(result => {
