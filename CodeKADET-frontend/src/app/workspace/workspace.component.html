@@ -21,6 +21,8 @@
         <!-- <button mat-raised-button color='primary' type="theme" (click)='theme()'>Change Theme</button> -->
         <form [formGroup]='RunForm'>
                 <div style="width: 30%; float: left; position: relative; top: -100%">
+                    <button mat-raised-button color='warn' (click)="changeTheme()">Change</button>
+
                         <button mat-raised-button color='primary' (click)='downLoadFile()' style="margin-left:30%;">Download</button> 
                     <div id="interface">
                         <label for='input' style="color: white;">User input:</label><br>
@@ -46,27 +48,27 @@
             <div *ngIf='showwhat; else other'>
                <form [formGroup]='FileForm' (ngSubmit)='makeEmptyFile()' class='form'>  
                 <label for='file_name'>File Name: </label><br>
-                <input type="text" id='file_name'formControlName='file_name'><br>
+                <input type="text" id='file_name'required formControlName='file_name'><br>
                </form>
-                <button mat-raised-button color='primary' type='submit' (click)='makeEmptyFile()'>Create</button>
+                <button mat-raised-button color='primary' type='submit' [disabled]='!FileForm.valid' (click)='makeEmptyFile()'>Create</button>
                 <button mat-raised-button color='primary' type='' (click)='closeModal(false)'>Cancel</button>
         
             </div>
             <ng-template #other>
                 <form [formGroup]='FileForm' class='form'>  
                 <label for='file_name'>File Name: </label><br>
-                <input type="text" id='file_name'formControlName='file_name'><br>
+                <input required type="text" id='file_name'formControlName='file_name'><br>
                    </form>
-                    <input type="file" id='file' (change)='setFile($event.target.files)'> 
+                    <input required type="file" id='file' (change)='setFile($event.target.files)'> 
                     <br>
-                <button mat-raised-button color='primary' type='submit' (click)='handleFileInput()'>Create</button>
+                <button mat-raised-button color='primary' type='submit' [disabled]='!FileForm.valid' (click)='handleFileInput()'>Create</button>
                 <button mat-raised-button color='primary' type='' (click)='closeModal(false)'>Cancel</button>
                 </ng-template>
         </div>
 
- <div *ngIf='folderModal' class=modal>
-  <input type="text" id='file_name' [(ngModel)]="newName"> Name <br>
-  <button mat-raised-button color='primary' type='submit' (click)='addNewFolder()'>Create</button>
+ <div *ngIf='folderModal' class=modal style="height: min-content;">
+    Name <input required type="text" id='file_name' [(ngModel)]="newName"><br>
+  <button [disabled]='!document.getElementById("file_name").value' mat-raised-button color='primary' type='submit' (click)='addNewFolder()'>Create</button>
     <button mat-raised-button color='primary' type='' (click)='closeFolderModal(false)'>Cancel</button>
 
  </div>

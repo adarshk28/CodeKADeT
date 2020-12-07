@@ -29,7 +29,7 @@ export class WorkspaceComponent implements AfterViewInit {
 	'java': 'Java',
 	'javascript': 'Unsupported',
     };
-    themes='eclipse'
+    themes='monokai'
   RunForm= new FormGroup({
     Filename: new FormControl(''),
     Language: new FormControl(''),
@@ -71,7 +71,11 @@ export class WorkspaceComponent implements AfterViewInit {
       exec: this.onSave
     })
   }
-
+  changeTheme(){
+    if(this.themes=='monokai')
+    this.themes='clouds';
+    else this.themes='monokai';
+  }
   showmodal=false;
     modalview(data: any){
     var path = data["path"] +'/'+ data["name"];

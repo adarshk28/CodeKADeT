@@ -60,16 +60,18 @@ export class TryComponent implements OnInit{
     this.getTree();
   }
 
-  togglecontextmenu(event){
+  togglecontextmenu(event, node){
     if(!this.contextmenu){
       this.contextmenu=true;
       this.contextx=event.clientX;
       this.contexty=event.clientY;
       console.log(this.contextmenu, event);
+      this.showRight(node.name, node.path, node.type);
     }
     else{
       this.contextmenu=false;
     }
+    return false;
   }
 
   getTree() {
@@ -122,6 +124,8 @@ export class TryComponent implements OnInit{
   }
 
   rename_modal(){
+    if(this.showRightMenu)
+    this.closeRight();
     this.renameModal = !this.renameModal;
   }
 
@@ -174,6 +178,8 @@ export class TryComponent implements OnInit{
   @Output() deleteEvent = new EventEmitter<any>();
 
   file_delete(){
+    if(this.showRightMenu)
+    this.closeRight();
       if (confirm("Are you sure you want to PERMANENTLY DELETE "+this.RenameForm.get('old_name').value + '?')) {
     this.deleteEvent.emit({"name":this.RenameForm.get('old_name').value,"path":this.RenameForm.get('path').value});
     console.log("deleting file: "+this.RenameForm.get('old_name').value+" from "+this.RenameForm.get('path').value)
@@ -188,6 +194,8 @@ export class TryComponent implements OnInit{
   @Output() uploadFileEvent = new EventEmitter<any>();
 
   add_file(){
+    if(this.showRightMenu)
+    this.closeRight();
     this.uploadFileEvent.emit({"name": this.RenameForm.get('old_name').value, "path": this.RenameForm.get('path').value});
     console.log(this.RenameForm.get('path').value);
     console.log(this.RenameForm.get('old_name').value);
@@ -196,6 +204,8 @@ export class TryComponent implements OnInit{
   @Output() uploadFolderEvent = new EventEmitter<any>();
 
   add_folder(){
+    if(this.showRightMenu)
+    this.closeRight();
     this.uploadFolderEvent.emit({"name": this.RenameForm.get('old_name').value, "path": this.RenameForm.get('path').value});
     console.log(this.RenameForm.get('path').value);
     console.log(this.RenameForm.get('old_name').value);
