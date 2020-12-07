@@ -4,12 +4,7 @@ import { FileService } from '../file.service';
 import { LoginService } from '../login.service';
 import {  Router } from '@angular/router';
 import { Location } from '@angular/common';
-<<<<<<< HEAD
-import * as fileSaver from 'file-saver';
-
-=======
 import * as fileSaver from 'file-saver'
->>>>>>> 47418ae7519b98c2d240d227a783595382809514
 @Component({
   selector: 'app-workspace',
   templateUrl: './workspace.component.html',
@@ -221,6 +216,6 @@ export class WorkspaceComponent implements AfterViewInit {
 
     }
 
-    
+
 
 }
