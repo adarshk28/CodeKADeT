@@ -7,6 +7,7 @@ import { FileService } from '../file.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { MatDivider } from '@angular/material/divider'
 
 
 export interface FileNode {

@@ -1,73 +1,70 @@
-<div class="grid-container">
-<div class='grid-item' id='sidebar'>
-    <h2>Welcome to CodeKADeT!</h2>
-    <br><br>
-    <button mat-raised-button color='accent' type="submit" (click)='onLogout()'>Logout</button>
-    <button mat-raised-button color='primary' (click)='downLoadFile()'>Download</button>
-   
-    <try-component #treecomp (newItemEvent)="getFile($event)">  </try-component>
-    <br><br><br><br><br><br>
-
-<button mat-raised-button color='accent' (click)='modalview()'> Create New File</button>
-<button mat-raised-button color='accent' (click)='modalview()'> Create New Folder</button>
-    
-</div>
-<div class='grid-item'>
-    <h3>
-    <span>File: {{ DisplayForm.get('name').value }}</span>
-    <span style='margin: 100px'>Language: {{ formalName[mode] }}</span>
-    </h3>
-    <br>
-    <div id="interface1" style="float: left;">
-        <ace-editor #editor [(text)]='text' theme='monokai' [(mode)]='mode'></ace-editor>
-    </div><br>
-        
-<form [formGroup]='RunForm'>
-        <div style="width: 30%; float: left;">
-            <div id="interface">
-                <label for='input'>User input:</label><br>
-                <textarea formControlName='Input' id="input" cols="40" rows="12"></textarea>
-            </div>
-            <div id="interface">
-                <label for='output'>User output:</label><br>
-                <textarea formControlName='Output' id="output" cols="40" rows="12"></textarea>
+<body>
+        <button mat-raised-button color='accent' type="submit" (click)='onLogout()' style="position: absolute; right: 4%; top: 0.5%">Logout</button>
+        <div class="grid-container">
+        <div class='grid-item' id='sidebar'>
+           <try-component #treecomp (newItemEvent)="getFile($event)">  </try-component>
+        <button mat-raised-button color='accent' (click)='modalview()'> Create New File</button>
+            
         </div>
-   </div>
-</form>
-<button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
-<button mat-raised-button color='warn' type="Run" (click)="run()">Run</button>
-<br>
-<br>
-<br>
-
-</div>
-</div>
-
-<div *ngIf='showmodal' class=modal>
-    <button (click)='empty()' [ngClass]="{'yellow': showwhat, 'white': !showwhat}"class='choicebutton'>Make Empty File</button>
-    <button (click)='comp()' [ngClass]="{'white': showwhat, 'yellow': !showwhat}" class='choicebutton'>Upload From Computer</button>
-    <div *ngIf='showwhat; else other'>
-       <form [formGroup]='FileForm' (ngSubmit)='makeEmptyFile()'>  
-	<label for='file_name'>File Name: </label>
-        <input type="text" id='file_name'formControlName='file_name'><br>
-	<label for='path'>Path: </label>
-        <input type="text" id='path' formControlName='path'><br>
-	<label for='description'> File Description</label>
-        <input type='text' id='description' formControlName='description'><br>
-       </form>
-	<button mat-raised-button color='primary' type='submit' (click)='makeEmptyFile()'>Create</button>
-    </div>
-    <ng-template #other>
-        <form [formGroup]='FileForm'>  
-	<label for='file_name'>File Name: </label>
-        <input type="text" id='file_name'formControlName='file_name'><br>
-	<label for='path'>Path: </label>
-        <input type="text" id='path' formControlName='path'><br>
-	<label for='description'> File Description</label>
-        <input type='text' id='description' formControlName='description'><br>
-           </form>
-	    <input type="file" id='file' (change)='setFile($event.target.files)'> 
-	    <br>
-	<button mat-raised-button color='primary' type='submit' (click)='handleFileInput()'>Create</button>
-        </ng-template>
-</div>
+        <div class='grid-item'>
+            <h3>
+            <span>File: {{ DisplayForm.get('name').value }}</span>
+            <span style='margin: 100px'>Language: {{ formalName[mode] }}</span>
+        </h3>
+            <div id="interface1" style="float: left;">
+                <ace-editor #editor [(text)]='text' [(theme)]='themes' [(mode)]='mode'></ace-editor>
+            </div><br>
+        <!-- <button mat-raised-button color='primary' type="theme" (click)='theme()'>Change Theme</button> -->
+        <form [formGroup]='RunForm'>
+                <div style="width: 30%; float: left; position: relative; top: -100%">
+                        <button mat-raised-button color='primary' (click)='downLoadFile()' style="margin-left:30%;">Download</button> 
+                    <div id="interface">
+                        <label for='input' style="color: white;">User input:</label><br>
+                        <textarea formControlName='Input' id="input" cols="40" rows="13"></textarea>
+                    </div>
+                    <div id="interface">
+                        <label for='output' style='color: white'>User output:</label><br>
+                        <textarea formControlName='Output' id="output" cols="40" rows="13"></textarea>
+                </div>
+                <div class='buttons'>
+                        <button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
+                        <button mat-raised-button color='warn' type="Run" (click)="run()">Run</button>
+                        </div>
+           </div>
+        </form>
+        
+        </div>
+        </div>
+        
+        <div *ngIf='showmodal' class=modal>
+            <button (click)='empty()' [ngClass]="{'yellow': showwhat, 'white': !showwhat}"class='choicebutton'>Make Empty File</button>
+            <button (click)='comp()' [ngClass]="{'white': showwhat, 'yellow': !showwhat}" class='choicebutton'>Upload From Computer</button>
+            <div *ngIf='showwhat; else other'>
+               <form [formGroup]='FileForm' (ngSubmit)='makeEmptyFile()' class='form'>  
+                <label for='file_name'>File Name: </label><br>
+                <input type="text" id='file_name'formControlName='file_name'><br>
+                <label for='path'>Path: </label><br>
+                <input type="text" id='path' formControlName='path'><br>
+                <label for='description'> File Description</label><br>
+                <input type='text' id='description' formControlName='description'><br>
+               </form>
+                <button mat-raised-button color='primary' type='submit' (click)='makeEmptyFile()'>Create</button>
+                <button mat-raised-button color='primary' type='' (click)='modalview()'>Cancel</button>
+        
+            </div>
+            <ng-template #other>
+                <form [formGroup]='FileForm' class='form'>  
+                <label for='file_name'>File Name: </label><br>
+                <input type="text" id='file_name'formControlName='file_name'><br>
+                <label for='path'>Path: </label><br>
+                <input type="text" id='path' formControlName='path'><br>
+                <label for='description'> File Description</label><br>
+                <input type='text' id='description' formControlName='description'><br>
+                   </form>
+                    <input type="file" id='file' (change)='setFile($event.target.files)'> 
+                    <br>
+                <!-- <button mat-raised-button color='primary' type='submit' (click)='handleFileInput()'>Create</button> -->
+                <button mat-raised-button color='primary' type='' (click)='modalview()'>Cancel</button>
+                </ng-template>
+        </div>
+        </body>

@@ -68,6 +68,7 @@ def upload_from_computer(request):
 def emptyFileUpload(request):
     print('User is:', request.user)
     data = json.loads(request.body)
+    print(data.get('file_name'))
     try:
         os.makedirs(os.readlink(request.user.symlink)+data.get('path')+'/')
         with open(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('file_name'), 'w+') as stored_file:
