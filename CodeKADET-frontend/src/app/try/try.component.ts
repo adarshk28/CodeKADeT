@@ -7,15 +7,10 @@ import { FileService } from '../file.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-<<<<<<< HEAD
 
 /**
  * Interface for the node for a file/folder in the file tree obtained from the nested JSON object passed from the backend
  */
-=======
-import { MatDivider } from '@angular/material/divider'
-
->>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
 export interface FileNode {
   name: string;
   type: string;
@@ -63,7 +58,6 @@ export class TryComponent implements OnInit{
     new_name: new FormControl(''),
     path: new FormControl(''),
   })
-<<<<<<< HEAD
   
   /**
    * An EventEmitter which is bound to getFile() in workspace.component.ts
@@ -80,17 +74,12 @@ export class TryComponent implements OnInit{
    */
   sendFilename(name: string, path: string, tp: string) {
     if (tp=='file') this.newItemEvent.emit({"name":name,"path":path});
-=======
+  }
+
   contextmenu=false;
   contextx: any;
   contexty: any;
-  @Output() newItemEvent = new EventEmitter<any>();
-  sendFilename(name: string, path: string) {
-    console.log(name)
-    console.log(path)
-    this.newItemEvent.emit({"name":name,"path":path});
->>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
-  }
+  contextnode:any;
 
   // files =[{name: "danish", type: 'file', path: ''}];
   /**
@@ -125,23 +114,14 @@ export class TryComponent implements OnInit{
    */
   constructor(public treeService: TreeService, public fileService: FileService) {  
   }
-<<<<<<< HEAD
   
   /**
    * Gets the file tree when the component is initialized
    */
-=======
-  contextnode:any;
->>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
   ngOnInit(){
     this.getTree();
   }
 
-<<<<<<< HEAD
-  /** 
-   * Gets the file tree from the backend as a nested JSON object using treeService and stores it in the  tree format needed for display
-  */
-=======
   togglecontextmenu(event, node){
     if(!this.contextmenu){
       this.contextmenu=true;
@@ -156,7 +136,9 @@ export class TryComponent implements OnInit{
     return false;
   }
 
->>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
+  /** 
+   * Gets the file tree from the backend as a nested JSON object using treeService and stores it in the  tree format needed for display
+  */
   getTree() {
     this.treeService.getRequest().subscribe(result=>{
       this.files=result.children;
