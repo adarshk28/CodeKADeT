@@ -74,23 +74,20 @@ def emptyFileUpload(request):
         with open(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('file_name'), 'w+') as stored_file:
             stored_file.write('')
     except:
-        with open(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('file_name'), 'w+') as stored_file:
-            stored_file.write('')
+        if not os.path.isfile(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('file_name')):
+            with open(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('file_name'), 'w+') as stored_file:
+                stored_file.write('')
     return JsonResponse({'status': 'Empty file uploaded'})
 
 @api_view(['POST'])
 def makeFolder(request):
     fullPath = request.body.decode('utf-8')
+    print(fullPath)
     try:
         os.makedirs(os.readlink(request.user.symlink)+fullPath+'/')
         return JsonResponse({"status":"done"})
     except:
         return JsonResponse({"status":"already exists!"})
-
-
-
-
-
 
 @api_view(['POST'])
 def edit_from_textbox(request):
@@ -123,9 +120,12 @@ def rename(request):
 
 @api_view(['GET'])
 def view_function(request):
-    with open(os.readlink(request.user.symlink)+request.GET['path']+'/'+request.GET['name']) as f:
-        lines=[line for line in f]
-    return JsonResponse({'lines':''.join(lines),'name': request.GET['name'], 'language': request.GET['name'].split('.')[-1]})
+    if os.path.isfile(os.readlink(request.user.symlink)+request.GET['path']+'/'+request.GET['name']):
+        with open(os.readlink(request.user.symlink)+request.GET['path']+'/'+request.GET['name']) as f:
+            lines=[line for line in f]
+        return JsonResponse({'lines':''.join(lines),'name': request.GET['name'], 'language': request.GET['name'].split('.')[-1]})
+    else:
+        return JsonResponse({'lines':'This is a folder!', 'name': request.GET['name'], 'language': ''})
 
 @api_view(['POST'])
 def exec_from_textbox(request):
@@ -160,9 +160,8 @@ def exec_from_textbox(request):
             return JsonResponse({'out': ans})
         if(mode==2):
             comp=subprocess.run(args, cwd= os.readlink(request.user.symlink)+path+'/', capture_output=True)
-            # move(exename, settings.MEDIA_ROOT+'temp'+str(request.user.id)+"/"+exename)
             if(comp.stderr):
-                return JsonResponse({'status':'1', 'ans':'compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
+                return JsonResponse({'status':'1', 'out':'compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
             result=subprocess.Popen(exe, cwd= os.readlink(request.user.symlink)+path+'/', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8')
         return JsonResponse({"out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})

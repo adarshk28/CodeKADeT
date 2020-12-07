@@ -3,7 +3,8 @@
         <div class="grid-container">
         <div class='grid-item' id='sidebar'>
            <try-component #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)">  </try-component>
-        <button mat-raised-button color='accent' (click)='modalview()'> Create New File</button>
+        <button mat-raised-button color='accent' (click)='closeModal(true)'> Create New File</button>
+        <button mat-raised-button color='accent' (click)='closeFolderModal(true)'> Create New Project</button>
             
         </div>
         <div class='grid-item'>
@@ -45,7 +46,7 @@
                 <input type="text" id='file_name'formControlName='file_name'><br>
                </form>
                 <button mat-raised-button color='primary' type='submit' (click)='makeEmptyFile()'>Create</button>
-                <button mat-raised-button color='primary' type='' (click)='closeModal()'>Cancel</button>
+                <button mat-raised-button color='primary' type='' (click)='closeModal(false)'>Cancel</button>
         
             </div>
             <ng-template #other>
@@ -56,14 +57,14 @@
                     <input type="file" id='file' (change)='setFile($event.target.files)'> 
                     <br>
                 <button mat-raised-button color='primary' type='submit' (click)='handleFileInput()'>Create</button>
-                <button mat-raised-button color='primary' type='' (click)='closeModal()'>Cancel</button>
+                <button mat-raised-button color='primary' type='' (click)='closeModal(false)'>Cancel</button>
                 </ng-template>
         </div>
 
  <div *ngIf='folderModal' class=modal>
   <input type="text" id='file_name' [(ngModel)]="newName"> Name <br>
   <button mat-raised-button color='primary' type='submit' (click)='addNewFolder()'>Create</button>
-    <button mat-raised-button color='primary' type='' (click)='closeFolderModal()'>Cancel</button>
+    <button mat-raised-button color='primary' type='' (click)='closeFolderModal(false)'>Cancel</button>
 
  </div>
 

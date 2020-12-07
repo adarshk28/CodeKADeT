@@ -66,8 +66,8 @@ export class WorkspaceComponent implements AfterViewInit {
   }
 
   showmodal=false;
-  modalview(data: any){
-    var path = data["path"]+'/'+ data["name"];
+    modalview(data: any){
+    var path = data["path"] +'/'+ data["name"];
     this.FileForm.get("path").setValue(path);
     this.showmodal=!this.showmodal;
     console.log(this.showmodal);
@@ -76,15 +76,17 @@ export class WorkspaceComponent implements AfterViewInit {
   folderModal = false;
 
   folderModalview(data: any){
-    var path = data["path"]+'/'+ data["name"];
+    var path = data["path"] +'/'+ data["name"];
     this.newFolder = path;
     this.folderModal = !this.folderModal;
   }
-  closeModal(){
+    closeModal(isInEmpty: boolean){
+	if (isInEmpty) this.FileForm.get('path').setValue('.');
     this.showmodal = !this.showmodal;
   }
 
-  closeFolderModal(){
+    closeFolderModal(isInEmpty: boolean){
+	if (isInEmpty) this.newFolder='.';
     this.folderModal = !this.folderModal;
   }
 
