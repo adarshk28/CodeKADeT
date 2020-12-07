@@ -51,7 +51,6 @@ export class WorkspaceComponent implements AfterViewInit {
    * Refers to the currently logged in user
    */
   user: string;
-<<<<<<< HEAD
 
   /**
    * Helps convert the language field needed to set the mode of the Ace editor to the formal name of the language to be set above the editor
@@ -66,20 +65,11 @@ export class WorkspaceComponent implements AfterViewInit {
   /**
    * Refers to the current color theme of the text editor
    */
-  themes='eclipse'
+  themes='monokai'
 
   /**
    * A form which stores the data needed to set the input and output when the code file is run
    */
-=======
-    formalName = {
-	'c_cpp': 'C/C++',
-	'python': 'Python',
-	'java': 'Java',
-	'javascript': 'Unsupported',
-    };
-    themes='monokai'
->>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
   RunForm= new FormGroup({
     Filename: new FormControl(''),
     Language: new FormControl(''),
@@ -133,18 +123,19 @@ export class WorkspaceComponent implements AfterViewInit {
       exec: this.onSave
     })
   }
-<<<<<<< HEAD
 
   /**
-   * Determines whether the modal for file creation is displayed or not
+   * Changes the theme of the editor
    */
-=======
   changeTheme(){
     if(this.themes=='monokai')
     this.themes='clouds';
     else this.themes='monokai';
   }
->>>>>>> 967d69055efd0d5fdc9058f3a2d6350a2659043c
+
+  /**
+   * The file creation modal is displayed if this variable is true, else it is not displayed
+   */
   showmodal=false;
 
   /**
