@@ -69,4 +69,9 @@ def login(request):
         else:
             print("GET request to login")
             return render(request, 'login.html', {'form':AuthenticationForm})
+
+@api_view(['GET'])
+def getUser(request):
+    print(str(request.user))
+    return JsonResponse({'user':str(request.user)})
 # Create your views here.

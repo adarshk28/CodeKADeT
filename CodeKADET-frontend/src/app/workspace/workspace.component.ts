@@ -22,6 +22,7 @@ export class WorkspaceComponent implements AfterViewInit {
   textboxfile: string = '';
   newFolder: string;
   newName: string;
+  user: string;
     formalName = {
 	'c_cpp': 'C/C++',
 	'python': 'Python',
@@ -50,7 +51,13 @@ export class WorkspaceComponent implements AfterViewInit {
     path: new FormControl(''),
     content: new FormControl('')
   })
-  constructor(private fileser:FileService, private logser: LoginService, private router: Router, private location: Location) { }
+  constructor(private fileser:FileService, private logser: LoginService, private router: Router, private location: Location) { 
+    this.logser.getUser().subscribe(result => {
+      console.log("user is :")
+      console.log(result["user"])
+      this.user = result["user"]
+    });
+  }
 
   // ngOnInit(): void {}
   ngAfterViewInit() {
@@ -236,6 +243,16 @@ export class WorkspaceComponent implements AfterViewInit {
         console.log(result);
         this.treecomp.getTree();
       })
+    }
+
+    deleteText(data: any){
+      console.log(data["name"])
+      console.log(data["path"])
+      if(this.DisplayForm.get("name").value==data["name"]){
+        if(this.DisplayForm.get("path").value==data["path"]){
+          this.text = "This was file was deleted :( Please choose another file! Running this file may give errors!"
+        }
+      }
     }
 
 

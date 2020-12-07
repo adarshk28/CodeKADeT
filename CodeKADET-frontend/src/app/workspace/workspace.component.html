@@ -2,7 +2,10 @@
         <button mat-raised-button color='accent' type="submit" (click)='onLogout()' style="position: absolute; right: 4%; top: 0.5%">Logout</button>
         <div class="grid-container">
         <div class='grid-item' id='sidebar'>
-           <try-component #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)">  </try-component>
+        <mat-icon class="icon" style="font-size: 34px; color: white; position: absolute; right: 17%; top: 0%" >account_box</mat-icon>
+        <div style="color: white; position: absolute; right: 17%; top: 4%">{{user}}</div>
+           <try-component #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)">  </try-component>
+
         <button mat-raised-button color='accent' (click)='closeModal(true)'> Create New File</button>
         <button mat-raised-button color='accent' (click)='closeFolderModal(true)'> Create New Project</button>
             

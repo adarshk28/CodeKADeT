@@ -36,4 +36,5 @@ urlpatterns = [
     path('fileupload/rename/', file_upload_views.rename, name='rename'),
     path('fileupload/delete/', file_upload_views.delete, name='delete'),
     path('fileupload/folder/', file_upload_views.makeFolder, name='folder'),
+    path('get_user/', login_views.getUser,name="getUser"),
 ]

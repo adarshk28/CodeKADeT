@@ -10,6 +10,7 @@ export class LoginService {
 
   dataUrl= 'http://127.0.0.1:8000/login/';
   dataUrl2= 'http://127.0.0.1:8000/signup/';
+  getUserUrl= 'http://127.0.0.1:8000/get_user/';
   // httpOptions = {
   //   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   // };
@@ -32,6 +33,10 @@ export class LoginService {
   logout(): Observable<any> {
 	  console.log("Inside service for logging out");
 	  return this.http.get<any>(this.logoutUrl);
+  }
+
+  getUser(){
+    return this.http.get<any>(this.getUserUrl);
   }
  
 }

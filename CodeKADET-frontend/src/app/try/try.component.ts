@@ -155,7 +155,7 @@ export class TryComponent implements OnInit{
 
   file_delete(){
       if (confirm("Are you sure you want to PERMANENTLY DELETE "+this.RenameForm.get('old_name').value + '?')) {
-    this.deleteEvent.emit(this.RenameForm.get('old_name').value);
+    this.deleteEvent.emit({"name":this.RenameForm.get('old_name').value,"path":this.RenameForm.get('path').value});
     console.log("deleting file: "+this.RenameForm.get('old_name').value+" from "+this.RenameForm.get('path').value)
     this.fileService.deleteFile(this.RenameForm.value).subscribe(result => {
       console.log(result)
