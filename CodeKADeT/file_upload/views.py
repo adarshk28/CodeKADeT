@@ -60,9 +60,11 @@ def upload_from_computer(request):
         with open(os.readlink(request.user.symlink)+request.POST['path']+'/'+request.POST['file_name'], 'w+') as stored_file:
             stored_file.write(request.FILES['content'].read().decode('utf-8'))
     except:
+        if os.path.isfile(os.readlink(request.user.symlink)+request.POST['path']+'/'+request.POST['file_name']):
+            return JsonResponse({'status': 'File exists!'})
         with open(os.readlink(request.user.symlink)+request.POST['path']+'/'+request.POST['file_name'], 'w+') as stored_file:
             stored_file.write(request.FILES['content'].read().decode('utf-8'))
-    return JsonResponse({'status': 'Empty file uploaded'})
+    return JsonResponse({'status': 'file uploaded'})
 
 @api_view(['POST'])
 def emptyFileUpload(request):
@@ -77,6 +79,8 @@ def emptyFileUpload(request):
         if not os.path.isfile(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('file_name')):
             with open(os.readlink(request.user.symlink)+data.get('path')+'/'+data.get('file_name'), 'w+') as stored_file:
                 stored_file.write('')
+        else:
+            return JsonResponse({'status': 'File exists!'})
     return JsonResponse({'status': 'Empty file uploaded'})
 
 @api_view(['POST'])
