@@ -76,12 +76,15 @@ export class TryComponent implements OnInit{
     if (tp=='file') this.newItemEvent.emit({"name":name,"path":path});
   }
 
-  contextmenu=false;
+  /**
+   * The X-coordinate of the point where the user clicks. Needed to set the position of the options menu.
+   */
   contextx: any;
-  contexty: any;
-  contextnode:any;
 
-  // files =[{name: "danish", type: 'file', path: ''}];
+  /**
+   * The Y-coordinate of the point where the user clicks. Needed to set the position of the options menu.
+   */
+  contexty: any;
   /**
    * A list of  JSON objects containing the tree structure passed from the backend
    */
@@ -231,8 +234,9 @@ export class TryComponent implements OnInit{
    * @param name The name of the chosen element
    * @param path The path of the chosen element
    * @param type The type of the chosen element, i.e., if it is a file or folder
+   * @param event Registers the event of clicking the button for more options
    * 
-   * Sets the name and path of the chosen file in RenameForm
+   * Sets the name and path of the chosen file in RenameForm and opens the options menu when the options button is clicked
    */
   showRight(name: string,path: string, type: string, event: any){
     console.log(event);
@@ -299,14 +303,15 @@ export class TryComponent implements OnInit{
   }
 
 
+  /**
+   * An event emitter for when the chosen file is to be downloaded
+   */
   @Output() downloadEvent = new EventEmitter<any>();
 
   /**
-   * Emits the event when called to download a file
+   * Emits the event when called to download the chosen
    */
   download_call(){
     this.downloadEvent.emit({"name":this.RenameForm.get('old_name').value,"path":this.RenameForm.get('path')});
   }
-
-
 }
