@@ -305,7 +305,7 @@ export class TryComponent implements OnInit{
    * Emits the event when called to download a file
    */
   download_call(){
-    this.downloadEvent.emit(this.RenameForm.get('old_name').value);
+    this.downloadEvent.emit({"name":this.RenameForm.get('old_name').value,"path":this.RenameForm.get('path')});
   }
 
 

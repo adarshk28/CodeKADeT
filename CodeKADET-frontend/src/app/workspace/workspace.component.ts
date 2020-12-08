@@ -261,26 +261,13 @@ export class WorkspaceComponent implements AfterViewInit {
       alert ('Maximum file limit of 10 files has already been reached!')
       return;
     }
-    this.mode = this.fileToUpload.name.split('.').pop();
-    let fr = new FileReader();
-    fr.onload = (e) => {
-	    this.text = fr.result;
-    }
-    fr.readAsText(this.fileToUpload);
     this.FileForm.get('content').setValue(this.fileToUpload);
     this.FileForm.get('language').setValue(this.FileForm.get('file_name').value.split('.').pop())
     const formData = new FormData();
-    if (this.FileForm.get('language').value == 'cpp' || this.FileForm.get('language').value == 'h' || this.FileForm.get('language').value == 'c') this.mode = 'c_cpp';
-	  else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
-    else if (this.FileForm.get('language').value == 'java') this.mode = 'java';
-    else this.mode='javascript'
     formData.append('path', this.FileForm.get('path').value)
     formData.append('file_name', this.FileForm.get('file_name').value)
     formData.append('language', this.FileForm.get('language').value)
     formData.append('content', this.FileForm.get('content').value)
-    this.DisplayForm.get('path').setValue(this.FileForm.get('path').value);
-    this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value)
-    this.DisplayForm.get('content').setValue(this.FileForm.get('content').value)
       var nm: string;
       nm = this.FileForm.get("file_name").value
       if(nm.search('/')!=-1){
@@ -289,9 +276,28 @@ export class WorkspaceComponent implements AfterViewInit {
       else{
       return this.fileser.postFile(formData).subscribe(
 	  result=> {
+      if(result["status"]=="File exists!"){
+        confirm("File already exists!")
+      }
+      else{
+        let fr = new FileReader();
+        fr.onload = (e) => {
+          this.text = fr.result;
+        }
+        fr.readAsText(this.fileToUpload);
+        this.mode = this.fileToUpload.name.split('.').pop();
+        this.DisplayForm.get('path').setValue(this.FileForm.get('path').value);
+        this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value)
+        this.DisplayForm.get('content').setValue(this.FileForm.get('content').value)
+        if (this.FileForm.get('language').value == 'cpp' || this.FileForm.get('language').value == 'h' || this.FileForm.get('language').value == 'c') this.mode = 'c_cpp';
+	      else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
+        else if (this.FileForm.get('language').value == 'java') this.mode = 'java';
+        else this.mode='javascript'
+      }
 	      this.showmodal=!this.showmodal;
         this.treecomp.getTree();
         this.folderModal = false;
+      
     });
   }
   }
@@ -322,6 +328,7 @@ export class WorkspaceComponent implements AfterViewInit {
     else{
 	    this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
 	        result => {
+            if(result["status"]=="File exists!") confirm("File already exists!")
 	    	    this.showmodal=!this.showmodal;
 	    	    this.treecomp.getTree();
 	        });
@@ -364,8 +371,15 @@ export class WorkspaceComponent implements AfterViewInit {
    * Downloads the currently opened file to the user's machine
    */
   
-  downloadFile(name: any) {
-    var blob = new Blob([this.text], { type: 'text/file' });
+  downloadFile(data: any) {
+    var name = data["name"];
+    var path = data["path"];
+    var txt: string;
+    this.fileser.getFile(name,path).subscribe(result=>{
+      txt=result.lines;
+    });
+    if(txt=="undefined") txt=""
+    var blob = new Blob([txt], { type: 'text/file' });
     var url = window.URL.createObjectURL(blob);
     fileSaver(blob,name);
     window.open(url);
@@ -379,6 +393,7 @@ export class WorkspaceComponent implements AfterViewInit {
       }
       else{
       this.fileser.addFolder(this.newFolder+'/'+this.newName).subscribe(result => {
+        if(result["status"]=="already exists!") confirm("this folder already exists!")
         this.folderModal = !this.folderModal;
         this.treecomp.getTree();
         this.showmodal = false;
