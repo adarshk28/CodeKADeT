@@ -9,7 +9,7 @@
 
 	<br>
 	<br>
-           <try-component id='treecomp' #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)">  </try-component>
+           <try-component id='treecomp' #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)" (downloadEvent)="downloadFile($event)">  </try-component>
             
         </div>
         <div class='grid-item'>
@@ -24,8 +24,6 @@
         <form [formGroup]='RunForm'>
                 <div style="width: 30%; float: left; position: relative; top: -100%">
                     <button mat-raised-button (click)="changeTheme()">Change Editor Theme</button>
-
-                        <button mat-raised-button (click)='downLoadFile()' style="margin:20px;">Download</button> 
                     <div id="interface">
                         <label for='input'>User input:</label><br>
                         <textarea formControlName='Input' id="input" cols="30" rows="12"></textarea>
@@ -45,8 +43,8 @@
         </div>
         
         <div *ngIf='showmodal' class=modal>
-            <button (click)='empty()' [ngClass]="{'yellow': showwhat, 'white': !showwhat}"class='choicebutton1'>Make Empty File</button>
-            <button (click)='comp()' [ngClass]="{'white': showwhat, 'yellow': !showwhat}" class='choicebutton2'>Upload From Computer</button>
+            <button (click)='empty()' [ngClass]="{'white': showwhat, 'yellow': !showwhat}"class='choicebutton1'>Make Empty File</button>
+            <button (click)='comp()' [ngClass]="{'yellow': showwhat, 'white': !showwhat}" class='choicebutton2'>Upload From Computer</button>
             <div *ngIf='showwhat; else other'>
                <form [formGroup]='FileForm' (ngSubmit)='makeEmptyFile()' class='form'>  
                 <label for='file_name'>File Name: </label><br>

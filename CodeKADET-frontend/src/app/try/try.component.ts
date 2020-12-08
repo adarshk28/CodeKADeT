@@ -264,7 +264,7 @@ export class TryComponent implements OnInit{
       if (confirm("Are you sure you want to PERMANENTLY DELETE "+this.RenameForm.get('old_name').value + '?')) {
     this.deleteEvent.emit({"name":this.RenameForm.get('old_name').value,"path":this.RenameForm.get('path').value});
     this.fileService.deleteFile(this.RenameForm.value).subscribe(result => {
-      this.showRightMenu = false
+      this.showRightMenu = false;
       this.getTree()
     })
       }
@@ -297,4 +297,16 @@ export class TryComponent implements OnInit{
     this.closeRight();
     this.uploadFolderEvent.emit({"name": this.RenameForm.get('old_name').value, "path": this.RenameForm.get('path').value});
   }
+
+
+  @Output() downloadEvent = new EventEmitter<any>();
+
+  /**
+   * Emits the event when called to download a file
+   */
+  download_call(){
+    this.downloadEvent.emit(this.RenameForm.get('old_name').value);
+  }
+
+
 }
