@@ -233,7 +233,7 @@ export class TryComponent implements OnInit{
     if (confirm("Are you sure you want to RENAME "+this.RenameForm.get('old_name').value+" to "+this.RenameForm.get('new_name').value+'?')) {
 	    this.fileService.renameFile(this.RenameForm.value).subscribe(result => {
 	      this.renameModal = !this.renameModal;
-	      this.showRightMenu = !this.showRightMenu;
+	      this.showRightMenu = false;
 	      this.getTree();
 	    });
     }
@@ -273,7 +273,7 @@ export class TryComponent implements OnInit{
       if (confirm("Are you sure you want to PERMANENTLY DELETE "+this.RenameForm.get('old_name').value + '?')) {
     this.deleteEvent.emit({"name":this.RenameForm.get('old_name').value,"path":this.RenameForm.get('path').value});
     this.fileService.deleteFile(this.RenameForm.value).subscribe(result => {
-      this.showRightMenu = !this.showRightMenu
+      this.showRightMenu = false
       this.getTree()
     })
       }
