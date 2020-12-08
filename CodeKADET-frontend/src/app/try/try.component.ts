@@ -77,6 +77,15 @@ export class TryComponent implements OnInit{
   }
 
   /**
+   * The X-coordinate of the point where the user clicks. Needed to set the position of the options menu.
+   */
+  contextx: any;
+
+  /**
+   * The Y-coordinate of the point where the user clicks. Needed to set the position of the options menu.
+   */
+  contexty: any;
+  /**
    * A list of  JSON objects containing the tree structure passed from the backend
    */
   files =[];
@@ -233,9 +242,9 @@ export class TryComponent implements OnInit{
     console.log(event);
     this.RenameForm.get('old_name').setValue(name);
     this.RenameForm.get('path').setValue(path);
-    let contextx=event.clientX;
-    let contexty=event.clientY;
-    console.log(contextx, contexty);
+    this.contextx=event.clientX;
+    this.contexty=event.clientY;
+    console.log(this.contextx, this.contexty);
     this.showRightMenu = !this.showRightMenu;
     if(type=="folder"){
       this.isFolder = true;
