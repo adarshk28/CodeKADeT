@@ -136,7 +136,8 @@ def exec_from_textbox(request):
         mode=0
         args=[]
         exe=""
-        exename=''
+        exename=""
+        delfile = ""
         input=data.get('Input')
         language=data.get('Language')
         print('Language is:', language)
@@ -144,6 +145,7 @@ def exec_from_textbox(request):
             mode=2
             args=["g++", filename]
             exe="./a.out"
+            delfile = "a.out"
         elif language == "py": 
             mode=1
             args=['python3', filename]
@@ -152,6 +154,7 @@ def exec_from_textbox(request):
             print("Filename is: ",filename)
             args=['javac', filename]
             exe=['java', os.path.splitext(filename)[0]]
+            delfile = filename.split('.')[0]+'.class'
         if(mode==0):
             return JsonResponse({'out':"invalid language"})
         if(mode==1):
@@ -164,6 +167,7 @@ def exec_from_textbox(request):
                 return JsonResponse({'status':'1', 'out':'compilation failed\n'+comp.stderr.decode('utf-8').replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
             result=subprocess.Popen(exe, cwd= os.readlink(request.user.symlink)+path+'/', stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             ans = result.communicate(input=input.encode())[0].decode('utf-8')
+            os.remove(os.readlink(request.user.symlink)+path+'/'+delfile)
         return JsonResponse({"out": ans.replace('/home/danish/Videos/CodeKADeT/CodeKADeT/CodeKADeT/media/personal_file/', '')})
 
 
