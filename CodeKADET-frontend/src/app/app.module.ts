@@ -25,7 +25,6 @@ import { IvyCarouselModule } from 'angular-responsive-carousel'
 import { TryComponent } from './try/try.component';
 import {MatIconModule} from '@angular/material/icon';
 import { JwtModule } from '@auth0/angular-jwt';
-import { ContextMenuModule } from 'ngx-contextmenu'
 @NgModule({
   declarations: [
     AppComponent,

@@ -2,8 +2,11 @@
         <button mat-raised-button color='warn' type="submit" (click)='onLogout()' style="position: absolute; right: 4%; top: 0.5%">Logout</button>
         <div class="grid-container">
         <div class='grid-item' id='sidebar'>
-        <button mat-raised-button  (click)='closeModal(true)'> Create New File</button>
+            <div class='left-buttons'>
+        <button mat-raised-button style="margin-left: 5px;"  (click)='closeModal(true)'> Create New File</button>
         <button mat-raised-button  (click)='closeFolderModal(true)'> Create New Project</button>
+    </div>
+
 	<br>
 	<br>
         <div style="color: white; position: absolute; right: 88%; top: 2.4%; font-size: 17px;">Hi, {{user}}!</div>
@@ -25,11 +28,11 @@
                     <button mat-raised-button (click)="changeTheme()">Change Editor Theme</button>
                     <div id="interface">
                         <label for='input'>User input:</label><br>
-                        <textarea formControlName='Input' id="input" cols="30" rows="13"></textarea>
+                        <textarea formControlName='Input' id="input" cols="30" rows="12"></textarea>
                     </div>
                     <div id="interface">
                         <label for='output'>User output:</label><br>
-                        <textarea formControlName='Output' id="output" cols="30" rows="13" readonly></textarea>
+                        <textarea formControlName='Output' id="output" cols="30" rows="12" readonly></textarea>
                 </div>
                 <div class='buttons'>
                         <button mat-raised-button type="save" (click)='onSave()'>Save</button>
@@ -58,6 +61,7 @@
                 <label for='file_name'>File Name: </label><br>
                 <input required type="text" id='file_name'formControlName='file_name'><br>
                    </form>
+                   <br>
                     <input required type="file" id='file' (change)='setFile($event.target.files)'> 
                     <br>
                 <button mat-raised-button type='submit' [disabled]='!FileForm.valid' (click)='handleFileInput()'>Create</button>

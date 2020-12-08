@@ -67,7 +67,7 @@
                 "output": "/"
               },
               {
-                "glob": "theme-cloud.js",
+                "glob": "theme-clouds.js",
                 "input": "./node_modules/ace-builds/src-min/",
                 "output": "/"
               }

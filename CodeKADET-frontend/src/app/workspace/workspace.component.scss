@@ -28,8 +28,8 @@ try-component{
 
 #sidebar {
   height: fit-content;
-  text-align: center;
-  margin-top: 29%;
+  margin-top: 35%;
+  // text-align: center;
 
 }
 #interface1{
@@ -92,7 +92,7 @@ try-component{
 
 }
 .buttons{
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: 20%;
 }
 .form{
@@ -105,7 +105,7 @@ try-component{
   width: fit-content;
   display: inline-block;
   position: absolute;
-  left: 3%;
+  left: 1%;
   margin-top: auto;
   button{
     margin: 5px;
@@ -136,4 +136,8 @@ try-component{
     width: 300px;
     color: white;
     border-radius: 5px;
+
+}
+#interface{
+  margin-top: 10px;
 }
