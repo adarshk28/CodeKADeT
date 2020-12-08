@@ -9,7 +9,6 @@
 
 	<br>
 	<br>
-        <div style="color: white; position: absolute; right: 87%; font-size: smaller;">{{user}}</div>
            <try-component id='treecomp' #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)">  </try-component>
             
         </div>

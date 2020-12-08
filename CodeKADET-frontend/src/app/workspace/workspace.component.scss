@@ -15,7 +15,7 @@ button {
   color: black;
 }
 try-component{
-    position: relative;
+    position: absolute;
     left: -40px;
 }
 .grid-container {
@@ -27,6 +27,7 @@ try-component{
 #sidebar {
   height: fit-content;
   margin-top: 35%;
+  
   // text-align: center;
 
 }

@@ -5,13 +5,13 @@
   </div>
   <mat-tree *ngIf="loaded" [dataSource]="dataSource" [treeControl]="treeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="10" >
-      <div class='part' >
+      <div class='part'  style="height: 20px">
       <button mat-icon-button disabled style="font-size:18px"(contextmenu)='togglecontextmenu($event, node)'></button>
     <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'" style="font-size:18px">
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
       <button mat-button (click)="sendFilename(node.name, node.path, node.type)" style="font-size:12px">{{node.name}}</button>
-      <button mat-button (click)="showRight(node.name, node.path, node.type)" style="font-size:12px"><mat-icon>more_vert</mat-icon></button>
+      <button mat-button (click)="showRight(node.name, node.path, node.type, $event)" style="font-size:12px"><mat-icon>more_vert</mat-icon></button>
       <br>
       <mat-divider></mat-divider>
     </div>
@@ -31,7 +31,7 @@
       {{ node.type ==='file' ? 'description' : 'folder' }}
     </mat-icon>
    <button mat-button (click)="sendFilename(node.name, node.path, node.type)" style="font-size:12px">{{node.name}}</button>
-    <button mat-button (click)="showRight(node.name, node.path, node.type)" style="font-size:12px"><mat-icon>more_vert</mat-icon></button>
+    <button mat-button (click)="showRight(node.name, node.path, node.type, $event)" style="font-size:12px"><mat-icon>more_vert</mat-icon></button>
     <mat-divider></mat-divider>
   </div>
 
@@ -40,7 +40,7 @@
 </body>
 
  
-<div *ngIf='showRightMenu' class='modal1'>
+<div *ngIf='showRightMenu' class='modal1' [ngStyle]="{'left.px': contextx+30, 'top.px': contexty-200}">
     <button mat-button (click)='rename_modal()'>Rename</button> <br>
     <button mat-button (click)='file_delete()'>Delete</button>  <br> 
     <button mat-button *ngIf='isFolder' (click)='add_file()'>Add New File</button> <br>
@@ -48,7 +48,7 @@
    <button mat-raised-button color='warn' (click)="closeRight()">Close</button>
 </div>
 
-<div *ngIf='renameModal' class='modal2'[ngStyle]="{'left':contextx}" [ngStyle]="{'right':contexty}" [ngStyle]="{'position': 'absolute'}">
+<div *ngIf='renameModal' class='modal2'>
     <form [formGroup]='RenameForm' (ngSubmit)='file_rename()'>  
         Enter new name<input type="text" required formControlName='new_name'><br>
         <input type='submit' value='Save'>

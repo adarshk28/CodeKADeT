@@ -127,19 +127,6 @@ export class TryComponent implements OnInit{
     this.getTree();
   }
 
-  togglecontextmenu(event, node){
-    if(!this.contextmenu){
-      this.contextmenu=true;
-      this.contextx=event.clientX;
-      this.contexty=event.clientY;
-      console.log(this.contextmenu, event);
-      this.showRight(node.name, node.path, node.type);
-    }
-    else{
-      this.contextmenu=false;
-    }
-    return false;
-  }
 
   /** 
    * Gets the file tree from the backend as a nested JSON object using treeService and stores it in the  tree format needed for display
@@ -247,9 +234,13 @@ export class TryComponent implements OnInit{
    * 
    * Sets the name and path of the chosen file in RenameForm
    */
-  showRight(name: string,path: string, type: string){
+  showRight(name: string,path: string, type: string, event: any){
+    console.log(event);
     this.RenameForm.get('old_name').setValue(name);
     this.RenameForm.get('path').setValue(path);
+    this.contextx=event.clientX;
+    this.contexty=event.clientY;
+    console.log(this.contextx, this.contexty);
     this.showRightMenu = !this.showRightMenu;
     if(type=="folder"){
       this.isFolder = true;

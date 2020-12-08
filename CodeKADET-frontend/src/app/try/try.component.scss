@@ -3,7 +3,7 @@
   margin-right: 5px;
 }
 body{
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   width: 300px;
   height: 635px;
@@ -51,18 +51,20 @@ mat-tree-node{
 }
 
 .modal1{
-  z-index: 100;
+
+  z-index: 1;
   position: absolute;
   padding: 10px;
-  top: 30%;
-  left: 10%;
   margin: auto;
   background-color: #444444;
   color: white;
   border-radius: 10px;
+  left: 0px;
+  top: 0px;
 }
+
 .modal2{
-  z-index: 100;
+  z-index: 1;
   position: absolute;
   padding: 10px;
   top: 30%;
