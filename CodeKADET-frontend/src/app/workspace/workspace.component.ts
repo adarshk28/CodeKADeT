@@ -365,6 +365,7 @@ export class WorkspaceComponent implements AfterViewInit {
     this.RunForm.get('Output').setValue('')
     this.fileser.runFromTextbox(this.RunForm.value).subscribe(result=>{
       this.RunForm.get('Output').setValue(result["out"]);
+      this.treecomp.getTree();
     })
   }
     
@@ -377,12 +378,11 @@ export class WorkspaceComponent implements AfterViewInit {
     var txt: string;
     this.fileser.getFile(name,path).subscribe(result=>{
       txt=result.lines;
+      var blob = new Blob([txt], { type: 'text/file' });
+      var url = window.URL.createObjectURL(blob);
+      fileSaver(blob,name);
+      window.open(url);
     });
-    if(txt=="undefined") txt=""
-    var blob = new Blob([txt], { type: 'text/file' });
-    var url = window.URL.createObjectURL(blob);
-    fileSaver(blob,name);
-    window.open(url);
   }
 
   /**

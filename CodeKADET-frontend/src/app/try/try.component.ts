@@ -155,7 +155,10 @@ export class TryComponent implements OnInit{
    * Transform the data from the JSON object to something the frontend file tree can read. 
    */
   transformer = (node: FileNode, level: number) => {
-    if(node.type=='file') this.fileno+=1;
+    if(node.type=='file') {
+      let ext = node.name.split('.').pop();
+      if (ext=='c' || ext=='cpp' || ext=='h' || ext=='py' || ext=='java') this.fileno+=1;
+    }
     return {
       name: node.name,
       type: node.type,
@@ -239,12 +242,11 @@ export class TryComponent implements OnInit{
    * Sets the name and path of the chosen file in RenameForm and opens the options menu when the options button is clicked
    */
   showRight(name: string,path: string, type: string, event: any){
-    console.log(event);
+
     this.RenameForm.get('old_name').setValue(name);
     this.RenameForm.get('path').setValue(path);
     this.contextx=event.clientX;
     this.contexty=event.clientY;
-    console.log(this.contextx, this.contexty);
     this.showRightMenu = !this.showRightMenu;
     if(type=="folder"){
       this.isFolder = true;
@@ -312,6 +314,6 @@ export class TryComponent implements OnInit{
    * Emits the event when called to download the chosen
    */
   download_call(){
-    this.downloadEvent.emit({"name":this.RenameForm.get('old_name').value,"path":this.RenameForm.get('path')});
+    this.downloadEvent.emit({"name":this.RenameForm.get('old_name').value,"path":this.RenameForm.get('path').value});
   }
 }

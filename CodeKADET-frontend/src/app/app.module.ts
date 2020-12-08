@@ -42,7 +42,6 @@ import { JwtModule } from '@auth0/angular-jwt';
       config: {
         tokenGetter: () => {
           let token: string = localStorage.getItem("access_token");
-          console.log("Sending token " + token);
           return localStorage.getItem("access_token");
         },
         allowedDomains: ["127.0.0.1:8000"],

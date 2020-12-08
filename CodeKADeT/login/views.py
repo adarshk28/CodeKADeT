@@ -33,13 +33,13 @@ abs_path = settings.MEDIA_ROOT+'personal_file/'
 @api_view(['POST'])
 @permission_classes([AllowAny, ])
 def signup(request):
-        """!
+    """!
         View for signing up the user by fetching username and confirmed password from Frontend
         
         @param request     Username,Password fetched from frontend homepage, type: string
     
         @return JSONResponse depending on status of request process"""
-   if request.method=="POST":
+    if request.method=="POST":
         data = json.loads(request.body)
         try:
             saveuser=User.objects.create_user(data.get('username'),password=data.get('password1'))
@@ -58,7 +58,7 @@ def signup(request):
 @api_view(['POST'])
 @permission_classes([AllowAny, ])
 def login(request):
-     """!
+    """!
         View for logging in the user by fetching username and password from Frontend
 
         @param request Username and Password fetched from frontend homepage, type: string

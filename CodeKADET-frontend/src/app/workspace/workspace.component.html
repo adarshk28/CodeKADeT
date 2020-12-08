@@ -20,7 +20,6 @@
             <div id="interface1" style="float: left;">
                 <ace-editor #editor [(text)]='text' [(theme)]='themes' [(mode)]='mode'></ace-editor>
             </div><br>
-        <!-- <button mat-raised-button color='primary' type="theme" (click)='theme()'>Change Theme</button> -->
         <form [formGroup]='RunForm'>
                 <div style="width: 30%; float: left; position: relative; top: -100%">
                     <button mat-raised-button (click)="changeTheme()">Change Editor Theme</button>

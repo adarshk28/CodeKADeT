@@ -209,7 +209,7 @@ def view_function(request):
         @param request.POST['name']         Name of the file to be viewed, type: string
 
         @return JsonResponse of file content (string), file name, language, else only name for a folder"""
-    if os.path.isfile(os.readlink(request.user.symlink)+request.GET['path']+'/'+request.GET['name']):
+    if os.path.isfile(os.readlink(request.user.symlink)+request.GET.get('path')+'/'+request.GET.get('name')):
         with open(os.readlink(request.user.symlink)+request.GET['path']+'/'+request.GET['name']) as f:
             lines=[line for line in f]
         return JsonResponse({'lines':''.join(lines),'name': request.GET['name'], 'language': request.GET['name'].split('.')[-1]})
