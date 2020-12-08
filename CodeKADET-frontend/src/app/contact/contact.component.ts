@@ -17,11 +17,17 @@ export class ContactComponent implements OnInit {
     this.value2='7380086948'
    }
 
+   /**
+    * Calls invokeParticles on initialization of page
+    */
    ngOnInit(): void {
     this.invokeParticles();
   }
 
-  public  invokeParticles(): void {
+  /**
+   * Function to call the particles.js functionality
+   */
+  public invokeParticles(): void {
     particlesJS('particles-js', ParticlesConfig, function() {});
   }
 

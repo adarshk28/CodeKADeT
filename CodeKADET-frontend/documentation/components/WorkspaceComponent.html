@@ -1,0 +1,2624 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>code-kadet-frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">code-kadet-frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>WorkspaceComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/workspace/workspace.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-workspace</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./workspace.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./workspace.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#DisplayForm">DisplayForm</a>
+                            </li>
+                            <li>
+                                <a href="#editor">editor</a>
+                            </li>
+                            <li>
+                                <a href="#FileForm">FileForm</a>
+                            </li>
+                            <li>
+                                <a href="#fileToUpload">fileToUpload</a>
+                            </li>
+                            <li>
+                                <a href="#folderModal">folderModal</a>
+                            </li>
+                            <li>
+                                <a href="#formalName">formalName</a>
+                            </li>
+                            <li>
+                                <a href="#mode">mode</a>
+                            </li>
+                            <li>
+                                <a href="#newFolder">newFolder</a>
+                            </li>
+                            <li>
+                                <a href="#newName">newName</a>
+                            </li>
+                            <li>
+                                <a href="#onSave">onSave</a>
+                            </li>
+                            <li>
+                                <a href="#RunForm">RunForm</a>
+                            </li>
+                            <li>
+                                <a href="#showmodal">showmodal</a>
+                            </li>
+                            <li>
+                                <a href="#showwhat">showwhat</a>
+                            </li>
+                            <li>
+                                <a href="#text">text</a>
+                            </li>
+                            <li>
+                                <a href="#themes">themes</a>
+                            </li>
+                            <li>
+                                <a href="#treecomp">treecomp</a>
+                            </li>
+                            <li>
+                                <a href="#user">user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addNewFolder">addNewFolder</a>
+                            </li>
+                            <li>
+                                <a href="#closeFolderModal">closeFolderModal</a>
+                            </li>
+                            <li>
+                                <a href="#closeModal">closeModal</a>
+                            </li>
+                            <li>
+                                <a href="#closeModals">closeModals</a>
+                            </li>
+                            <li>
+                                <a href="#comp">comp</a>
+                            </li>
+                            <li>
+                                <a href="#deleteText">deleteText</a>
+                            </li>
+                            <li>
+                                <a href="#downLoadFile">downLoadFile</a>
+                            </li>
+                            <li>
+                                <a href="#empty">empty</a>
+                            </li>
+                            <li>
+                                <a href="#folderModalview">folderModalview</a>
+                            </li>
+                            <li>
+                                <a href="#getFile">getFile</a>
+                            </li>
+                            <li>
+                                <a href="#handleFileInput">handleFileInput</a>
+                            </li>
+                            <li>
+                                <a href="#makeEmptyFile">makeEmptyFile</a>
+                            </li>
+                            <li>
+                                <a href="#modalview">modalview</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#onLogout">onLogout</a>
+                            </li>
+                            <li>
+                                <a href="#run">run</a>
+                            </li>
+                            <li>
+                                <a href="#setFile">setFile</a>
+                            </li>
+                            <li>
+                                <a href="#theme">theme</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fileser: <a href="../injectables/FileService.html">FileService</a>, logser: <a href="../injectables/LoginService.html">LoginService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/workspace/workspace.component.ts:98</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fileser</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FileService.html" target="_self" >FileService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>A FileService object to allow interaction with file_upload in the backend </p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>logser</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LoginService.html" target="_self" >LoginService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>A LoginService object to allow interaction with login in the backend</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>A Router object to enable redirection to homepage on logout</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addNewFolder"></a>
+                    <span class="name">
+                        <b>
+                            addNewFolder
+                        </b>
+                        <a href="#addNewFolder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addNewFolder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="344"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:344</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adds the new folder to the user&#39;s file tree and closes the folder modal</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeFolderModal"></a>
+                    <span class="name">
+                        <b>
+                            closeFolderModal
+                        </b>
+                        <a href="#closeFolderModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeFolderModal(isInEmpty: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:174</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>isInEmpty</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>True if the folder to be created is in the base directory of the user, else false</p>
+<p>Sets the newFolder variable accordingly.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeModal"></a>
+                    <span class="name">
+                        <b>
+                            closeModal
+                        </b>
+                        <a href="#closeModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeModal(isInEmpty: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:164</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>isInEmpty</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>True if the file to be created is in the base directory of the user, else false</p>
+<p>Sets the path variable in FileForm accordingly.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeModals"></a>
+                    <span class="name">
+                        <b>
+                            closeModals
+                        </b>
+                        <a href="#closeModals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeModals(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:220</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The name and path of the file/folder clicked</p>
+<p>Closes all the modals</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="comp"></a>
+                    <span class="name">
+                        <b>
+                            comp
+                        </b>
+                        <a href="#comp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>comp()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="194"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:194</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets showwhat to true, thus displaying the file upload form</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteText"></a>
+                    <span class="name">
+                        <b>
+                            deleteText
+                        </b>
+                        <a href="#deleteText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteText(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="358"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:358</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A JSON object containing the name and path of the chosen file/folder</p>
+<p>Sets the text in the editor to denote that the current file was deleted</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downLoadFile"></a>
+                    <span class="name">
+                        <b>
+                            downLoadFile
+                        </b>
+                        <a href="#downLoadFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downLoadFile()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="334"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:334</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Downloads the currently opened file to the user&#39;s machine</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="empty"></a>
+                    <span class="name">
+                        <b>
+                            empty
+                        </b>
+                        <a href="#empty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>empty()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:187</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets showwhat to true, thus displaying the empty file creation form</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="folderModalview"></a>
+                    <span class="name">
+                        <b>
+                            folderModalview
+                        </b>
+                        <a href="#folderModalview"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>folderModalview(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:152</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A JSON object which contains the path and the name of the folder in which the new folder is to be created obtained from the file tree component. Sets the newFolder variable </p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFile"></a>
+                    <span class="name">
+                        <b>
+                            getFile
+                        </b>
+                        <a href="#getFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFile(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="305"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:305</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A JSON object containing the name and the path of the chosen file/folder passed from try.component.ts</p>
+<p>Displays the chosen file in the text editor. Displays &#39;Is a folder!&#39; if the chosen element is a folder.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleFileInput"></a>
+                    <span class="name">
+                        <b>
+                            handleFileInput
+                        </b>
+                        <a href="#handleFileInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleFileInput()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:250</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Passes the file uploaded from the computer to the backend for storage. Also displays the uploaded file in the editor</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeEmptyFile"></a>
+                    <span class="name">
+                        <b>
+                            makeEmptyFile
+                        </b>
+                        <a href="#makeEmptyFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>makeEmptyFile()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="282"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:282</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Passes the empty file to the backend for storage. Also opens the file in the editor</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modalview"></a>
+                    <span class="name">
+                        <b>
+                            modalview
+                        </b>
+                        <a href="#modalview"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>modalview(data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:136</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A JSON object which contains the path and the name of the folder in which the new file is to be created obtained from the file tree component. Sets the path variable in FileForm</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <b>
+                            ngAfterViewInit
+                        </b>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:115</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets up some of the editor features (like keybindings and basic autocompletion) when the workspace is initialized</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLogout"></a>
+                    <span class="name">
+                        <b>
+                            onLogout
+                        </b>
+                        <a href="#onLogout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLogout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="228"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:228</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Logs out the user. The granted access token is deleted, and the user is redirected to the homepage</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="run"></a>
+                    <span class="name">
+                        <b>
+                            run
+                        </b>
+                        <a href="#run"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>run()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="322"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:322</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sends the filename and the input to the backend for processing, and displays the output in the Output textbox</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setFile"></a>
+                    <span class="name">
+                        <b>
+                            setFile
+                        </b>
+                        <a href="#setFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setFile(files: FileList)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="243"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:243</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>files</td>
+                                    <td>
+                                            <code>FileList</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The file list from the form for uploading file from computer</p>
+<p>Sets the value of fileToUpload</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="theme"></a>
+                    <span class="name">
+                        <b>
+                            theme
+                        </b>
+                        <a href="#theme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>theme()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="201"
+                            class="link-to-prism">src/app/workspace/workspace.component.ts:201</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sets the theme of the editor</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="DisplayForm"></a>
+                        <span class="name">
+                            <b>
+                            DisplayForm</b>
+                            <a href="#DisplayForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormGroup({
+    name: new FormControl(&#x27;&#x27;),
+    path: new FormControl(&#x27;&#x27;),
+    content: new FormControl(&#x27;&#x27;)
+  })</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/workspace/workspace.component.ts:94</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Contains the values which set the display of the editor and its secondary features when a particular file/folder is selected/created</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editor"></a>
+                        <span class="name">
+                            <b>
+                            editor</b>
+                            <a href="#editor"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;editor&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/workspace/workspace.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Extracts the Ace editor component from the workspace     </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="FileForm"></a>
+                        <span class="name">
+                            <b>
+                            FileForm</b>
+                            <a href="#FileForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormGroup({
+    language: new FormControl(&#x27;&#x27;),
+    content: new FormControl(&#x27;&#x27;),
+    file_name: new FormControl(&#x27;&#x27;),
+    path: new FormControl(&#x27;&#x27;),
+  })</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/workspace/workspace.component.ts:84</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Contains data about the newly-created file, be it an empty file or a file uploaded from computer</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fileToUpload"></a>
+                        <span class="name">
+                            <b>
+                            fileToUpload</b>
+                            <a href="#fileToUpload"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>File</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/workspace/workspace.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Refers to the file uploaded from the computer</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="folderModal"></a>
+                        <span class="name">
+                            <b>
+                            folderModal</b>
+                            <a href="#folderModal"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/workspace/workspace.component.ts:146</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Determines whether the modal for folder creation is displayed or not</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formalName"></a>
+                        <span class="name">
+                            <b>
+                            formalName</b>
+                            <a href="#formalName"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+	  &#x27;c_cpp&#x27;: &#x27;C/C++&#x27;,
+	  &#x27;python&#x27;: &#x27;Python&#x27;,
+	  &#x27;java&#x27;: &#x27;Java&#x27;,
+	  &#x27;javascript&#x27;: &#x27;Unsupported&#x27;,
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/workspace/workspace.component.ts:58</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Helps convert the language field needed to set the mode of the Ace editor to the formal name of the language to be set above the editor</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mode"></a>
+                        <span class="name">
+                            <b>
+                            mode</b>
+                            <a href="#mode"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;javascript&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/workspace/workspace.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Contains the language in which the file is supposed to have been written </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="newFolder"></a>
+                        <span class="name">
+                            <b>
+                            newFolder</b>
+                            <a href="#newFolder"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/workspace/workspace.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Refers to the preceeding relative path of the folder in which the new folder is to be created</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="newName"></a>
+                        <span class="name">
+                            <b>
+                            newName</b>
+                            <a href="#newName"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/workspace/workspace.component.ts:48</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Refers to the name of the folder in which the new folder is to be created</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onSave"></a>
+                        <span class="name">
+                            <b>
+                            onSave</b>
+                            <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/app/workspace/workspace.component.ts:208</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Saves the file in the backend</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="RunForm"></a>
+                        <span class="name">
+                            <b>
+                            RunForm</b>
+                            <a href="#RunForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormGroup({
+    Filename: new FormControl(&#x27;&#x27;),
+    Language: new FormControl(&#x27;&#x27;),
+    Input: new FormControl(&#x27;&#x27;),
+    Output: new FormControl(&#x27;&#x27;),
+    path: new FormControl(&#x27;&#x27;)
+  })</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/workspace/workspace.component.ts:73</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>A form which stores the data needed to set the input and output when the code file is run</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showmodal"></a>
+                        <span class="name">
+                            <b>
+                            showmodal</b>
+                            <a href="#showmodal"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/workspace/workspace.component.ts:130</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Determines whether the modal for file creation is displayed or not</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showwhat"></a>
+                        <span class="name">
+                            <b>
+                            showwhat</b>
+                            <a href="#showwhat"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/app/workspace/workspace.component.ts:182</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The empty file creation form is shown if showwhat is set to true, else the file upload form is shown</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="text"></a>
+                        <span class="name">
+                            <b>
+                            text</b>
+                            <a href="#text"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string | ArrayBuffer</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/workspace/workspace.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Has 2-way binding with the text written in the editor</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="themes"></a>
+                        <span class="name">
+                            <b>
+                            themes</b>
+                            <a href="#themes"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;eclipse&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/workspace/workspace.component.ts:68</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Refers to the current color theme of the text editor</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="treecomp"></a>
+                        <span class="name">
+                            <b>
+                            treecomp</b>
+                            <a href="#treecomp"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;treecomp&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/workspace/workspace.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Extracts the file tree component from the workspace     </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="user"></a>
+                        <span class="name">
+                            <b>
+                            user</b>
+                            <a href="#user"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/workspace/workspace.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Refers to the currently logged in user</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild, AfterViewInit } from &#x27;@angular/core&#x27;;
+import { FormControl, FormGroup } from &#x27;@angular/forms&#x27;;
+import { FileService } from &#x27;../file.service&#x27;;
+import { LoginService } from &#x27;../login.service&#x27;;
+import {  Router } from &#x27;@angular/router&#x27;;
+import * as fileSaver from &#x27;file-saver&#x27;
+
+@Component({
+  selector: &#x27;app-workspace&#x27;,
+  templateUrl: &#x27;./workspace.component.html&#x27;,
+  styleUrls: [&#x27;./workspace.component.scss&#x27;]
+})
+
+export class WorkspaceComponent implements AfterViewInit {
+  /**
+  * Extracts the Ace editor component from the workspace     
+  */
+  @ViewChild(&#x27;editor&#x27;) editor;
+  
+  /**
+  * Extracts the file tree component from the workspace     
+  */
+  @ViewChild(&#x27;treecomp&#x27;) treecomp;
+
+  /**
+   * Has 2-way binding with the text written in the editor
+   */
+  text: string | ArrayBuffer &#x3D; &#x27;&#x27;;
+
+  /**
+   * Contains the language in which the file is supposed to have been written 
+   */
+  mode: string &#x3D; &#x27;javascript&#x27;;
+
+  /** 
+   * Refers to the file uploaded from the computer
+   */
+  fileToUpload: File &#x3D; null;
+
+  /**
+   * Refers to the preceeding relative path of the folder in which the new folder is to be created
+   */
+  newFolder: string;
+
+  /**
+   * Refers to the name of the folder in which the new folder is to be created
+   */
+  newName: string;
+
+  /** 
+   * Refers to the currently logged in user
+   */
+  user: string;
+
+  /**
+   * Helps convert the language field needed to set the mode of the Ace editor to the formal name of the language to be set above the editor
+   */
+  formalName &#x3D; {
+	  &#x27;c_cpp&#x27;: &#x27;C/C++&#x27;,
+	  &#x27;python&#x27;: &#x27;Python&#x27;,
+	  &#x27;java&#x27;: &#x27;Java&#x27;,
+	  &#x27;javascript&#x27;: &#x27;Unsupported&#x27;,
+  };
+
+  /**
+   * Refers to the current color theme of the text editor
+   */
+  themes&#x3D;&#x27;eclipse&#x27;
+
+  /**
+   * A form which stores the data needed to set the input and output when the code file is run
+   */
+  RunForm&#x3D; new FormGroup({
+    Filename: new FormControl(&#x27;&#x27;),
+    Language: new FormControl(&#x27;&#x27;),
+    Input: new FormControl(&#x27;&#x27;),
+    Output: new FormControl(&#x27;&#x27;),
+    path: new FormControl(&#x27;&#x27;)
+  });
+
+  /**
+   * Contains data about the newly-created file, be it an empty file or a file uploaded from computer
+   */
+  FileForm &#x3D; new FormGroup({
+    language: new FormControl(&#x27;&#x27;),
+    content: new FormControl(&#x27;&#x27;),
+    file_name: new FormControl(&#x27;&#x27;),
+    path: new FormControl(&#x27;&#x27;),
+  })
+
+  /**
+     * Contains the values which set the display of the editor and its secondary features when a particular file/folder is selected/created
+     */
+  DisplayForm &#x3D; new FormGroup({
+    name: new FormControl(&#x27;&#x27;),
+    path: new FormControl(&#x27;&#x27;),
+    content: new FormControl(&#x27;&#x27;)
+  })
+
+  /**
+   * 
+   * @param fileser A FileService object to allow interaction with file_upload in the backend 
+   * @param logser A LoginService object to allow interaction with login in the backend
+   * @param router A Router object to enable redirection to homepage on logout
+   */
+  constructor(private fileser:FileService, private logser: LoginService, private router: Router) { 
+    this.logser.getUser().subscribe(result &#x3D;&gt; {
+      this.user &#x3D; result[&quot;user&quot;]
+    });
+  }
+
+  /**
+   * Sets up some of the editor features (like keybindings and basic autocompletion) when the workspace is initialized
+   */
+  ngAfterViewInit() {
+    this.editor.getEditor().setOptions({
+      enableBasicAutocompletion: true,
+      enableLiveAutocompletion: true
+    });
+    this.editor.getEditor().commands.addCommand({
+      name: &#x27;save&#x27;,
+      bindKey: {win: &quot;Ctrl-S&quot;, mac: &quot;Cmd-S&quot;},
+      exec: this.onSave
+    })
+  }
+
+  /**
+   * Determines whether the modal for file creation is displayed or not
+   */
+  showmodal&#x3D;false;
+
+  /**
+   * 
+   * @param data A JSON object which contains the path and the name of the folder in which the new file is to be created obtained from the file tree component. Sets the path variable in FileForm
+   */
+  modalview(data: any){
+    var path &#x3D; data[&quot;path&quot;] +&#x27;/&#x27;+ data[&quot;name&quot;];
+    this.FileForm.get(&quot;path&quot;).setValue(path);
+    if(this.folderModal) this.folderModal&#x3D;false
+    this.showmodal&#x3D;!this.showmodal;
+  }
+
+  /**
+   * Determines whether the modal for folder creation is displayed or not
+   */
+  folderModal &#x3D; false;
+
+  /**
+   * 
+   * @param data A JSON object which contains the path and the name of the folder in which the new folder is to be created obtained from the file tree component. Sets the newFolder variable 
+   */
+  folderModalview(data: any){
+    var path &#x3D; data[&quot;path&quot;] +&#x27;/&#x27;+ data[&quot;name&quot;];
+    this.newFolder &#x3D; path;
+    if(this.showmodal) this.showmodal&#x3D;false
+    this.folderModal &#x3D; !this.folderModal;
+  }
+
+  /**
+   * @param isInEmpty True if the file to be created is in the base directory of the user, else false
+   * 
+   *Sets the path variable in FileForm accordingly.
+   */
+  closeModal(isInEmpty: boolean){
+	  if (isInEmpty) this.FileForm.get(&#x27;path&#x27;).setValue(&#x27;.&#x27;);
+    this.showmodal &#x3D; !this.showmodal;
+  }
+
+  /**
+   * @param isInEmpty True if the folder to be created is in the base directory of the user, else false
+   * 
+   *Sets the newFolder variable accordingly.
+   */
+  closeFolderModal(isInEmpty: boolean){
+	  if (isInEmpty) this.newFolder&#x3D;&#x27;.&#x27;;
+    this.folderModal &#x3D; !this.folderModal;
+  }
+
+  /**
+   * The empty file creation form is shown if showwhat is set to true, else the file upload form is shown
+   */
+  showwhat&#x3D;true;
+
+  /**
+   * Sets showwhat to true, thus displaying the empty file creation form
+   */
+  empty(){
+    this.showwhat&#x3D;true;
+  }
+
+  /**
+   * Sets showwhat to true, thus displaying the file upload form
+   */
+  comp(){
+    this.showwhat&#x3D;false;
+  }
+
+  /**
+   * Sets the theme of the editor
+   */
+  theme(){
+    this.themes&#x3D;&#x27;monokai&#x27;
+  }
+
+  /**
+   *  Saves the file in the backend
+   */
+  onSave &#x3D; () &#x3D;&gt; {
+	  this.DisplayForm.get(&#x27;content&#x27;).setValue(this.text);
+    if (this.DisplayForm.get(&#x27;path&#x27;).value &#x3D;&#x3D; &#x27;&#x27;) this.DisplayForm.get(&#x27;path&#x27;).setValue(&#x27;.&#x27;);
+	  this.fileser.editFromTextBox(this.DisplayForm.value).subscribe(result &#x3D;&gt; this.treecomp.getTree());
+  }
+
+  /**
+   * 
+   * @param data The name and path of the file/folder clicked
+   * 
+   * Closes all the modals
+   */
+  closeModals(data: any){
+    this.folderModal &#x3D; false;
+    this.showmodal &#x3D; false;
+  }
+
+  /**
+   * Logs out the user. The granted access token is deleted, and the user is redirected to the homepage
+   */
+  onLogout(): void {
+    this.logser.logout().subscribe(
+      _ &#x3D;&gt; {
+        localStorage.removeItem(&#x27;access_token&#x27;);
+        this.router.navigate([&#x27;/homepage/&#x27;]);
+      }
+    );
+  }
+
+  /**
+   * 
+   * @param files The file list from the form for uploading file from computer
+   * 
+   * Sets the value of fileToUpload
+   */
+  setFile(files: FileList) {
+      this.fileToUpload &#x3D; files.item(0);
+  }
+
+  /**
+   * Passes the file uploaded from the computer to the backend for storage. Also displays the uploaded file in the editor
+   */
+  handleFileInput() {
+    this.mode &#x3D; this.fileToUpload.name.split(&#x27;.&#x27;).pop();
+    let fr &#x3D; new FileReader();
+      fr.onload &#x3D; (e) &#x3D;&gt; {
+	    this.text &#x3D; fr.result;
+    }
+    fr.readAsText(this.fileToUpload);
+    this.FileForm.get(&#x27;content&#x27;).setValue(this.fileToUpload);
+    this.FileForm.get(&#x27;language&#x27;).setValue(this.FileForm.get(&#x27;file_name&#x27;).value.split(&#x27;.&#x27;).pop())
+    const formData &#x3D; new FormData();
+    if (this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;cpp&#x27; || this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;h&#x27; || this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;c&#x27;) this.mode &#x3D; &#x27;c_cpp&#x27;;
+	  else if (this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;py&#x27;) this.mode &#x3D; &#x27;python&#x27;;
+    else if (this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;java&#x27;) this.mode &#x3D; &#x27;java&#x27;;
+    else this.mode&#x3D;&#x27;javascript&#x27;
+    formData.append(&#x27;path&#x27;, this.FileForm.get(&#x27;path&#x27;).value)
+    formData.append(&#x27;file_name&#x27;, this.FileForm.get(&#x27;file_name&#x27;).value)
+    formData.append(&#x27;language&#x27;, this.FileForm.get(&#x27;language&#x27;).value)
+    formData.append(&#x27;content&#x27;, this.FileForm.get(&#x27;content&#x27;).value)
+    this.DisplayForm.get(&#x27;path&#x27;).setValue(this.FileForm.get(&#x27;path&#x27;).value);
+    this.DisplayForm.get(&#x27;name&#x27;).setValue(this.FileForm.get(&#x27;file_name&#x27;).value)
+    this.DisplayForm.get(&#x27;content&#x27;).setValue(this.FileForm.get(&#x27;content&#x27;).value)
+    return this.fileser.postFile(formData).subscribe(
+	    result&#x3D;&gt; {
+	        this.showmodal&#x3D;!this.showmodal;
+        this.treecomp.getTree();
+        this.folderModal &#x3D; false;
+	    });
+  }
+
+  /**
+   * Passes the empty file to the backend for storage. Also opens the file in the editor
+   */
+  makeEmptyFile(): void {
+	  this.FileForm.get(&#x27;language&#x27;).setValue(this.FileForm.get(&#x27;file_name&#x27;).value.split(&#x27;.&#x27;).pop());
+	  this.FileForm.get(&#x27;content&#x27;).setValue(null);
+    if (this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;cpp&#x27; || this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;h&#x27; || this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;c&#x27;) this.mode &#x3D; &#x27;c_cpp&#x27;;
+	  else if (this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;py&#x27;) this.mode &#x3D; &#x27;python&#x27;;
+    else if (this.FileForm.get(&#x27;language&#x27;).value &#x3D;&#x3D; &#x27;java&#x27;) this.mode &#x3D; &#x27;java&#x27;;
+    else this.mode&#x3D;&#x27;javascript&#x27;;
+	  this.DisplayForm.get(&#x27;path&#x27;).setValue(this.FileForm.get(&#x27;path&#x27;).value);
+	  this.DisplayForm.get(&#x27;content&#x27;).setValue(&#x27;&#x27;);
+	  this.DisplayForm.get(&#x27;name&#x27;).setValue(this.FileForm.get(&#x27;file_name&#x27;).value);
+	  this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
+	    result &#x3D;&gt; {
+		    this.showmodal&#x3D;!this.showmodal;
+		    this.treecomp.getTree();
+	    });
+  }
+
+  /**
+   * 
+   * @param data A JSON object containing the name and the path of the chosen file/folder passed from try.component.ts
+   * 
+   * Displays the chosen file in the text editor. Displays &#x27;Is a folder!&#x27; if the chosen element is a folder.
+   */
+  getFile(data: any){
+    var name &#x3D; data[&quot;name&quot;];
+    var path &#x3D; data[&quot;path&quot;];
+    this.DisplayForm.get(&quot;name&quot;).setValue(name);
+    this.DisplayForm.get(&quot;path&quot;).setValue(path);
+    this.fileser.getFile(name,path).subscribe(result&#x3D;&gt;{
+      this.text&#x3D;result.lines;
+      if (name.split(&#x27;.&#x27;).pop() &#x3D;&#x3D; &#x27;cpp&#x27; || name.split(&#x27;.&#x27;).pop() &#x3D;&#x3D; &#x27;c&#x27; || name.split(&#x27;.&#x27;).pop() &#x3D;&#x3D; &#x27;h&#x27;) this.mode &#x3D; &#x27;c_cpp&#x27;;
+	    else if (name.split(&#x27;.&#x27;).pop() &#x3D;&#x3D; &#x27;py&#x27;) this.mode &#x3D; &#x27;python&#x27;;
+	    else if (name.split(&#x27;.&#x27;).pop() &#x3D;&#x3D; &#x27;java&#x27;) this.mode &#x3D; &#x27;java&#x27;;
+	    else this.mode&#x3D;&#x27;javascript&#x27;;
+    });
+  }
+
+  /**
+   * Sends the filename and the input to the backend for processing, and displays the output in the Output textbox
+   */
+  run(){
+    this.RunForm.get(&#x27;Filename&#x27;).setValue(this.DisplayForm.get(&#x27;name&#x27;).value)
+    this.RunForm.get(&#x27;Language&#x27;).setValue(this.DisplayForm.get(&#x27;name&#x27;).value.split(&#x27;.&#x27;).pop())
+    this.RunForm.get(&#x27;path&#x27;).setValue(this.DisplayForm.get(&#x27;path&#x27;).value)
+    this.fileser.runFromTextbox(this.RunForm.value).subscribe(result&#x3D;&gt;{
+      this.RunForm.get(&#x27;Output&#x27;).setValue(result[&quot;out&quot;]);
+    })
+  }
+    
+  /**
+   * Downloads the currently opened file to the user&#x27;s machine
+   */
+  downLoadFile() {
+    var blob &#x3D; new Blob([this.text], { type: &#x27;text/file&#x27; });
+    var url &#x3D; window.URL.createObjectURL(blob);
+    fileSaver(blob,this.DisplayForm.get(&#x27;name&#x27;).value);
+    window.open(url);
+  }
+
+  /**
+   * Adds the new folder to the user&#x27;s file tree and closes the folder modal
+   */
+  addNewFolder(){
+    this.fileser.addFolder(this.newFolder+&#x27;/&#x27;+this.newName).subscribe(result &#x3D;&gt; {
+      this.folderModal &#x3D; !this.folderModal;
+      this.treecomp.getTree();
+      this.showmodal &#x3D; false;
+    })
+  }
+
+  /**
+   * 
+   * @param data A JSON object containing the name and path of the chosen file/folder
+   * 
+   * Sets the text in the editor to denote that the current file was deleted
+   */
+  deleteText(data: any){
+    if(this.DisplayForm.get(&quot;name&quot;).value&#x3D;&#x3D;data[&quot;name&quot;]){
+      if(this.DisplayForm.get(&quot;path&quot;).value&#x3D;&#x3D;data[&quot;path&quot;]){
+        this.text &#x3D; &quot;This file was deleted :( Please choose another file! Running this file may give errors!&quot;
+      }
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;body&gt;
+        &lt;button mat-raised-button color&#x3D;&#x27;accent&#x27; type&#x3D;&quot;submit&quot; (click)&#x3D;&#x27;onLogout()&#x27; style&#x3D;&quot;position: absolute; right: 4%; top: 0.5%&quot;&gt;Logout&lt;/button&gt;
+        &lt;div class&#x3D;&quot;grid-container&quot;&gt;
+        &lt;div class&#x3D;&#x27;grid-item&#x27; id&#x3D;&#x27;sidebar&#x27;&gt;
+        &lt;mat-icon class&#x3D;&quot;icon&quot; style&#x3D;&quot;font-size: 34px; color: white; position: absolute; right: 17%; top: 0%&quot; &gt;account_box&lt;/mat-icon&gt;
+        &lt;div style&#x3D;&quot;color: white; position: absolute; right: 17%; top: 4%&quot;&gt;{{user}}&lt;/div&gt;
+           &lt;try-component #treecomp (newItemEvent)&#x3D;&quot;getFile($event)&quot; (uploadFileEvent)&#x3D;&quot;modalview($event)&quot; (uploadFolderEvent)&#x3D;&quot;folderModalview($event)&quot; (deleteEvent)&#x3D;&quot;deleteText($event)&quot; (rightClose)&#x3D;&quot;closeModals($event)&quot;&gt;  &lt;/try-component&gt;
+
+        &lt;button mat-raised-button color&#x3D;&#x27;accent&#x27; (click)&#x3D;&#x27;closeModal(true)&#x27;&gt; Create New File&lt;/button&gt;
+        &lt;button mat-raised-button color&#x3D;&#x27;accent&#x27; (click)&#x3D;&#x27;closeFolderModal(true)&#x27;&gt; Create New Project&lt;/button&gt;
+            
+        &lt;/div&gt;
+        &lt;div class&#x3D;&#x27;grid-item&#x27;&gt;
+            &lt;h3&gt;
+            &lt;span&gt;File: {{ DisplayForm.get(&#x27;name&#x27;).value }}&lt;/span&gt;
+            &lt;span style&#x3D;&#x27;margin: 100px&#x27;&gt;Language: {{ formalName[mode] }}&lt;/span&gt;
+        &lt;/h3&gt;
+            &lt;div id&#x3D;&quot;interface1&quot; style&#x3D;&quot;float: left;&quot;&gt;
+                &lt;ace-editor #editor [(text)]&#x3D;&#x27;text&#x27; [(theme)]&#x3D;&#x27;themes&#x27; [(mode)]&#x3D;&#x27;mode&#x27;&gt;&lt;/ace-editor&gt;
+            &lt;/div&gt;&lt;br&gt;
+        &lt;!-- &lt;button mat-raised-button color&#x3D;&#x27;primary&#x27; type&#x3D;&quot;theme&quot; (click)&#x3D;&#x27;theme()&#x27;&gt;Change Theme&lt;/button&gt; --&gt;
+        &lt;form [formGroup]&#x3D;&#x27;RunForm&#x27;&gt;
+                &lt;div style&#x3D;&quot;width: 30%; float: left; position: relative; top: -100%&quot;&gt;
+                        &lt;button mat-raised-button color&#x3D;&#x27;primary&#x27; (click)&#x3D;&#x27;downLoadFile()&#x27; style&#x3D;&quot;margin-left:30%;&quot;&gt;Download&lt;/button&gt; 
+                    &lt;div id&#x3D;&quot;interface&quot;&gt;
+                        &lt;label for&#x3D;&#x27;input&#x27; style&#x3D;&quot;color: white;&quot;&gt;User input:&lt;/label&gt;&lt;br&gt;
+                        &lt;textarea formControlName&#x3D;&#x27;Input&#x27; id&#x3D;&quot;input&quot; cols&#x3D;&quot;40&quot; rows&#x3D;&quot;13&quot;&gt;&lt;/textarea&gt;
+                    &lt;/div&gt;
+                    &lt;div id&#x3D;&quot;interface&quot;&gt;
+                        &lt;label for&#x3D;&#x27;output&#x27; style&#x3D;&#x27;color: white&#x27;&gt;User output:&lt;/label&gt;&lt;br&gt;
+                        &lt;textarea formControlName&#x3D;&#x27;Output&#x27; id&#x3D;&quot;output&quot; cols&#x3D;&quot;40&quot; rows&#x3D;&quot;13&quot;&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&#x27;buttons&#x27;&gt;
+                        &lt;button mat-raised-button color&#x3D;&#x27;primary&#x27; type&#x3D;&quot;save&quot; (click)&#x3D;&#x27;onSave()&#x27;&gt;Save&lt;/button&gt;
+                        &lt;button mat-raised-button color&#x3D;&#x27;warn&#x27; type&#x3D;&quot;Run&quot; (click)&#x3D;&quot;run()&quot;&gt;Run&lt;/button&gt;
+                        &lt;/div&gt;
+           &lt;/div&gt;
+        &lt;/form&gt;
+        
+        &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div *ngIf&#x3D;&#x27;showmodal&#x27; class&#x3D;modal&gt;
+            &lt;button (click)&#x3D;&#x27;empty()&#x27; [ngClass]&#x3D;&quot;{&#x27;yellow&#x27;: showwhat, &#x27;white&#x27;: !showwhat}&quot;class&#x3D;&#x27;choicebutton&#x27;&gt;Make Empty File&lt;/button&gt;
+            &lt;button (click)&#x3D;&#x27;comp()&#x27; [ngClass]&#x3D;&quot;{&#x27;white&#x27;: showwhat, &#x27;yellow&#x27;: !showwhat}&quot; class&#x3D;&#x27;choicebutton&#x27;&gt;Upload From Computer&lt;/button&gt;
+            &lt;div *ngIf&#x3D;&#x27;showwhat; else other&#x27;&gt;
+               &lt;form [formGroup]&#x3D;&#x27;FileForm&#x27; (ngSubmit)&#x3D;&#x27;makeEmptyFile()&#x27; class&#x3D;&#x27;form&#x27;&gt;  
+                &lt;label for&#x3D;&#x27;file_name&#x27;&gt;File Name: &lt;/label&gt;&lt;br&gt;
+                &lt;input type&#x3D;&quot;text&quot; id&#x3D;&#x27;file_name&#x27;formControlName&#x3D;&#x27;file_name&#x27;&gt;&lt;br&gt;
+               &lt;/form&gt;
+                &lt;button mat-raised-button color&#x3D;&#x27;primary&#x27; type&#x3D;&#x27;submit&#x27; (click)&#x3D;&#x27;makeEmptyFile()&#x27;&gt;Create&lt;/button&gt;
+                &lt;button mat-raised-button color&#x3D;&#x27;primary&#x27; type&#x3D;&#x27;&#x27; (click)&#x3D;&#x27;closeModal(false)&#x27;&gt;Cancel&lt;/button&gt;
+        
+            &lt;/div&gt;
+            &lt;ng-template #other&gt;
+                &lt;form [formGroup]&#x3D;&#x27;FileForm&#x27; class&#x3D;&#x27;form&#x27;&gt;  
+                &lt;label for&#x3D;&#x27;file_name&#x27;&gt;File Name: &lt;/label&gt;&lt;br&gt;
+                &lt;input type&#x3D;&quot;text&quot; id&#x3D;&#x27;file_name&#x27;formControlName&#x3D;&#x27;file_name&#x27;&gt;&lt;br&gt;
+                   &lt;/form&gt;
+                    &lt;input type&#x3D;&quot;file&quot; id&#x3D;&#x27;file&#x27; (change)&#x3D;&#x27;setFile($event.target.files)&#x27;&gt; 
+                    &lt;br&gt;
+                &lt;button mat-raised-button color&#x3D;&#x27;primary&#x27; type&#x3D;&#x27;submit&#x27; (click)&#x3D;&#x27;handleFileInput()&#x27;&gt;Create&lt;/button&gt;
+                &lt;button mat-raised-button color&#x3D;&#x27;primary&#x27; type&#x3D;&#x27;&#x27; (click)&#x3D;&#x27;closeModal(false)&#x27;&gt;Cancel&lt;/button&gt;
+                &lt;/ng-template&gt;
+        &lt;/div&gt;
+
+ &lt;div *ngIf&#x3D;&#x27;folderModal&#x27; class&#x3D;modal&gt;
+  &lt;input type&#x3D;&quot;text&quot; id&#x3D;&#x27;file_name&#x27; [(ngModel)]&#x3D;&quot;newName&quot;&gt; Name &lt;br&gt;
+  &lt;button mat-raised-button color&#x3D;&#x27;primary&#x27; type&#x3D;&#x27;submit&#x27; (click)&#x3D;&#x27;addNewFolder()&#x27;&gt;Create&lt;/button&gt;
+    &lt;button mat-raised-button color&#x3D;&#x27;primary&#x27; type&#x3D;&#x27;&#x27; (click)&#x3D;&#x27;closeFolderModal(false)&#x27;&gt;Cancel&lt;/button&gt;
+
+ &lt;/div&gt;
+
+        &lt;/body&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./workspace.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">
+body {
+  font-family: Verdana, Roboto, Geneva, Tahoma, sans-serif;
+  background-color: #444444;
+}
+ace-editor {
+  // margin: 0 5%;
+  min-height: 700px;
+  overflow: auto;
+  font-size: 14pt;
+}
+button {
+  margin: 10px;
+}
+// try-component{
+//   overflow-y: scroll;
+//   // height: 50px;
+// }
+.grid-container {
+  display: grid;
+  grid-template-columns: 18% 80%;
+  grid-column-gap: 3%;
+  // height: 100vh;
+}
+
+#sidebar {
+  background-color: #444444;
+  height: fit-content;
+  text-align: center;
+  margin-top: 27%;
+
+}
+#interface1{
+  width: 70%
+}
+#interface{
+  margin-left: 20px;
+  margin-top: 30px;
+}
+.grid-item{
+  margin-top: 30px;
+}
+.modal{
+  z-index: 100;
+  position: absolute;
+  padding: 10px;
+  top: 40%;
+  left: 40%;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+.choicebutton{
+  width: 50%;
+  border-radius: 10px;
+  margin: 0;
+  background-color: white;
+  border-width: 0;
+  height: 50px;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.white {
+    background-color: white;
+}
+.buttons{
+  margin-top: 10%;
+  margin-left: 20%;
+}
+.form{
+  input{
+    width: 60%;
+  }
+}
+
+
+
+.icon{
+  position: absolute;
+  margin: 10px;
+  margin-bottom: 40px;
+  font-size: 40px;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><body>        <button mat-raised-button color=\'accent\' type="submit" (click)=\'onLogout()\' style="position: absolute; right: 4%; top: 0.5%">Logout</button>        <div class="grid-container">        <div class=\'grid-item\' id=\'sidebar\'>        <mat-icon class="icon" style="font-size: 34px; color: white; position: absolute; right: 17%; top: 0%" >account_box</mat-icon>        <div style="color: white; position: absolute; right: 17%; top: 4%">{{user}}</div>           <try-component #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)">  </try-component>        <button mat-raised-button color=\'accent\' (click)=\'closeModal(true)\'> Create New File</button>        <button mat-raised-button color=\'accent\' (click)=\'closeFolderModal(true)\'> Create New Project</button>                    </div>        <div class=\'grid-item\'>            <h3>            <span>File: {{ DisplayForm.get(\'name\').value }}</span>            <span style=\'margin: 100px\'>Language: {{ formalName[mode] }}</span>        </h3>            <div id="interface1" style="float: left;">                <ace-editor #editor [(text)]=\'text\' [(theme)]=\'themes\' [(mode)]=\'mode\'></ace-editor>            </div><br>        <!-- <button mat-raised-button color=\'primary\' type="theme" (click)=\'theme()\'>Change Theme</button> -->        <form [formGroup]=\'RunForm\'>                <div style="width: 30%; float: left; position: relative; top: -100%">                        <button mat-raised-button color=\'primary\' (click)=\'downLoadFile()\' style="margin-left:30%;">Download</button>                     <div id="interface">                        <label for=\'input\' style="color: white;">User input:</label><br>                        <textarea formControlName=\'Input\' id="input" cols="40" rows="13"></textarea>                    </div>                    <div id="interface">                        <label for=\'output\' style=\'color: white\'>User output:</label><br>                        <textarea formControlName=\'Output\' id="output" cols="40" rows="13"></textarea>                </div>                <div class=\'buttons\'>                        <button mat-raised-button color=\'primary\' type="save" (click)=\'onSave()\'>Save</button>                        <button mat-raised-button color=\'warn\' type="Run" (click)="run()">Run</button>                        </div>           </div>        </form>                </div>        </div>                <div *ngIf=\'showmodal\' class=modal>            <button (click)=\'empty()\' [ngClass]="{\'yellow\': showwhat, \'white\': !showwhat}"class=\'choicebutton\'>Make Empty File</button>            <button (click)=\'comp()\' [ngClass]="{\'white\': showwhat, \'yellow\': !showwhat}" class=\'choicebutton\'>Upload From Computer</button>            <div *ngIf=\'showwhat; else other\'>               <form [formGroup]=\'FileForm\' (ngSubmit)=\'makeEmptyFile()\' class=\'form\'>                  <label for=\'file_name\'>File Name: </label><br>                <input type="text" id=\'file_name\'formControlName=\'file_name\'><br>               </form>                <button mat-raised-button color=\'primary\' type=\'submit\' (click)=\'makeEmptyFile()\'>Create</button>                <button mat-raised-button color=\'primary\' type=\'\' (click)=\'closeModal(false)\'>Cancel</button>                    </div>            <ng-template #other>                <form [formGroup]=\'FileForm\' class=\'form\'>                  <label for=\'file_name\'>File Name: </label><br>                <input type="text" id=\'file_name\'formControlName=\'file_name\'><br>                   </form>                    <input type="file" id=\'file\' (change)=\'setFile($event.target.files)\'>                     <br>                <button mat-raised-button color=\'primary\' type=\'submit\' (click)=\'handleFileInput()\'>Create</button>                <button mat-raised-button color=\'primary\' type=\'\' (click)=\'closeModal(false)\'>Cancel</button>                </ng-template>        </div> <div *ngIf=\'folderModal\' class=modal>  <input type="text" id=\'file_name\' [(ngModel)]="newName"> Name <br>  <button mat-raised-button color=\'primary\' type=\'submit\' (click)=\'addNewFolder()\'>Create</button>    <button mat-raised-button color=\'primary\' type=\'\' (click)=\'closeFolderModal(false)\'>Cancel</button> </div>        </body></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ContactComponent', 'selector': 'app-contact'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomepageComponent', 'selector': 'app-homepage'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'TryComponent', 'selector': 'try-component'},{'name': 'WorkspaceComponent', 'selector': 'app-workspace'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'WorkspaceComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'WorkspaceComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

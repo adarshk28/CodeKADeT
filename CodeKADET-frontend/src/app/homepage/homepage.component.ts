@@ -8,19 +8,32 @@ declare let particlesJS: any;
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  isLogin: boolean = true;
   constructor() { }
   particleJS: any;
+  
+  /**
+   * True if login component is being displayed, false if signup component is being displayed
+   */
+  isLogin=true;
+
+   /**
+    * Calls invokeParticles on initialization of page
+    */
   ngOnInit(): void {
     this.invokeParticles();
   }
 
+  /**
+   * Function to call the particles.js functionality
+   */
   public  invokeParticles(): void {
     particlesJS('particles-js', ParticlesConfig, function() {});
   }
 
-  switch(): void {
+  /**
+   * Toggles the value of isLogin to swtich between login and signup components
+   */
+  switch() {
     this.isLogin = !this.isLogin;
-    console.log(this.isLogin);
   }
 }
