@@ -355,7 +355,7 @@ export class WorkspaceComponent implements AfterViewInit {
     this.RunForm.get('Filename').setValue(this.DisplayForm.get('name').value)
     this.RunForm.get('Language').setValue(this.DisplayForm.get('name').value.split('.').pop())
     this.RunForm.get('path').setValue(this.DisplayForm.get('path').value)
-    this.RunForm.get('Output').setValue('');
+    this.RunForm.get('Output').setValue('')
     this.fileser.runFromTextbox(this.RunForm.value).subscribe(result=>{
       this.RunForm.get('Output').setValue(result["out"]);
     })
