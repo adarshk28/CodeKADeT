@@ -9,10 +9,8 @@
 
 	<br>
 	<br>
-        <div style="color: white; position: absolute; right: 88%; top: 2.4%; font-size: 17px;">Hi, {{user}}!</div>
-           <try-component id='treecomp' #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)" (downloadEvent)="downLoadFile($event)">  </try-component>
-            <div class='left-buttons'>
-    </div>
+           <try-component id='treecomp' #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)" (downloadEvent)="downloadFile($event)">  </try-component>
+            
         </div>
         <div class='grid-item'>
             <h3>
