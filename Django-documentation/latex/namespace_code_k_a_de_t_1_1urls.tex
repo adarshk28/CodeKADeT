@@ -1,0 +1,65 @@
+\hypertarget{namespace_code_k_a_de_t_1_1urls}{}\doxysection{Code\+KADe\+T.\+urls Namespace Reference}
+\label{namespace_code_k_a_de_t_1_1urls}\index{CodeKADeT.urls@{CodeKADeT.urls}}
+
+
+\mbox{\hyperlink{namespace_code_k_a_de_t}{Code\+KADeT}} URL Configuration.  
+
+
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \mbox{\hyperlink{namespace_code_k_a_de_t_1_1urls_a9fbed1b18944f3829bcf4ce5500e05b2}{urlpatterns}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{namespace_code_k_a_de_t}{Code\+KADeT}} URL Configuration. 
+
+The {\ttfamily urlpatterns} list routes URLs to views. For more information please see\+: \href{https://docs.djangoproject.com/en/3.1/topics/http/urls/}{\texttt{ https\+://docs.\+djangoproject.\+com/en/3.\+1/topics/http/urls/}} Examples\+: Function views
+\begin{DoxyEnumerate}
+\item Add an import\+: from my\+\_\+app import views
+\item Add a URL to urlpatterns\+: path(\textquotesingle{}\textquotesingle{}, views.\+home, name=\textquotesingle{}home\textquotesingle{}) Class-\/based views
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Add an import\+: from other\+\_\+app.\+views import Home
+\item Add a URL to urlpatterns\+: path(\textquotesingle{}\textquotesingle{}, Home.\+as\+\_\+view(), name=\textquotesingle{}home\textquotesingle{}) Including another URLconf
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Import the include() function\+: from django.\+urls import include, path
+\item Add a URL to urlpatterns\+: path(\textquotesingle{}blog/\textquotesingle{}, include(\textquotesingle{}blog.\+urls\textquotesingle{})) 
+\end{DoxyEnumerate}
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespace_code_k_a_de_t_1_1urls_a9fbed1b18944f3829bcf4ce5500e05b2}\label{namespace_code_k_a_de_t_1_1urls_a9fbed1b18944f3829bcf4ce5500e05b2}} 
+\index{CodeKADeT.urls@{CodeKADeT.urls}!urlpatterns@{urlpatterns}}
+\index{urlpatterns@{urlpatterns}!CodeKADeT.urls@{CodeKADeT.urls}}
+\doxysubsubsection{\texorpdfstring{urlpatterns}{urlpatterns}}
+{\footnotesize\ttfamily list Code\+KADe\+T.\+urls.\+urlpatterns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     path(\textcolor{stringliteral}{'admin/'}, admin.site.urls),}
+\DoxyCodeLine{3     path(\textcolor{stringliteral}{'api-\/token-\/auth/'}, obtain\_jwt\_token),}
+\DoxyCodeLine{4     path(\textcolor{stringliteral}{'signup/'}, login\_views.signup,name=\textcolor{stringliteral}{"{}signup"{}}),}
+\DoxyCodeLine{5     path(\textcolor{stringliteral}{'fileupload/logout/'},file\_upload\_views.logout\_user,name=\textcolor{stringliteral}{"{}logout"{}}),}
+\DoxyCodeLine{6     path(\textcolor{stringliteral}{'login/'},  login\_views.login),}
+\DoxyCodeLine{7     path(\textcolor{stringliteral}{'fileupload/'}, file\_upload\_views.upload\_from\_computer,name=\textcolor{stringliteral}{"{}upload"{}}),}
+\DoxyCodeLine{8     path(\textcolor{stringliteral}{''}, include(\textcolor{stringliteral}{'login.urls'})),}
+\DoxyCodeLine{9     path(\textcolor{stringliteral}{'fileupload/edit\_file\_from\_textbox/'}, file\_upload\_views.edit\_from\_textbox),}
+\DoxyCodeLine{10     path(\textcolor{stringliteral}{'signup/login/'},  login\_views.login),}
+\DoxyCodeLine{11     path(\textcolor{stringliteral}{'fileupload/file\_view/'}, file\_upload\_views.view\_function, name=\textcolor{stringliteral}{'view\_function'}),}
+\DoxyCodeLine{12     path(\textcolor{stringliteral}{'fileupload/dirstr'}, file\_upload\_views.make\_map, name=\textcolor{stringliteral}{'map\_data'}),}
+\DoxyCodeLine{13     path(\textcolor{stringliteral}{'emptyfileupload/'}, file\_upload\_views.emptyFileUpload, name=\textcolor{stringliteral}{'empty\_file\_upload'}),}
+\DoxyCodeLine{14     path(\textcolor{stringliteral}{'fileupload/exec\_from\_textbox'}, file\_upload\_views.exec\_from\_textbox, name=\textcolor{stringliteral}{'exec\_from\_textbox'}),}
+\DoxyCodeLine{15     path(\textcolor{stringliteral}{'fileupload/rename/'}, file\_upload\_views.rename, name=\textcolor{stringliteral}{'rename'}),}
+\DoxyCodeLine{16     path(\textcolor{stringliteral}{'fileupload/delete/'}, file\_upload\_views.delete, name=\textcolor{stringliteral}{'delete'}),}
+\DoxyCodeLine{17     path(\textcolor{stringliteral}{'fileupload/folder/'}, file\_upload\_views.makeFolder, name=\textcolor{stringliteral}{'folder'}),}
+\DoxyCodeLine{18     path(\textcolor{stringliteral}{'get\_user/'}, login\_views.getUser,name=\textcolor{stringliteral}{"{}getUser"{}}),}
+\DoxyCodeLine{19 ]}
+
+\end{DoxyCode}
+
+
+Definition at line 26 of file urls.\+py.
+

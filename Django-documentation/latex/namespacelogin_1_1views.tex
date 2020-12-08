@@ -1,0 +1,130 @@
+\hypertarget{namespacelogin_1_1views}{}\doxysection{login.\+views Namespace Reference}
+\label{namespacelogin_1_1views}\index{login.views@{login.views}}
+
+
+Imports for \mbox{\hyperlink{login_2views_8py}{login/views.\+py}} Used Json Web Tokens for user authentification.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacelogin_1_1views_a4bb01af6958fd8ed110daa3b4fab9748}{signup}} (request)
+\begin{DoxyCompactList}\small\item\em View for signing up the user by fetching username and confirmed password from Frontend. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacelogin_1_1views_a8fc3be6571183651c01aebb1cf2be82b}{login}} (request)
+\begin{DoxyCompactList}\small\item\em View for logging in the user by fetching username and password from Frontend. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacelogin_1_1views_a26fc75e328a13eb4afffd82db855a8e0}{get\+User}} (request)
+\begin{DoxyCompactList}\small\item\em View to fetch the user name, whether logged in or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacelogin_1_1views_a6719e76443438ba58d62bffbddef71d4}{jwt\+\_\+payload\+\_\+handler}} = api\+\_\+settings.\+JWT\+\_\+\+PAYLOAD\+\_\+\+HANDLER
+\item 
+\mbox{\hyperlink{namespacelogin_1_1views_abfdc94e47f871d0221738cd855b6d1ec}{jwt\+\_\+encode\+\_\+handler}} = api\+\_\+settings.\+JWT\+\_\+\+ENCODE\+\_\+\+HANDLER
+\item 
+string \mbox{\hyperlink{namespacelogin_1_1views_a050a289f54f8e4d556d0d8427c58d85a}{abs\+\_\+path}} = settings.\+MEDIA\+\_\+\+ROOT+\textquotesingle{}personal\+\_\+file/\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Imports for \mbox{\hyperlink{login_2views_8py}{login/views.\+py}} Used Json Web Tokens for user authentification. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacelogin_1_1views_a26fc75e328a13eb4afffd82db855a8e0}\label{namespacelogin_1_1views_a26fc75e328a13eb4afffd82db855a8e0}} 
+\index{login.views@{login.views}!getUser@{getUser}}
+\index{getUser@{getUser}!login.views@{login.views}}
+\doxysubsubsection{\texorpdfstring{getUser()}{getUser()}}
+{\footnotesize\ttfamily def login.\+views.\+get\+User (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+View to fetch the user name, whether logged in or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & current user to be fetched \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+username of the user currently logged in, converted to a JSON Reponse 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file views.\+py.
+
+\mbox{\Hypertarget{namespacelogin_1_1views_a8fc3be6571183651c01aebb1cf2be82b}\label{namespacelogin_1_1views_a8fc3be6571183651c01aebb1cf2be82b}} 
+\index{login.views@{login.views}!login@{login}}
+\index{login@{login}!login.views@{login.views}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily def login.\+views.\+login (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+View for logging in the user by fetching username and password from Frontend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Username and Password fetched from frontend homepage, type\+: string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Serializer response returned with user credentials if authenticated, else a JSON Response returned depending on status 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file views.\+py.
+
+\mbox{\Hypertarget{namespacelogin_1_1views_a4bb01af6958fd8ed110daa3b4fab9748}\label{namespacelogin_1_1views_a4bb01af6958fd8ed110daa3b4fab9748}} 
+\index{login.views@{login.views}!signup@{signup}}
+\index{signup@{signup}!login.views@{login.views}}
+\doxysubsubsection{\texorpdfstring{signup()}{signup()}}
+{\footnotesize\ttfamily def login.\+views.\+signup (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+View for signing up the user by fetching username and confirmed password from Frontend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Username,Password fetched from frontend homepage, type\+: string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSONResponse depending on status of request process 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file views.\+py.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacelogin_1_1views_a050a289f54f8e4d556d0d8427c58d85a}\label{namespacelogin_1_1views_a050a289f54f8e4d556d0d8427c58d85a}} 
+\index{login.views@{login.views}!abs\_path@{abs\_path}}
+\index{abs\_path@{abs\_path}!login.views@{login.views}}
+\doxysubsubsection{\texorpdfstring{abs\_path}{abs\_path}}
+{\footnotesize\ttfamily string login.\+views.\+abs\+\_\+path = settings.\+MEDIA\+\_\+\+ROOT+\textquotesingle{}personal\+\_\+file/\textquotesingle{}}
+
+
+
+Definition at line 30 of file views.\+py.
+
+\mbox{\Hypertarget{namespacelogin_1_1views_abfdc94e47f871d0221738cd855b6d1ec}\label{namespacelogin_1_1views_abfdc94e47f871d0221738cd855b6d1ec}} 
+\index{login.views@{login.views}!jwt\_encode\_handler@{jwt\_encode\_handler}}
+\index{jwt\_encode\_handler@{jwt\_encode\_handler}!login.views@{login.views}}
+\doxysubsubsection{\texorpdfstring{jwt\_encode\_handler}{jwt\_encode\_handler}}
+{\footnotesize\ttfamily login.\+views.\+jwt\+\_\+encode\+\_\+handler = api\+\_\+settings.\+JWT\+\_\+\+ENCODE\+\_\+\+HANDLER}
+
+
+
+Definition at line 26 of file views.\+py.
+
+\mbox{\Hypertarget{namespacelogin_1_1views_a6719e76443438ba58d62bffbddef71d4}\label{namespacelogin_1_1views_a6719e76443438ba58d62bffbddef71d4}} 
+\index{login.views@{login.views}!jwt\_payload\_handler@{jwt\_payload\_handler}}
+\index{jwt\_payload\_handler@{jwt\_payload\_handler}!login.views@{login.views}}
+\doxysubsubsection{\texorpdfstring{jwt\_payload\_handler}{jwt\_payload\_handler}}
+{\footnotesize\ttfamily login.\+views.\+jwt\+\_\+payload\+\_\+handler = api\+\_\+settings.\+JWT\+\_\+\+PAYLOAD\+\_\+\+HANDLER}
+
+
+
+Definition at line 25 of file views.\+py.
+

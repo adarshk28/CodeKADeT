@@ -1,0 +1,344 @@
+\hypertarget{namespacefile__upload_1_1views}{}\doxysection{file\+\_\+upload.\+views Namespace Reference}
+\label{namespacefile__upload_1_1views}\index{file\_upload.views@{file\_upload.views}}
+
+
+Set of views for features of file handling in the backend.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_aa60f4f1cfc6d19bdb133901c704ae2a9}{logout\+\_\+user}} (request)
+\begin{DoxyCompactList}\small\item\em View for logging the user out of the workspace. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_a2bd75d5847b3a06fa66acc1a49f0e306}{path\+\_\+to\+\_\+dict}} (path, request)
+\begin{DoxyCompactList}\small\item\em Defining the path to file/folder recieved from frontend. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_af870d7618e40e551eec3ffe117855904}{make\+\_\+map}} (request)
+\begin{DoxyCompactList}\small\item\em Getting the path of the file requested from frontend for an authenticated user. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_a2cd1128218b1075f01cbf882a588916e}{upload\+\_\+from\+\_\+computer}} (request)
+\begin{DoxyCompactList}\small\item\em Backend View for uploading a file chosen from User\textquotesingle{}s system and POSTed on frontend Try making a directory for the path received from frontend, and simply create the file if the directory already exists. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_af6d8957ebd9138f921944f261eeabd05}{empty\+File\+Upload}} (request)
+\begin{DoxyCompactList}\small\item\em Making Empty Files -\/ view defined for enabling upload from textbox feature. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_ac04f63f9dea326ec516f1ec650467c01}{make\+Folder}} (request)
+\begin{DoxyCompactList}\small\item\em View for making empty directories. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_a746e354898b9ea34985da4040f811feb}{edit\+\_\+from\+\_\+textbox}} (request)
+\begin{DoxyCompactList}\small\item\em Feature To Update the File in backend by changing the content in the Frontend using the Code Editor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_a7c9b006a2b8c303bbc2a3119bca0bbac}{delete}} (request)
+\begin{DoxyCompactList}\small\item\em Feature to Delete the Files or Folders by clicking on them in the frontend. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_a4e37152baa34b4c2686fc3f65279f3d9}{rename}} (request)
+\begin{DoxyCompactList}\small\item\em Feature to Update the file name in the user code directory. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_ae06ab0e7e14bf0ea73e5ab4b6f6f750c}{view\+\_\+function}} (request)
+\begin{DoxyCompactList}\small\item\em Feature to get the file\textquotesingle{}s information as a JSON response for a file clicked on frontend. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacefile__upload_1_1views_a4a91e5b7aef35666a9ac69974b2eb0ab}{exec\+\_\+from\+\_\+textbox}} (request)
+\begin{DoxyCompactList}\small\item\em View Function for compiling the file displayed in frontend. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacefile__upload_1_1views_acb46f788c28c707760b1f91a592e94b4}{logger}} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Set of views for features of file handling in the backend. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacefile__upload_1_1views_a7c9b006a2b8c303bbc2a3119bca0bbac}\label{namespacefile__upload_1_1views_a7c9b006a2b8c303bbc2a3119bca0bbac}} 
+\index{file\_upload.views@{file\_upload.views}!delete@{delete}}
+\index{delete@{delete}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+delete (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Feature to Delete the Files or Folders by clicking on them in the frontend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request.\+user.\+symlink} & symbolic link to User Media Directory \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}path\textquotesingle{}\mbox{]}} & Path to file in backend, type\+: string \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}old\+\_\+name\textquotesingle{}\mbox{]}} & Name of the file to be deleted from backend, type\+: string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Removes the directory recursively; all children directories also deleted
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+Json Response of success status 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_a746e354898b9ea34985da4040f811feb}\label{namespacefile__upload_1_1views_a746e354898b9ea34985da4040f811feb}} 
+\index{file\_upload.views@{file\_upload.views}!edit\_from\_textbox@{edit\_from\_textbox}}
+\index{edit\_from\_textbox@{edit\_from\_textbox}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{edit\_from\_textbox()}{edit\_from\_textbox()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+edit\+\_\+from\+\_\+textbox (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Feature To Update the File in backend by changing the content in the Frontend using the Code Editor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request.\+user.\+symlink} & symbolic link to User Media Directory \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}path\textquotesingle{}\mbox{]}} & Path to file in backend, type\+: string \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}file\+\_\+name\textquotesingle{}\mbox{]}} & Name of the file in backend, type\+: string \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}content\textquotesingle{}\mbox{]}} & Updated File Content, type\+: string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json\+Response of success status 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_af6d8957ebd9138f921944f261eeabd05}\label{namespacefile__upload_1_1views_af6d8957ebd9138f921944f261eeabd05}} 
+\index{file\_upload.views@{file\_upload.views}!emptyFileUpload@{emptyFileUpload}}
+\index{emptyFileUpload@{emptyFileUpload}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{emptyFileUpload()}{emptyFileUpload()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+empty\+File\+Upload (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Making Empty Files -\/ view defined for enabling upload from textbox feature. 
+
+\begin{DoxyVerb}   @param request.user.symlink         symbolic link to User Media Directory
+   @param request.POST['path']         Path to file in backend, type: string
+   @param request.POST['file_name']    Name of the file to be saved in backend, type: string
+
+   @return JSON response depending on status of process
+   @brief If a file of fetched name and path already exists, overwrite its content as empty, else create an empty file
+\end{DoxyVerb}
+ 
+
+Definition at line 104 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_a4a91e5b7aef35666a9ac69974b2eb0ab}\label{namespacefile__upload_1_1views_a4a91e5b7aef35666a9ac69974b2eb0ab}} 
+\index{file\_upload.views@{file\_upload.views}!exec\_from\_textbox@{exec\_from\_textbox}}
+\index{exec\_from\_textbox@{exec\_from\_textbox}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{exec\_from\_textbox()}{exec\_from\_textbox()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+exec\+\_\+from\+\_\+textbox (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+View Function for compiling the file displayed in frontend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request.\+POST\mbox{[}\textquotesingle{}path\textquotesingle{}\mbox{]}} & Path to file in backend, type\+: string \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}\+Filename\textquotesingle{}\mbox{]}} & Name of the file to be compiled from backend, type\+: string \\
+\hline
+{\em request} & Language, Name, Path of the file which is to be compiled\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSONResponse of the compiled output, or else runtime error
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Only C++,python and Java are the executable languages in this update 
+\end{DoxyNote}
+
+
+Definition at line 221 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_aa60f4f1cfc6d19bdb133901c704ae2a9}\label{namespacefile__upload_1_1views_aa60f4f1cfc6d19bdb133901c704ae2a9}} 
+\index{file\_upload.views@{file\_upload.views}!logout\_user@{logout\_user}}
+\index{logout\_user@{logout\_user}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{logout\_user()}{logout\_user()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+logout\+\_\+user (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+View for logging the user out of the workspace. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & GET from Angular frontend to logout current user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON response of logged out status 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The user should be logged in for this feature to work 
+\end{DoxyNote}
+
+
+Definition at line 36 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_af870d7618e40e551eec3ffe117855904}\label{namespacefile__upload_1_1views_af870d7618e40e551eec3ffe117855904}} 
+\index{file\_upload.views@{file\_upload.views}!make\_map@{make\_map}}
+\index{make\_map@{make\_map}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{make\_map()}{make\_map()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+make\+\_\+map (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Getting the path of the file requested from frontend for an authenticated user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & user credentials for authentication \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json\+Response of the path of file in media directory backend 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_ac04f63f9dea326ec516f1ec650467c01}\label{namespacefile__upload_1_1views_ac04f63f9dea326ec516f1ec650467c01}} 
+\index{file\_upload.views@{file\_upload.views}!makeFolder@{makeFolder}}
+\index{makeFolder@{makeFolder}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{makeFolder()}{makeFolder()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+make\+Folder (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+View for making empty directories. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & User Details from Post Requests\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+JSON Response of status of request 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If full path already exists, nothing is created 
+\end{DoxyNote}
+
+
+Definition at line 128 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_a2bd75d5847b3a06fa66acc1a49f0e306}\label{namespacefile__upload_1_1views_a2bd75d5847b3a06fa66acc1a49f0e306}} 
+\index{file\_upload.views@{file\_upload.views}!path\_to\_dict@{path\_to\_dict}}
+\index{path\_to\_dict@{path\_to\_dict}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{path\_to\_dict()}{path\_to\_dict()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+path\+\_\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{path,  }\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Defining the path to file/folder recieved from frontend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & string, file name \\
+\hline
+{\em request} & user credentials \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+dictionary of filename with corresponding path in Media directory 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The make\+\_\+map view function uses this function 
+\end{DoxyNote}
+
+
+Definition at line 46 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_a4e37152baa34b4c2686fc3f65279f3d9}\label{namespacefile__upload_1_1views_a4e37152baa34b4c2686fc3f65279f3d9}} 
+\index{file\_upload.views@{file\_upload.views}!rename@{rename}}
+\index{rename@{rename}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{rename()}{rename()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+rename (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Feature to Update the file name in the user code directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request.\+user.\+symlink} & symbolic link to User Media Directory \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}path\textquotesingle{}\mbox{]}} & Path to file in backend, type\+: string \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}old\+\_\+name\textquotesingle{}\mbox{]}} & Old Name of the file to be renamed from backend, type\+: string \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}new\+\_\+name\textquotesingle{}\mbox{]}} & Updated Name of the file, type\+: string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json\+Response of status of request 
+\end{DoxyReturn}
+
+
+Definition at line 185 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_a2cd1128218b1075f01cbf882a588916e}\label{namespacefile__upload_1_1views_a2cd1128218b1075f01cbf882a588916e}} 
+\index{file\_upload.views@{file\_upload.views}!upload\_from\_computer@{upload\_from\_computer}}
+\index{upload\_from\_computer@{upload\_from\_computer}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{upload\_from\_computer()}{upload\_from\_computer()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+upload\+\_\+from\+\_\+computer (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Backend View for uploading a file chosen from User\textquotesingle{}s system and POSTed on frontend Try making a directory for the path received from frontend, and simply create the file if the directory already exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request.\+user.\+symlink} & symbolic link to User Media Directory \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}path\textquotesingle{}\mbox{]}} & Path to file in backend, type\+: string \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}file\+\_\+name\textquotesingle{}\mbox{]}} & Name of the file to be saved in backend, type\+: string \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}content\textquotesingle{}\mbox{]}} & File Content, type\+: file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json\+Response depending on status of process
+\end{DoxyReturn}
+Based on Frontend request, if a file of same name and path already exists, it is overwritten with new content, else a new file is created 
+
+Definition at line 81 of file views.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1views_ae06ab0e7e14bf0ea73e5ab4b6f6f750c}\label{namespacefile__upload_1_1views_ae06ab0e7e14bf0ea73e5ab4b6f6f750c}} 
+\index{file\_upload.views@{file\_upload.views}!view\_function@{view\_function}}
+\index{view\_function@{view\_function}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{view\_function()}{view\_function()}}
+{\footnotesize\ttfamily def file\+\_\+upload.\+views.\+view\+\_\+function (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+Feature to get the file\textquotesingle{}s information as a JSON response for a file clicked on frontend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request.\+user.\+symlink} & symbolic link to User Media Directory \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}path\textquotesingle{}\mbox{]}} & Path to file in backend, type\+: string \\
+\hline
+{\em request.\+POST\mbox{[}\textquotesingle{}name\textquotesingle{}\mbox{]}} & Name of the file to be viewed, type\+: string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json\+Response of file content (string), file name, language, else only name for a folder 
+\end{DoxyReturn}
+
+
+Definition at line 203 of file views.\+py.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacefile__upload_1_1views_acb46f788c28c707760b1f91a592e94b4}\label{namespacefile__upload_1_1views_acb46f788c28c707760b1f91a592e94b4}} 
+\index{file\_upload.views@{file\_upload.views}!logger@{logger}}
+\index{logger@{logger}!file\_upload.views@{file\_upload.views}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily file\+\_\+upload.\+views.\+logger = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)}
+
+
+
+Definition at line 25 of file views.\+py.
+

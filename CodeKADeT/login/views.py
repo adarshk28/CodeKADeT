@@ -1,3 +1,5 @@
+"""! Imports for login/views.py
+    Used Json Web Tokens for user authentification"""
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
@@ -23,13 +25,21 @@ from django.conf import settings
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
+#@var abs_path common path leading to saved media directories of signed up users
+
 abs_path = settings.MEDIA_ROOT+'personal_file/'
 
 
 @api_view(['POST'])
 @permission_classes([AllowAny, ])
 def signup(request):
-    if request.method=="POST":
+        """!
+        View for signing up the user by fetching username and confirmed password from Frontend
+        
+        @param request     Username,Password fetched from frontend homepage, type: string
+    
+        @return JSONResponse depending on status of request process"""
+   if request.method=="POST":
         data = json.loads(request.body)
         try:
             saveuser=User.objects.create_user(data.get('username'),password=data.get('password1'))
@@ -41,11 +51,19 @@ def signup(request):
         except IntegrityError:
             return JsonResponse({'Status':'User Registered Already!'})
     else:
-        return render(request,'signup.html',{'form':UserCreationForm})
+        return JsonResponse({'Status':'Please enter your details'})
+
+
 
 @api_view(['POST'])
 @permission_classes([AllowAny, ])
 def login(request):
+     """!
+        View for logging in the user by fetching username and password from Frontend
+
+        @param request Username and Password fetched from frontend homepage, type: string
+
+        @return Serializer response returned with user credentials if authenticated, else a JSON Response returned depending on status"""
     if(request.user.is_authenticated):
         return redirect("upload") 
     else:
@@ -67,11 +85,14 @@ def login(request):
                 user_details['token'] = token
                 return Response(user_details)
         else:
-            print("GET request to login")
-            return render(request, 'login.html', {'form':AuthenticationForm})
+            return JsonResponse({"Status": "Please enter the credentials"})
+
 
 @api_view(['GET'])
 def getUser(request):
-    print(str(request.user))
+    """!
+        View to fetch the user name, whether logged in or not
+        @param request current user to be fetched
+        @return username of the user currently logged in, converted to a JSON Reponse """
     return JsonResponse({'user':str(request.user)})
-# Create your views here.
+

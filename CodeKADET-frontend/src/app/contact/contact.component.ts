@@ -14,7 +14,8 @@ export class ContactComponent implements OnInit {
 
   constructor() {
     this.value1='9911933299';
-    this.value2='7380086948'
+    this.value2='7380086948';
+    this.value3='9619347875';
    }
 
    /**

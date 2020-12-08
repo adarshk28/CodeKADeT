@@ -1,0 +1,46 @@
+\hypertarget{namespacefile__upload_1_1urls}{}\doxysection{file\+\_\+upload.\+urls Namespace Reference}
+\label{namespacefile__upload_1_1urls}\index{file\_upload.urls@{file\_upload.urls}}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{namespacefile__upload_1_1urls_a630aad16c321a9fd1e195a85ab7df267}{app\+\_\+name}} = \char`\"{}fileupload\char`\"{}
+\item 
+list \mbox{\hyperlink{namespacefile__upload_1_1urls_a746aa87ffaa11aa9ec656584f8e31708}{urlpatterns}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacefile__upload_1_1urls_a630aad16c321a9fd1e195a85ab7df267}\label{namespacefile__upload_1_1urls_a630aad16c321a9fd1e195a85ab7df267}} 
+\index{file\_upload.urls@{file\_upload.urls}!app\_name@{app\_name}}
+\index{app\_name@{app\_name}!file\_upload.urls@{file\_upload.urls}}
+\doxysubsubsection{\texorpdfstring{app\_name}{app\_name}}
+{\footnotesize\ttfamily string file\+\_\+upload.\+urls.\+app\+\_\+name = \char`\"{}fileupload\char`\"{}}
+
+
+
+Definition at line 8 of file urls.\+py.
+
+\mbox{\Hypertarget{namespacefile__upload_1_1urls_a746aa87ffaa11aa9ec656584f8e31708}\label{namespacefile__upload_1_1urls_a746aa87ffaa11aa9ec656584f8e31708}} 
+\index{file\_upload.urls@{file\_upload.urls}!urlpatterns@{urlpatterns}}
+\index{urlpatterns@{urlpatterns}!file\_upload.urls@{file\_upload.urls}}
+\doxysubsubsection{\texorpdfstring{urlpatterns}{urlpatterns}}
+{\footnotesize\ttfamily list file\+\_\+upload.\+urls.\+urlpatterns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6    path(\textcolor{stringliteral}{'upload\_file\_from\_computer/'}, views.upload\_from\_computer, name=\textcolor{stringliteral}{'upload'}),}
+\DoxyCodeLine{7    path(\textcolor{stringliteral}{'upload\_file\_from\_textbox/'}, views.upload\_from\_textbox, name=\textcolor{stringliteral}{'upload\_file\_from\_textbox'}),}
+\DoxyCodeLine{8    path(\textcolor{stringliteral}{'file\_view/'}, views.view\_function, name=\textcolor{stringliteral}{'view\_function'}),}
+\DoxyCodeLine{9    path(\textcolor{stringliteral}{''},views.logout\_user,name=\textcolor{stringliteral}{"{}logout"{}})}
+\DoxyCodeLine{10 ]+ static(settings.MEDIA\_URL, document\_root=settings.MEDIA\_ROOT)}
+
+\end{DoxyCode}
+
+
+Definition at line 10 of file urls.\+py.
+

@@ -1,4 +1,4 @@
-"""CodeKADeT URL Configuration
+"""! CodeKADeT URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -13,11 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+# Imports for urls.py 
 from django.contrib import admin
 from django.urls import path, include
 from login import views as login_views
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from file_upload import views as file_upload_views
+
+"""! Set of all urls in backend for corresponding view functions in Django Backend"""
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-token-auth/', obtain_jwt_token),
@@ -30,7 +35,6 @@ urlpatterns = [
     path('signup/login/',  login_views.login),
     path('fileupload/file_view/', file_upload_views.view_function, name='view_function'),
     path('fileupload/dirstr', file_upload_views.make_map, name='map_data'),
-    # path('fileupload/file_view/execute', file_upload_views.execute, name='execute'),
     path('emptyfileupload/', file_upload_views.emptyFileUpload, name='empty_file_upload'),
     path('fileupload/exec_from_textbox', file_upload_views.exec_from_textbox, name='exec_from_textbox'),
     path('fileupload/rename/', file_upload_views.rename, name='rename'),

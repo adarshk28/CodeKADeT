@@ -1,0 +1,111 @@
+\hypertarget{classlogin_1_1models_1_1_user_profile}{}\doxysection{login.\+models.\+User\+Profile Class Reference}
+\label{classlogin_1_1models_1_1_user_profile}\index{login.models.UserProfile@{login.models.UserProfile}}
+
+
+Inheritance diagram for login.\+models.\+User\+Profile\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{classlogin_1_1models_1_1_user_profile__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for login.\+models.\+User\+Profile\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{classlogin_1_1models_1_1_user_profile__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogin_1_1models_1_1_user_profile_ae65a6a2fc85b42e8242c2c89e5b49c9e}{nickname}} = models.\+Char\+Field(max\+\_\+length=10 ,blank=True)
+\item 
+\mbox{\hyperlink{classlogin_1_1models_1_1_user_profile_adbea66d164087e3b7152206af80665a9}{date\+\_\+of\+\_\+birth}} = models.\+Date\+Field(blank=True, null=True)
+\item 
+\mbox{\hyperlink{classlogin_1_1models_1_1_user_profile_ac2ccf3ecd1f25095f8359548e8f3d8d4}{profile\+\_\+photo}} = models.\+Image\+Field(upload\+\_\+to=\textquotesingle{}profile\+\_\+images\textquotesingle{}, blank=True)
+\item 
+\mbox{\hyperlink{classlogin_1_1models_1_1_user_profile_ad5f0a1b89860cbe4b3427ba48f7c8db5}{refer\+\_\+id}} = models.\+UUIDField(default=uuid.\+uuid4)
+\item 
+\mbox{\hyperlink{classlogin_1_1models_1_1_user_profile_ae9e9514dd0501c88887cb5b48d6ce921}{symlink}} = models.\+Char\+Field(max\+\_\+length=250, blank=True)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+\begin{DoxyParams}{Parameters}
+{\em refer\+\_\+id} & UUIDField for the logged in user \\
+\hline
+{\em symlink} & Symbolic link to the user\textquotesingle{}s media directory \\
+\hline
+{\em nickname} & Character nickname for user \\
+\hline
+{\em date\+\_\+of\+\_\+birth} & User\textquotesingle{}s D.\+O.\+B \\
+\hline
+{\em profile\+\_\+photo} & Profile photo of user \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 7 of file models.\+py.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classlogin_1_1models_1_1_user_profile_adbea66d164087e3b7152206af80665a9}\label{classlogin_1_1models_1_1_user_profile_adbea66d164087e3b7152206af80665a9}} 
+\index{login.models.UserProfile@{login.models.UserProfile}!date\_of\_birth@{date\_of\_birth}}
+\index{date\_of\_birth@{date\_of\_birth}!login.models.UserProfile@{login.models.UserProfile}}
+\doxysubsubsection{\texorpdfstring{date\_of\_birth}{date\_of\_birth}}
+{\footnotesize\ttfamily login.\+models.\+User\+Profile.\+date\+\_\+of\+\_\+birth = models.\+Date\+Field(blank=True, null=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 16 of file models.\+py.
+
+\mbox{\Hypertarget{classlogin_1_1models_1_1_user_profile_ae65a6a2fc85b42e8242c2c89e5b49c9e}\label{classlogin_1_1models_1_1_user_profile_ae65a6a2fc85b42e8242c2c89e5b49c9e}} 
+\index{login.models.UserProfile@{login.models.UserProfile}!nickname@{nickname}}
+\index{nickname@{nickname}!login.models.UserProfile@{login.models.UserProfile}}
+\doxysubsubsection{\texorpdfstring{nickname}{nickname}}
+{\footnotesize\ttfamily login.\+models.\+User\+Profile.\+nickname = models.\+Char\+Field(max\+\_\+length=10 ,blank=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 15 of file models.\+py.
+
+\mbox{\Hypertarget{classlogin_1_1models_1_1_user_profile_ac2ccf3ecd1f25095f8359548e8f3d8d4}\label{classlogin_1_1models_1_1_user_profile_ac2ccf3ecd1f25095f8359548e8f3d8d4}} 
+\index{login.models.UserProfile@{login.models.UserProfile}!profile\_photo@{profile\_photo}}
+\index{profile\_photo@{profile\_photo}!login.models.UserProfile@{login.models.UserProfile}}
+\doxysubsubsection{\texorpdfstring{profile\_photo}{profile\_photo}}
+{\footnotesize\ttfamily login.\+models.\+User\+Profile.\+profile\+\_\+photo = models.\+Image\+Field(upload\+\_\+to=\textquotesingle{}profile\+\_\+images\textquotesingle{}, blank=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 17 of file models.\+py.
+
+\mbox{\Hypertarget{classlogin_1_1models_1_1_user_profile_ad5f0a1b89860cbe4b3427ba48f7c8db5}\label{classlogin_1_1models_1_1_user_profile_ad5f0a1b89860cbe4b3427ba48f7c8db5}} 
+\index{login.models.UserProfile@{login.models.UserProfile}!refer\_id@{refer\_id}}
+\index{refer\_id@{refer\_id}!login.models.UserProfile@{login.models.UserProfile}}
+\doxysubsubsection{\texorpdfstring{refer\_id}{refer\_id}}
+{\footnotesize\ttfamily login.\+models.\+User\+Profile.\+refer\+\_\+id = models.\+UUIDField(default=uuid.\+uuid4)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 18 of file models.\+py.
+
+\mbox{\Hypertarget{classlogin_1_1models_1_1_user_profile_ae9e9514dd0501c88887cb5b48d6ce921}\label{classlogin_1_1models_1_1_user_profile_ae9e9514dd0501c88887cb5b48d6ce921}} 
+\index{login.models.UserProfile@{login.models.UserProfile}!symlink@{symlink}}
+\index{symlink@{symlink}!login.models.UserProfile@{login.models.UserProfile}}
+\doxysubsubsection{\texorpdfstring{symlink}{symlink}}
+{\footnotesize\ttfamily login.\+models.\+User\+Profile.\+symlink = models.\+Char\+Field(max\+\_\+length=250, blank=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 19 of file models.\+py.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/adarsh/\+Desktop/\+Code\+KADe\+T/\+Code\+KADe\+T/login/\mbox{\hyperlink{login_2models_8py}{models.\+py}}\end{DoxyCompactItemize}
