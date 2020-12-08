@@ -1,37 +1,45 @@
-
 body {
-  font-family: Verdana, Roboto, Geneva, Tahoma, sans-serif;
-  background-color: #444444;
+  font-family: Roboto, Geneva, Tahoma, sans-serif;
+  background-color: #222222;
+  color: white;
 }
 ace-editor {
-  // margin: 0 5%;
   min-height: 700px;
   overflow: auto;
   font-size: 14pt;
 }
 button {
   margin: 10px;
+  // background-color: peachpuff;
+  background-color: #fefe95;
+  color: black;
 }
-// try-component{
-//   overflow-y: scroll;
-//   // height: 50px;
-// }
+try-component{
+    position: relative;
+    left: -40px;
+}
 .grid-container {
   display: grid;
   grid-template-columns: 18% 80%;
   grid-column-gap: 3%;
-  // height: 100vh;
 }
 
 #sidebar {
-  background-color: #444444;
   height: fit-content;
   text-align: center;
   margin-top: 26%;
 
 }
 #interface1{
-  width: 70%
+    width: 70%;
+    // border: 1px 1px 1px 1px solid white;
+    display: inline;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px white;
+    // box-shadow: 1px 1px 5px 5px white;
+    position: relative;
+    top: 30px;
+    right: 10px;
+    // margin: 3px;
 }
 #interface{
   margin-left: 20px;
@@ -108,4 +116,22 @@ button {
   margin: 10px;
   margin-bottom: 40px;
   font-size: 40px;
+}
+
+#input {
+    background-color: #444444;
+    font-size: 17px;
+    height: 240px;
+    width: 300px;
+    color: white;
+    border-radius: 5px;
+}
+
+#output {
+    background-color: #444444;
+    font-size: 17px;
+    height: 240px;
+    width: 300px;
+    color: white;
+    border-radius: 5px;
 }

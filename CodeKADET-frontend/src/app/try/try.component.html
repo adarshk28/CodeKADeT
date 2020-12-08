@@ -1,8 +1,7 @@
 
 <body>
   <div class='header'>
- 
-    <p>YOUR W0RKING TREE</p>
+    <p id='title'>YOUR WORKING TREE</p>
   </div>
   <mat-tree *ngIf="loaded" [dataSource]="dataSource" [treeControl]="treeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding matTreeNodePaddingIndent="10" >

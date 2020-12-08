@@ -1,13 +1,14 @@
 <body>
-        <button mat-raised-button color='accent' type="submit" (click)='onLogout()' style="position: absolute; right: 4%; top: 0.5%">Logout</button>
+        <button mat-raised-button color='warn' type="submit" (click)='onLogout()' style="position: absolute; right: 4%; top: 0.5%">Logout</button>
         <div class="grid-container">
         <div class='grid-item' id='sidebar'>
-        <!-- <mat-icon class="icon" style="font-size: 34px; color: white; position: absolute; right: 17%; top: 0%" >account_box</mat-icon> -->
+        <button mat-raised-button  (click)='closeModal(true)'> Create New File</button>
+        <button mat-raised-button  (click)='closeFolderModal(true)'> Create New Project</button>
+	<br>
+	<br>
         <div style="color: white; position: absolute; right: 87%; top: 4%; font-size: smaller;">{{user}}</div>
-           <try-component #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)">  </try-component>
+           <try-component id='treecomp' #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)">  </try-component>
             <div class='left-buttons'>
-        <button mat-raised-button color='accent' (click)='closeModal(true)'> Create New File</button>
-        <button mat-raised-button color='accent' (click)='closeFolderModal(true)'> Create New Project</button>
     </div>
         </div>
         <div class='grid-item'>
@@ -21,20 +22,20 @@
         <!-- <button mat-raised-button color='primary' type="theme" (click)='theme()'>Change Theme</button> -->
         <form [formGroup]='RunForm'>
                 <div style="width: 30%; float: left; position: relative; top: -100%">
-                    <button mat-raised-button color='warn' (click)="changeTheme()">Change</button>
+                    <button mat-raised-button (click)="changeTheme()">Change Editor Theme</button>
 
-                        <button mat-raised-button color='primary' (click)='downLoadFile()' style="margin-left:30%;">Download</button> 
+                        <button mat-raised-button (click)='downLoadFile()' style="margin:20px;">Download</button> 
                     <div id="interface">
-                        <label for='input' style="color: white;">User input:</label><br>
-                        <textarea formControlName='Input' id="input" cols="40" rows="13"></textarea>
+                        <label for='input'>User input:</label><br>
+                        <textarea formControlName='Input' id="input" cols="30" rows="13"></textarea>
                     </div>
                     <div id="interface">
-                        <label for='output' style='color: white'>User output:</label><br>
-                        <textarea formControlName='Output' id="output" cols="40" rows="13" readonly></textarea>
+                        <label for='output'>User output:</label><br>
+                        <textarea formControlName='Output' id="output" cols="30" rows="13" readonly></textarea>
                 </div>
                 <div class='buttons'>
-                        <button mat-raised-button color='primary' type="save" (click)='onSave()'>Save</button>
-                        <button mat-raised-button color='warn' type="Run" (click)="run()">Run</button>
+                        <button mat-raised-button type="save" (click)='onSave()'>Save</button>
+                        <button mat-raised-button type="Run" (click)="run()">Run</button>
                         </div>
            </div>
         </form>
@@ -50,8 +51,8 @@
                 <label for='file_name'>File Name: </label><br>
                 <input type="text" id='file_name'required formControlName='file_name'><br>
                </form>
-                <button mat-raised-button color='primary' type='submit' [disabled]='!FileForm.valid' (click)='makeEmptyFile()'>Create</button>
-                <button mat-raised-button color='primary' type='' (click)='closeModal(false)'>Cancel</button>
+                <button mat-raised-button type='submit' [disabled]='!FileForm.valid' (click)='makeEmptyFile()'>Create</button>
+                <button mat-raised-button color='warn' type='' (click)='closeModal(false)'>Cancel</button>
         
             </div>
             <ng-template #other>
@@ -61,16 +62,15 @@
                    </form>
                     <input required type="file" id='file' (change)='setFile($event.target.files)'> 
                     <br>
-                <button mat-raised-button color='primary' type='submit' [disabled]='!FileForm.valid' (click)='handleFileInput()'>Create</button>
-                <button mat-raised-button color='primary' type='' (click)='closeModal(false)'>Cancel</button>
+                <button mat-raised-button type='submit' [disabled]='!FileForm.valid' (click)='handleFileInput()'>Create</button>
+                <button mat-raised-button color='warn' type='' (click)='closeModal(false)'>Cancel</button>
                 </ng-template>
         </div>
 
  <div *ngIf='folderModal' class=modal style="height: min-content;">
     Name <input required type="text" id='file_name' [(ngModel)]="newName"><br>
-  <button [disabled]='!document.getElementById("file_name").value' mat-raised-button color='primary' type='submit' (click)='addNewFolder()'>Create</button>
-    <button mat-raised-button color='primary' type='' (click)='closeFolderModal(false)'>Cancel</button>
+  <button [disabled]='!document.getElementById("file_name").value' mat-raised-button type='submit' (click)='addNewFolder()'>Create</button>
+    <button mat-raised-button color='warn' type='' (click)='closeFolderModal(false)'>Cancel</button>
 
  </div>
-
-        </body>
+</body>
