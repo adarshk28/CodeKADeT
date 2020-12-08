@@ -364,7 +364,6 @@ export class WorkspaceComponent implements AfterViewInit {
   /**
    * Downloads the currently opened file to the user's machine
    */
-  
   downloadFile(name: any) {
     var blob = new Blob([this.text], { type: 'text/file' });
     var url = window.URL.createObjectURL(blob);
@@ -374,16 +373,19 @@ export class WorkspaceComponent implements AfterViewInit {
 
 
 
-    addNewFolder(){
-      if(this.newName.search('/')!=-1){
-        confirm("Do not add / to the name")
-      }
-      else{
+  /**
+   * Adds a new folder to the backend, with the change being reflected in the file tree
+   */
+  addNewFolder(){
+    if(this.newName.search('/')!=-1){
+      confirm("Do not add / to the name")
+    }
+    else{
       this.fileser.addFolder(this.newFolder+'/'+this.newName).subscribe(result => {
         this.folderModal = !this.folderModal;
         this.treecomp.getTree();
         this.showmodal = false;
-      })
+      });
     }
   }
 
