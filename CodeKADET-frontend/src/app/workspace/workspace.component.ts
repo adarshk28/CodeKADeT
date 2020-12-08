@@ -264,33 +264,47 @@ export class WorkspaceComponent implements AfterViewInit {
     this.mode = this.fileToUpload.name.split('.').pop();
     let fr = new FileReader();
       fr.onload = (e) => {
-	    this.text = fr.result;
-    }
-    fr.readAsText(this.fileToUpload);
-    this.FileForm.get('content').setValue(this.fileToUpload);
-    this.FileForm.get('language').setValue(this.FileForm.get('file_name').value.split('.').pop())
-    const formData = new FormData();
-    if (this.FileForm.get('language').value == 'cpp' || this.FileForm.get('language').value == 'h' || this.FileForm.get('language').value == 'c') this.mode = 'c_cpp';
-	  else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
-    else if (this.FileForm.get('language').value == 'java') this.mode = 'java';
-    else this.mode='javascript'
-    formData.append('path', this.FileForm.get('path').value)
-    formData.append('file_name', this.FileForm.get('file_name').value)
-    formData.append('language', this.FileForm.get('language').value)
-    formData.append('content', this.FileForm.get('content').value)
-    this.DisplayForm.get('path').setValue(this.FileForm.get('path').value);
-    this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value)
-    this.DisplayForm.get('content').setValue(this.FileForm.get('content').value)
-    return this.fileser.postFile(formData).subscribe(
-	    result=> {
-	        this.showmodal=!this.showmodal;
+	  this.text = fr.result;
+      }
+      fr.readAsText(this.fileToUpload);
+      this.FileForm.get('content').setValue(this.fileToUpload);
+      this.FileForm.get('language').setValue(this.FileForm.get('file_name').value.split('.').pop())
+      console.log(this.FileForm.value);
+      const formData = new FormData();
+      if (this.FileForm.get('language').value == 'cpp' || this.FileForm.get('language').value == 'h' || this.FileForm.get('language').value == 'c') this.mode = 'c_cpp';
+	else if (this.FileForm.get('language').value == 'py') this.mode = 'python';
+      else if (this.FileForm.get('language').value == 'java') this.mode = 'java';
+      else this.mode='javascript'
+      formData.append('path', this.FileForm.get('path').value)
+      formData.append('file_name', this.FileForm.get('file_name').value)
+      formData.append('language', this.FileForm.get('language').value)
+      formData.append('content', this.FileForm.get('content').value)
+      console.log(formData);
+      this.DisplayForm.get('path').setValue(this.FileForm.get('path').value);
+      this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value)
+      this.DisplayForm.get('content').setValue(this.FileForm.get('content').value)
+
+      console.log(this.DisplayForm.value)
+      var nm: string;
+      nm = this.FileForm.get("file_name").value
+      if(nm.search('/')!=-1){
+        console.log("no / allowed")
+        confirm("Do not add / in the name")
+      }
+      else{
+      return this.fileser.postFile(formData).subscribe(
+	  result=> {
+	      console.log(result);
+	      this.showmodal=!this.showmodal;
         this.treecomp.getTree();
         this.folderModal = false;
-	    });
+    });
+  }
   }
 
   /**
    * Passes the empty file to the backend for storage. Also opens the file in the editor
+   * Creates an empty file in the frontend as well as the backend with the name given by the user as input
    */
   makeEmptyFile(): void {
     if (this.treecomp.fileno == 10) {
@@ -306,11 +320,20 @@ export class WorkspaceComponent implements AfterViewInit {
 	  this.DisplayForm.get('path').setValue(this.FileForm.get('path').value);
 	  this.DisplayForm.get('content').setValue('');
 	  this.DisplayForm.get('name').setValue(this.FileForm.get('file_name').value);
-	  this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
-	    result => {
-		    this.showmodal=!this.showmodal;
-		    this.treecomp.getTree();
-	    });
+    var nm: string;
+    nm = this.FileForm.get("file_name").value
+    console.log(nm)
+    if(nm.search('/')!=-1){
+      console.log("no / allowed")
+      confirm("Do not add / to the name")
+    }
+    else{
+	    this.fileser.uploadFromTextBox(this.FileForm.value).subscribe(
+	        result => {
+	    	    this.showmodal=!this.showmodal;
+	    	    this.treecomp.getTree();
+	        });
+     }
   }
 
   /**
@@ -355,15 +378,19 @@ export class WorkspaceComponent implements AfterViewInit {
     window.open(url);
   }
 
-  /**
-   * Adds the new folder to the user's file tree and closes the folder modal
-   */
-  addNewFolder(){
-    this.fileser.addFolder(this.newFolder+'/'+this.newName).subscribe(result => {
-      this.folderModal = !this.folderModal;
-      this.treecomp.getTree();
-      this.showmodal = false;
-    })
+    addNewFolder(){
+      if(this.newName.search('/')!=-1){
+        console.log('/ not allowed')
+        confirm("Do not add / to the name")
+      }
+      else{
+      this.fileser.addFolder(this.newFolder+'/'+this.newName).subscribe(result => {
+        this.folderModal = !this.folderModal;
+        console.log(result);
+        this.treecomp.getTree();
+        this.showmodal = false;
+      })
+    }
   }
 
   /**
