@@ -83,9 +83,14 @@ export class TryComponent implements OnInit{
 
   // files =[{name: "danish", type: 'file', path: ''}];
   /**
-   * A nested JSON object containing the tree structure passed from the backend
+   * A list of  JSON objects containing the tree structure passed from the backend
    */
   files =[];
+
+  /**
+   * A variable to contain the number of files in the tree 
+   */
+  fileno = 0;
 
   /**
    * A variable to check if the tree has been loaded or not
@@ -141,6 +146,7 @@ export class TryComponent implements OnInit{
   */
   getTree() {
     this.treeService.getRequest().subscribe(result=>{
+      this.fileno = 0;
       this.files=result.children;
       this.loaded=true;
       this.treeFlattener = new MatTreeFlattener(
@@ -157,7 +163,8 @@ export class TryComponent implements OnInit{
   /** 
    * Transform the data from the JSON object to something the frontend file tree can read. 
    */
-  transformer(node: FileNode, level: number) {
+  transformer = (node: FileNode, level: number) => {
+    if(node.type=='file') this.fileno+=1;
     return {
       name: node.name,
       type: node.type,

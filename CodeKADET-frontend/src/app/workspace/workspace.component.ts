@@ -171,7 +171,7 @@ export class WorkspaceComponent implements AfterViewInit {
    *Sets the path variable in FileForm accordingly.
    */
   closeModal(isInEmpty: boolean){
-	  if (isInEmpty) this.FileForm.get('path').setValue('.');
+	 if (isInEmpty) this.FileForm.get('path').setValue('.');
     this.showmodal = !this.showmodal;
   }
 
@@ -257,6 +257,10 @@ export class WorkspaceComponent implements AfterViewInit {
    * Passes the file uploaded from the computer to the backend for storage. Also displays the uploaded file in the editor
    */
   handleFileInput() {
+    if (this.treecomp.fileno == 10) {
+      alert ('Maximum file limit of 10 files has already been reached!')
+      return;
+    }
     this.mode = this.fileToUpload.name.split('.').pop();
     let fr = new FileReader();
       fr.onload = (e) => {
@@ -289,6 +293,10 @@ export class WorkspaceComponent implements AfterViewInit {
    * Passes the empty file to the backend for storage. Also opens the file in the editor
    */
   makeEmptyFile(): void {
+    if (this.treecomp.fileno == 10) {
+      alert ('Maximum file limit of 10 files has already been reached!')
+      return;
+    }
 	  this.FileForm.get('language').setValue(this.FileForm.get('file_name').value.split('.').pop());
 	  this.FileForm.get('content').setValue(null);
     if (this.FileForm.get('language').value == 'cpp' || this.FileForm.get('language').value == 'h' || this.FileForm.get('language').value == 'c') this.mode = 'c_cpp';
