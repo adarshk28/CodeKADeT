@@ -1,5 +1,5 @@
 .type-icon {
-  color: #999;
+  color: white;
   margin-right: 5px;
 }
 body{
@@ -8,26 +8,29 @@ body{
   width: 300px;
   height: 635px;
   margin: 20px;
-  border-color: white;
-  border-width: 1px;
-  border-style: dotted;
-  border-radius: 2px;
+  // border-color: white;
+  // border-width: 1px;
+  // border-style: dotted;
+  border: 1px solid white;
+  // border-radius: 2px;
   background-color: 	#333232;
   margin-top: -8px;
   margin-left: 60px;
  
 }
+
 .header{
-  font-size: small;
-  font-family: 'Times New Roman', Times, serif;
+  background-color: #ffb646;
+  font-family: Roboto;
+  font-size: 15px;
+  color: black;
   font-style: bold;
-  text-align: left;
-  background-color: #999;
-  color: white;
-  margin-bottom: 0;
+  text-align: center;
+  padding: 5px;
+  padding-bottom: 1px;
 }
 mat-tree{
-  background-color: 	#333232;
+  background-color: #333232;
   color: white;
   margin-top: -10px;
   font-size: small;
