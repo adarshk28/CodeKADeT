@@ -145,6 +145,7 @@ export class TryComponent implements OnInit{
    * Gets the file tree from the backend as a nested JSON object using treeService and stores it in the  tree format needed for display
   */
   getTree() {
+    this.fileno = 0;
     this.treeService.getRequest().subscribe(result=>{
       this.fileno = 0;
       this.files=result.children;
