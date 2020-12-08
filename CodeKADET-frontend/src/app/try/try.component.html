@@ -43,8 +43,11 @@
 <div *ngIf='showRightMenu' class='modal1'>
     <button mat-button (click)='rename_modal()'>Rename</button> <br>
     <button mat-button (click)='file_delete()'>Delete</button>  <br> 
-    <button mat-button *ngIf='isFolder' (click)='add_file()'>Add New File</button> <br>
-    <button mat-button *ngIf='isFolder' (click)='add_folder()'>Add New Folder</button> <br>
+    <div *ngIf='isFolder'> 
+      <button mat-button (click)='add_file()'>Add New File</button> <br>
+      <button mat-button (click)='add_folder()'>Add New Folder</button> <br>
+    </div>
+    <button mat-button *ngIf='!isFolder' (click)='download_call()'>Download</button> <br>
    <button mat-raised-button color='warn' (click)="closeRight()">Close</button>
 </div>
 

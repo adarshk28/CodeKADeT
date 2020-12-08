@@ -363,12 +363,15 @@ export class WorkspaceComponent implements AfterViewInit {
   /**
    * Downloads the currently opened file to the user's machine
    */
-  downLoadFile() {
+  
+  downLoadFile(name: any) {
     var blob = new Blob([this.text], { type: 'text/file' });
     var url = window.URL.createObjectURL(blob);
-    fileSaver(blob,this.DisplayForm.get('name').value);
+    fileSaver(blob,name);
     window.open(url);
   }
+
+
 
     addNewFolder(){
       if(this.newName.search('/')!=-1){

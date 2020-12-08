@@ -6,8 +6,8 @@
         <button mat-raised-button  (click)='closeFolderModal(true)'> Create New Project</button>
 	<br>
 	<br>
-        <div style="color: white; position: absolute; right: 87%; top: 4%; font-size: smaller;">{{user}}</div>
-           <try-component id='treecomp' #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)">  </try-component>
+        <div style="color: white; position: absolute; right: 88%; top: 2.4%; font-size: 17px;">Hi, {{user}}!</div>
+           <try-component id='treecomp' #treecomp (newItemEvent)="getFile($event)" (uploadFileEvent)="modalview($event)" (uploadFolderEvent)="folderModalview($event)" (deleteEvent)="deleteText($event)" (rightClose)="closeModals($event)" (downloadEvent)="downLoadFile($event)">  </try-component>
             <div class='left-buttons'>
     </div>
         </div>
@@ -23,8 +23,6 @@
         <form [formGroup]='RunForm'>
                 <div style="width: 30%; float: left; position: relative; top: -100%">
                     <button mat-raised-button (click)="changeTheme()">Change Editor Theme</button>
-
-                        <button mat-raised-button (click)='downLoadFile()' style="margin:20px;">Download</button> 
                     <div id="interface">
                         <label for='input'>User input:</label><br>
                         <textarea formControlName='Input' id="input" cols="30" rows="13"></textarea>
@@ -44,8 +42,8 @@
         </div>
         
         <div *ngIf='showmodal' class=modal>
-            <button (click)='empty()' [ngClass]="{'yellow': showwhat, 'white': !showwhat}"class='choicebutton1'>Make Empty File</button>
-            <button (click)='comp()' [ngClass]="{'white': showwhat, 'yellow': !showwhat}" class='choicebutton2'>Upload From Computer</button>
+            <button (click)='empty()' [ngClass]="{'white': showwhat, 'yellow': !showwhat}"class='choicebutton1'>Make Empty File</button>
+            <button (click)='comp()' [ngClass]="{'yellow': showwhat, 'white': !showwhat}" class='choicebutton2'>Upload From Computer</button>
             <div *ngIf='showwhat; else other'>
                <form [formGroup]='FileForm' (ngSubmit)='makeEmptyFile()' class='form'>  
                 <label for='file_name'>File Name: </label><br>
